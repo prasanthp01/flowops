@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0",
+  "project_id": "resolveai",
+  "origin": "https://portfolio.gappazappa.in",
+  "case_study_route": "/projects/resolveai",
+  "api_prefix": "/api/projects/resolveai",
+  "app_route": null
+}

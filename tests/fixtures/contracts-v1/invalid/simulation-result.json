@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "project_id": "resolveai",
+  "run_id": "run-1",
+  "mode": "SANDBOX_DETERMINISTIC",
+  "status": "SUCCEEDED",
+  "app_version": "0.0.0-mock",
+  "fixtures_version": "1.0.0",
+  "provenance": {
+    "data_origin": "SYNTHETIC",
+    "connector_kind": "MOCK",
+    "app_version": "0.0.0-mock",
+    "fixtures_version": "1.0.0",
+    "rules_version": "mock-1",
+    "workflow_version": "mock-1",
+    "model_version": "none",
+    "prompt_version": "none",
+    "source_revision": "0000000000000000000000000000000000000000"
+  },
+  "output_schema_version": "mock-1",
+  "output": {
+    "fixture_score": 6,
+    "label": "MOCK CONTRACT FIXTURE"
+  },
+  "safety_status": "SAFE",
+  "evidence": [
+    {
+      "evidence_id": "fixture-1",
+      "origin": "FIXTURE",
+      "reference": "fixtures/scenario.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "limitations": [
+    "Contract mock only; does not implement product business logic."
+  ],
+  "duration_ms": 0,
+  "usage": {
+    "usage_id": "usage-1",
+    "kind": "SIMULATED",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_tokens": 0,
+    "provider_calls": 0,
+    "cost": {
+      "kind": "SIMULATED",
+      "value": 0,
+      "currency": "USD",
+      "pricing_version": "fixture-1"
+    }
+  },
+  "cost": {
+    "kind": "SIMULATED",
+    "value": 0,
+    "currency": "USD",
+    "pricing_version": "fixture-1"
+  },
+  "unexpected_secret_field": "synthetic-sentinel"
+}

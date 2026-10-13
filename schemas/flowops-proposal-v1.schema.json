@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "action": {
+      "enum": [
+        "refund_request",
+        "inventory_hold",
+        "investigation_ticket"
+      ],
+      "title": "Action",
+      "type": "string"
+    },
+    "amount_minor": {
+      "maximum": 1000000,
+      "minimum": 0,
+      "title": "Amount Minor",
+      "type": "integer"
+    },
+    "currency": {
+      "enum": [
+        "EUR",
+        "USD"
+      ],
+      "title": "Currency",
+      "type": "string"
+    },
+    "order_id": {
+      "enum": [
+        "SYN-ORDER-001",
+        "SYN-ORDER-002"
+      ],
+      "title": "Order Id",
+      "type": "string"
+    },
+    "notification": {
+      "const": "draft_only",
+      "default": "draft_only",
+      "title": "Notification",
+      "type": "string"
+    }
+  },
+  "required": [
+    "action",
+    "amount_minor",
+    "currency",
+    "order_id"
+  ],
+  "title": "Proposal",
+  "type": "object"
+}

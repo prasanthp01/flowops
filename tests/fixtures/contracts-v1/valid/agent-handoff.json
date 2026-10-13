@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "workflow_id": "workflow-1",
+  "task_id": "task-1",
+  "agent_role": "RETRIEVAL",
+  "authorized_tool_scopes": [
+    "knowledge:read"
+  ],
+  "output_schema_version": "1.0",
+  "context_refs": [
+    "fixture-1"
+  ],
+  "evidence_refs": [
+    {
+      "evidence_id": "fixture-1",
+      "origin": "FIXTURE",
+      "reference": "fixtures/scenario.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  ],
+  "deadline": "2026-10-13T12:01:00Z",
+  "status": "ASSIGNED",
+  "decision": "PENDING",
+  "error": null,
+  "correlation_id": "correlation-1",
+  "tenant_id": "tenant-fixture",
+  "mode": "SANDBOX_DETERMINISTIC"
+}

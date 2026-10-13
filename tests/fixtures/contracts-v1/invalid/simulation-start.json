@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "project_id": "resolveai",
+  "mode": "SANDBOX_DETERMINISTIC",
+  "preset_id": "normal",
+  "input": {
+    "scenario_id": "normal",
+    "severity": 2,
+    "item_count": 3
+  },
+  "seed": 7,
+  "client_correlation_id": "correlation-1",
+  "unexpected_secret_field": "synthetic-sentinel"
+}

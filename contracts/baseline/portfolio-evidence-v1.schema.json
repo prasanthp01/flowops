@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "slug": {
+      "enum": [
+        "resolveai",
+        "flowops",
+        "knowledgeops",
+        "agentops"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "git_revision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "PLANNED",
+        "IMPLEMENTED",
+        "TESTED",
+        "DEPLOYED",
+        "BLOCKED"
+      ]
+    },
+    "public_route": {
+      "type": "string",
+      "minLength": 1
+    },
+    "simulation": {
+      "type": "object"
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "benchmarks": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "costs": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "last_verified_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "limits": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "slug",
+    "title",
+    "git_revision",
+    "status",
+    "public_route",
+    "simulation",
+    "tests",
+    "benchmarks",
+    "costs",
+    "limits"
+  ],
+  "additionalProperties": false
+}

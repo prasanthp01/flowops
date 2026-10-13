@@ -1,0 +1,122 @@
+{
+  "schema_version": "1.0",
+  "slug": "flowops",
+  "title": "FlowOps Contracts v1 local backend adoption",
+  "git_revision": "9e57bd7dfa6dc8eb7f11249b32e77fa70e438945",
+  "status": "TESTED",
+  "environment": "test",
+  "public_route": "/projects/flowops",
+  "deployment_url": null,
+  "last_verified_at": "2026-10-13T16:11:51.633486Z",
+  "simulation": {
+    "mode": "SANDBOX_DETERMINISTIC",
+    "provenance": {
+      "data_origin": "SYNTHETIC",
+      "connector_kind": "MOCK",
+      "app_version": "0.2.0",
+      "fixtures_version": "synthetic-1.0",
+      "rules_version": "2026-01",
+      "workflow_version": "flowops-1.0",
+      "model_version": "none",
+      "prompt_version": "none",
+      "source_revision": "9e57bd7dfa6dc8eb7f11249b32e77fa70e438945"
+    },
+    "input_schema_sha256": "ac2b21b95c18c41f48030266975fe047fa78507cd74e98242ee0302b23dbb843"
+  },
+  "tests": [
+    {
+      "name": "Regression suite",
+      "status": "PASS",
+      "command": "uv run python scripts/dev.py .venv/bin/pytest -q --junitxml=docs/contracts-adoption/pytest.xml",
+      "evidence": {
+        "evidence_id": "regression-suite",
+        "origin": "TEST",
+        "reference": "docs/contracts-adoption/pytest.xml",
+        "sha256": "1da76fba5727f1cf784d3873473e46b499c79a69070bc6cb96bb6ceb0b6e3f5d"
+      },
+      "conditions": "141 passed on dedicated flowops_test PostgreSQL database; legacy and canonical endpoints, frozen fixtures, signatures, scopes, duplicates, fencing, lost responses and migration preservation. One Starlette httpx deprecation warning.",
+      "executed_at": "2026-10-13T16:07:50.822880Z"
+    },
+    {
+      "name": "Actual HTTP runtime",
+      "status": "PASS",
+      "command": "FLOWOPS_SOURCE_REVISION=9e57bd7dfa6dc8eb7f11249b32e77fa70e438945 uv run python -m scripts.contracts_http_verify --restart",
+      "evidence": {
+        "evidence_id": "actual-http-runtime",
+        "origin": "TEST",
+        "reference": "docs/contracts-adoption/http-runtime.json",
+        "sha256": "fbd2de4d1c62a7b9a16fbe233b129c88e3fe61fe350c784328799b0b15a622e4"
+      },
+      "conditions": "Six workflows against isolated Uvicorn API, worker and PostgreSQL; two distinct bounded inputs and seed-7 repeat; SSE/polling, approval, signed test callback and restart recovery. External service peers are not connected.",
+      "executed_at": "2026-10-13T16:08:46.946375Z"
+    },
+    {
+      "name": "Runtime inspection",
+      "status": "PASS",
+      "command": "FLOWOPS_SOURCE_REVISION=9e57bd7dfa6dc8eb7f11249b32e77fa70e438945 uv run python -m scripts.contracts_runtime_inspect",
+      "evidence": {
+        "evidence_id": "runtime-inspection",
+        "origin": "TEST",
+        "reference": "docs/contracts-adoption/runtime-inspection.json",
+        "sha256": "e6c35c79c3792e126f27874d334ad21e7d6f741b92791db9ecebb94e433ebe93"
+      },
+      "conditions": "Local arm64 container image; API and database healthy, worker running, migration exited 0, journals retained and runtime direct update/delete permissions restricted. Public v0.1.0 health checked unchanged.",
+      "executed_at": "2026-10-13T16:10:50.634586Z"
+    },
+    {
+      "name": "Static checks",
+      "status": "PASS",
+      "command": "uv run ruff check flowops tests scripts operations migrations && uv run mypy flowops",
+      "evidence": {
+        "evidence_id": "static-checks",
+        "origin": "TEST",
+        "reference": "docs/contracts-adoption/static-checks.json",
+        "sha256": "14bbc388883861969ec275365cb53527a63dd40f3d028253fd617cc650d8c7ce"
+      },
+      "conditions": "Ruff, mypy, JavaScript syntax and Git whitespace checks passed.",
+      "executed_at": "2026-10-13T16:11:51.633793Z"
+    },
+    {
+      "name": "Dependency audit",
+      "status": "PASS",
+      "command": "uv run pip-audit -r requirements.txt --disable-pip --no-deps --format json",
+      "evidence": {
+        "evidence_id": "dependency-audit",
+        "origin": "TEST",
+        "reference": "docs/contracts-adoption/dependency-audit.json",
+        "sha256": "8110d9af8db3b7f795c0f4aba4490b794acc19f84398b855b37312b5811aaf68"
+      },
+      "conditions": "No known vulnerabilities in the locked runtime dependency set at this check; not a container OS or independent security assessment.",
+      "executed_at": "2026-10-13T16:03:28.369137Z"
+    }
+  ],
+  "benchmarks": [],
+  "costs": [
+    {
+      "category": "PROVIDER",
+      "cost": {
+        "kind": "NONE",
+        "value": 0,
+        "currency": "EUR",
+        "pricing_version": "no-provider-usage"
+      },
+      "method": "Deterministic sandbox executes no provider calls. This excludes hosting and development costs.",
+      "evidence": {
+        "evidence_id": "sandbox-usage",
+        "origin": "TEST",
+        "reference": "docs/contracts-adoption/http-runtime.json",
+        "sha256": "fbd2de4d1c62a7b9a16fbe233b129c88e3fe61fe350c784328799b0b15a622e4"
+      }
+    }
+  ],
+  "skills": [],
+  "limits": [
+    "Contracts 1.0.0, wire 1.0 backend adapter only; public v0.1.0 remains on its legacy UI/API. No production cutover performed.",
+    "ResolveAI callback receiver verified with a local test issuer over real HTTP. No real ResolveAI connection or credentials verified.",
+    "KnowledgeOps and AgentOps clients verified using mocked peer transports; no real peer grants, corpus lookup or live inference.",
+    "Failure outbox delivery is opt-in and disabled. A failed smoke workflow leaves a durable PENDING record; no remote event was sent.",
+    "No automated journal archive policy. Outbox admission limit 1000 plus admitted in-flight work; inbox cap 25000; runtime cannot delete journals.",
+    "No independent security assessment, capacity benchmark, browser/frontend Contracts integration or production deployment of this adapter.",
+    "Local runtime image is linux/arm64; a future VPS release needs a separately verified amd64 image and coordinated authorization."
+  ]
+}

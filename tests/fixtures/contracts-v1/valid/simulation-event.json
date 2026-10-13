@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "run_id": "run-1",
+  "project_id": "resolveai",
+  "event_id": "event-1",
+  "sequence": 1,
+  "occurred_at": "2026-10-13T12:00:00Z",
+  "step_id": "step-1",
+  "step_type": "VALIDATION",
+  "component": "contract-mock",
+  "status": "SUCCEEDED",
+  "mode": "SANDBOX_DETERMINISTIC",
+  "title": "Mock input validated",
+  "overview": "The fixture server accepted the bounded synthetic input.",
+  "technical": {
+    "action": "validate_fixture",
+    "input_schema_version": "1.0",
+    "output_schema_version": "1.0",
+    "input_ref": "input-1",
+    "output_ref": "output-1",
+    "decisions": [
+      "Fixture validation only; no product logic executed."
+    ],
+    "evidence": [
+      {
+        "evidence_id": "fixture-1",
+        "origin": "FIXTURE",
+        "reference": "fixtures/scenario.json",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      }
+    ],
+    "adapter_kind": "DETERMINISTIC",
+    "attempt": 1,
+    "fallback_reason": null
+  },
+  "duration_ms": 0,
+  "trace_id": "trace-1",
+  "usage": {
+    "usage_id": "usage-1",
+    "kind": "SIMULATED",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_tokens": 0,
+    "provider_calls": 0,
+    "cost": {
+      "kind": "SIMULATED",
+      "value": 0,
+      "currency": "USD",
+      "pricing_version": "fixture-1"
+    }
+  },
+  "provenance": {
+    "data_origin": "SYNTHETIC",
+    "connector_kind": "MOCK",
+    "app_version": "0.0.0-mock",
+    "fixtures_version": "1.0.0",
+    "rules_version": "mock-1",
+    "workflow_version": "mock-1",
+    "model_version": "none",
+    "prompt_version": "none",
+    "source_revision": "0000000000000000000000000000000000000000"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0",
+  "code": "FORBIDDEN",
+  "message": "Access denied.",
+  "retryable": false,
+  "correlation_id": "correlation-1",
+  "http_status": 403,
+  "unexpected_secret_field": "synthetic-sentinel"
+}

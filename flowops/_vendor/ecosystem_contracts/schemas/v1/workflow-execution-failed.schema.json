@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.example.invalid/v1/workflow-execution-failed.schema.json",
+  "title": "WorkflowExecutionFailed",
+  "type": "object",
+  "properties": {
+    "workflow_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "execution_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "failure_code": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "severity": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/evidence"
+      },
+      "maxItems": 32,
+      "minItems": 0
+    }
+  },
+  "required": [
+    "workflow_id",
+    "execution_id",
+    "failure_code",
+    "severity",
+    "evidence"
+  ],
+  "additionalProperties": false
+}

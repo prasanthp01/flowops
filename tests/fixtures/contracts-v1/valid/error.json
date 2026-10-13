@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0",
+  "code": "FORBIDDEN",
+  "message": "Access denied.",
+  "retryable": false,
+  "correlation_id": "correlation-1",
+  "http_status": 403
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "application_id": "resolveai",
+  "tenant_id": "tenant-fixture",
+  "query": "Synthetic retry policy",
+  "collection_ids": [
+    "fixture-runbooks"
+  ],
+  "max_results": 3,
+  "max_excerpt_chars": 300,
+  "correlation_id": "correlation-1",
+  "mode": "SANDBOX_DETERMINISTIC",
+  "unexpected_secret_field": "synthetic-sentinel"
+}

@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.example.invalid/v1/simulation-schema.schema.json",
+  "title": "SimulationSchema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "project_id": {
+      "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/project"
+    },
+    "input_schema_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "input_schema_sha256": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "input_schema": {
+      "type": "object",
+      "maxProperties": 16
+    },
+    "supported_modes": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "SANDBOX_DETERMINISTIC",
+          "REPLAY_RECORDED",
+          "LIVE_MODEL_AUTHENTICATED"
+        ]
+      },
+      "maxItems": 3,
+      "minItems": 1
+    },
+    "limits": {
+      "type": "object",
+      "properties": {
+        "max_body_bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65536
+        },
+        "max_steps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1024
+        },
+        "max_run_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 120
+        },
+        "retention_seconds": {
+          "type": "integer",
+          "minimum": 60,
+          "maximum": 3600
+        },
+        "max_concurrent_per_session": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4
+        },
+        "max_concurrent_global": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 16
+        }
+      },
+      "required": [
+        "max_body_bytes",
+        "max_steps",
+        "max_run_seconds",
+        "retention_seconds",
+        "max_concurrent_per_session",
+        "max_concurrent_global"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema_version",
+    "project_id",
+    "input_schema_id",
+    "input_schema_sha256",
+    "input_schema",
+    "supported_modes",
+    "limits"
+  ],
+  "additionalProperties": false
+}

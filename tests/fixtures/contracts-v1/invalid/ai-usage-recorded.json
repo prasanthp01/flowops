@@ -1,0 +1,23 @@
+{
+  "operation_id": "operation-1",
+  "provider": "mock",
+  "deployment": "mock-1",
+  "model_version": "none",
+  "region": "eu-test",
+  "usage": {
+    "usage_id": "usage-1",
+    "kind": "SIMULATED",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_tokens": 0,
+    "provider_calls": 0,
+    "cost": {
+      "kind": "SIMULATED",
+      "value": 0,
+      "currency": "USD",
+      "pricing_version": "fixture-1"
+    }
+  },
+  "attempt": 1,
+  "unexpected_secret_field": "synthetic-sentinel"
+}

@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "PolicyDocument": {
+      "additionalProperties": false,
+      "properties": {
+        "threshold_minor": {
+          "maximum": 1000000,
+          "minimum": 0,
+          "title": "Threshold Minor",
+          "type": "integer"
+        },
+        "return_days": {
+          "maximum": 365,
+          "minimum": 0,
+          "title": "Return Days",
+          "type": "integer"
+        },
+        "evidence_id": {
+          "enum": [
+            "POLICY-2026-01",
+            "POLICY-2026-02"
+          ],
+          "title": "Evidence Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "threshold_minor",
+        "return_days",
+        "evidence_id"
+      ],
+      "title": "PolicyDocument",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "revision": {
+      "enum": [
+        "2026-01",
+        "2026-02",
+        "unknown"
+      ],
+      "title": "Revision",
+      "type": "string"
+    },
+    "policy": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/PolicyDocument"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "evidence_ids": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 1,
+      "title": "Evidence Ids",
+      "type": "array"
+    },
+    "authorized": {
+      "const": true,
+      "default": true,
+      "title": "Authorized",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "revision",
+    "policy",
+    "evidence_ids"
+  ],
+  "title": "PolicyOutput",
+  "type": "object"
+}

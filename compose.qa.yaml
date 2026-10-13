@@ -1,0 +1,7 @@
+# Local QA only. Production compose exposes no database port.
+services:
+  db:
+    ports: ["127.0.0.1:55439:5432"]
+    networks: [flowops, qa]
+networks:
+  qa: {}

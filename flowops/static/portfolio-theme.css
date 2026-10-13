@@ -1,0 +1,167 @@
+/* Shared portfolio case-study system. Keep the copies in each app identical. */
+@font-face{font-family:'Portfolio Inter';src:url('./inter-latin.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:'Portfolio Poppins';src:url('./poppins-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'Portfolio Poppins';src:url('./poppins-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+body.case-page{--ink:#172b48;--navy:#172b48;--text:#172b48;--muted:#465b72;--paper:#f8fafc;--cream:#f8fafc;--line:#ccd8e8;--border:#ccd8e8;--teal:#116f66;--blue:#2853b8;--case-accent:#2853b8;--case-tint:#e4edff;--case-line:#bdceef;--case-width:1280px;background:var(--paper);color:var(--ink);font:16px/1.7 'Portfolio Inter','Inter Variable',sans-serif;-webkit-font-smoothing:antialiased}
+body.case-flowops{--case-accent:#91601d;--case-tint:#fbefd7;--case-line:#e3cca0}
+body.case-knowledgeops{--case-accent:#116f66;--case-tint:#dff1eb;--case-line:#b3d8cc}
+body.case-agentops{--case-accent:#6450a8;--case-tint:#eee8fc;--case-line:#d1c6e8}
+.case-page ::selection{background:#cbdafc;color:#172b48}
+.case-page :focus-visible{outline:3px solid var(--blue);outline-offset:4px}
+.case-page .home-icon{display:inline-flex;width:22px;height:22px;flex:0 0 22px;align-items:center;justify-content:center;vertical-align:middle}
+.case-page .home-icon svg{width:100%;height:100%;display:block;fill:currentColor}
+.case-page h1,.case-page h2,.case-page h3,.case-page h4{font-family:'Portfolio Poppins',Poppins,sans-serif;color:var(--ink);font-weight:600;letter-spacing:-.04em;line-height:1.2;text-wrap:balance}
+.case-page h1 em,.case-page h2 em{font-family:inherit;font-style:normal;font-weight:inherit;color:var(--case-accent)}
+.case-page h2{font-size:clamp(28px,3vw,42px)}
+.case-page h3{font-size:19px}
+.case-page p{line-height:1.75}
+body.case-page main{width:min(var(--case-width),calc(100% - 80px));max-width:var(--case-width);margin:0 auto;padding:0;min-width:0}
+body.case-page #sidebar.case-header,body.case-page #project-sidebar.case-header{position:relative;inset:auto;z-index:25;width:min(var(--case-width),calc(100% - 80px));height:auto;max-height:none;margin:0 auto;padding:26px 0 24px;display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:24px;background:transparent;border:0;overflow:visible;transform:none}
+.case-page .case-header-top{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.case-page .case-brand{display:flex;align-items:center;gap:11px;font:600 15px/1.3 'Portfolio Poppins',sans-serif;letter-spacing:-.035em;color:var(--ink);min-height:48px;white-space:nowrap;text-decoration:none}
+.case-page .case-brand img{width:36px;height:42px;object-fit:contain;flex:none}
+.case-page .case-brand b{color:var(--blue)}
+body.case-page .case-header nav{display:flex;align-items:center;gap:8px;margin:0;padding:0;flex-wrap:wrap}
+body.case-page :is(#sidebar,#project-sidebar).case-header nav a{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin:0;padding:10px 14px;min-height:44px;border:1px solid transparent;border-radius:999px;font:500 13px/1.4 'Portfolio Inter',sans-serif;color:var(--muted);background:transparent;text-decoration:none}
+body.case-page :is(#sidebar,#project-sidebar).case-header nav a>.home-icon{margin:0;width:18px;height:18px;flex-basis:18px}
+body.case-page :is(#sidebar,#project-sidebar).case-header nav a:hover{background:#eaf1ff;color:var(--blue)}
+body.case-page :is(#sidebar,#project-sidebar).case-header nav a[aria-current=page]{background:var(--case-tint);border-color:var(--case-line);color:var(--case-accent);font-weight:650}
+.case-page .case-back{display:inline-flex;align-items:center;gap:8px;font-size:13px;min-height:44px;color:var(--blue);white-space:nowrap}
+.case-page .case-menu-close{display:none}
+.case-page .topline,.case-page .page-top,.case-page .breadcrumbs{margin:0 0 20px;padding:14px 0 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;border:0;border-top:1px solid var(--line);font-family:inherit;font-size:11px;letter-spacing:.06em;color:var(--muted)}
+.case-page .breadcrumbs{justify-content:flex-start;gap:12px;text-transform:none}
+.case-page .breadcrumbs a{padding:0;min-height:32px;margin:0}
+.case-page .topline a,.case-page .page-top a{font-size:12px;display:inline-flex;gap:8px;align-items:center;min-height:32px}
+body.case-page .hero,body.case-page .project-hero{position:relative;margin:0;padding:clamp(26px,4.3vw,60px);display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:center;gap:clamp(30px,5vw,70px);background:var(--case-tint);border:1px solid var(--case-line);border-radius:32px;box-shadow:0 12px 36px #172b4806;overflow:hidden}
+body.case-page .hero h1,body.case-page .project-hero h1{font:700 clamp(38px,4.6vw,64px)/1.08 'Portfolio Poppins',Poppins,sans-serif;letter-spacing:-.055em;margin:22px 0;max-width:12ch}
+.case-page .project-hero h1{max-width:none}
+.case-page .hero .lead,.case-page .hero .lede,.case-page .hero .hero-description,.case-page .project-hero .project-summary{font:400 16px/1.8 'Portfolio Inter',sans-serif;color:var(--muted);max-width:58ch;margin:0}
+.case-page .project-hero .project-tagline{font:600 clamp(23px,2.3vw,30px)/1.3 'Portfolio Poppins',sans-serif;color:var(--case-accent);margin:0 0 22px}
+.case-page .hero [data-project-owner],.case-page .project-hero [data-project-owner]{font-size:12px;font-weight:600;letter-spacing:0;text-transform:none;margin-top:24px;color:var(--ink)}
+.case-page .hero .fineprint,.case-page .hero .caption{font-size:12px;color:var(--muted)}
+.case-page .hero-actions,.case-page .project-hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:14px 22px;margin:25px 0 20px}
+.case-page .hero .eyebrow,.case-page .hero .tag,.case-page .status-line,.case-page .project-hero-top .eyebrow{color:var(--case-accent);font:600 11px/1.5 'Portfolio Inter',sans-serif;letter-spacing:.12em}
+.case-page .hero .tag{padding:0;background:none}
+.case-page .hero .eyebrow{display:flex;gap:12px;flex-wrap:wrap}
+.case-page .hero .subtle{font-size:11px;letter-spacing:0;color:var(--muted)}
+.case-page .hero-diagram,.case-page .hero-visual,.case-page .case-hero-visual{max-width:none;padding:26px;background:#ffffffb8;border:1px solid var(--case-line);border-radius:22px;box-shadow:0 12px 32px #172b4808}
+.case-page .hero-illustration{min-width:0}
+.case-page .source-paper{border-radius:18px;box-shadow:0 14px 32px #172b4812}
+.case-page .source-paper h2{font-size:24px}
+.case-page .source-paper p{font-family:'Portfolio Inter',sans-serif}
+.case-page .diagram-node,.case-page .policy-node,.case-page .mini-model{border-radius:12px}
+.case-page .case-hero-visual .visual-kicker{font-size:11px;letter-spacing:.1em;color:var(--case-accent);margin-bottom:18px}
+.case-page .case-hero-visual ol{display:grid;gap:10px;list-style:none;padding:0;margin:0}
+.case-page .case-hero-visual li{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:13px;font-weight:600}
+.case-page .case-hero-visual li>span{font-size:11px;color:var(--blue)}
+.case-page .case-hero-visual>p:last-child{font-size:12px;margin-top:18px;color:var(--muted)}
+.case-page .button,.case-page button.primary,.case-page .primary-button{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:48px;padding:12px 20px;border-radius:999px;border:1px solid transparent;font-size:13px;font-weight:600;line-height:1.5;text-decoration:none;transition:background .18s,transform .18s}
+body.case-page .button.primary,body.case-page button.primary,body.case-page .primary-button{background:var(--blue);border-color:var(--blue);color:white}
+body.case-page .button.primary:hover,body.case-page button.primary:hover:not(:disabled),body.case-page .primary-button:hover:not(:disabled){background:#1e4295;transform:translateY(-1px);color:white}
+.case-page .hero-actions .primary>.home-icon,.case-page .project-hero-actions .primary>.home-icon{background:white;color:var(--blue);padding:5px;border-radius:50%;width:28px;height:28px;flex-basis:28px}
+.case-page .text-link{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:13px;color:var(--ink)}
+.case-page .mode-badge,.case-page .status-tag,.case-page .tag,.case-page .tiny-tag{border-radius:999px;font-family:inherit}
+.case-page .section-nav{margin:24px 0 0;padding:12px 0;display:flex;gap:8px;flex-wrap:wrap;border:0;border-bottom:1px solid var(--line);font-size:13px}
+.case-page .section-nav a{min-height:44px;display:inline-flex;align-items:center;padding:10px 16px;margin:0;border-radius:999px;border:1px solid transparent;color:var(--muted);font-size:13px;line-height:1.4}
+.case-page .section-nav a:hover{background:#eaf1ff;border-color:#c8d8f3;color:var(--blue);text-decoration:none}
+.case-page .case-section,.case-page .intro-section,.case-page .problem-section,.case-page .architecture-section,.case-page .evidence-section,.case-page .selfhost,.case-page .self-host,.case-page .skills-section{padding-block:60px}
+.case-page .case-section>h2{font-size:clamp(28px,3vw,42px);margin-bottom:22px}
+.case-page .case-section>p,.case-page .intro-section p,.case-page .problem-section p{font-size:15px;color:var(--muted)}
+.case-page .eyebrow,.case-page .small-label,.case-page .tiny-label{font-family:inherit;font-size:11px;line-height:1.6;letter-spacing:.12em}
+.case-page .case-section>.eyebrow,.case-page .section-heading .eyebrow{color:var(--blue)}
+.case-page .section-heading{gap:24px}
+.case-page .section-heading p{font-size:14px}
+.case-page .architecture,.case-page .architecture-flow{border-radius:18px;background:#fff;border-color:var(--line)}
+.case-page .architecture li,.case-page .architecture-flow li{padding:24px 20px}
+.case-page .architecture strong{font-size:15px}
+.case-page .architecture p{font-size:13px}
+.case-page .architecture-cards article,.case-page .feature-grid article,.case-page .detail-grid>div,.case-page .engineering-focus article{background:white;border:1px solid var(--line);border-radius:20px;padding:24px;min-width:0}
+.case-page .notice-box,.case-page .callout,.case-page .roadmap,.case-page .code-card{border-radius:18px;padding:24px}
+.case-page .evidence-grid{gap:20px}
+.case-page .evidence-grid>article,.case-page .evidence-item{background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px;min-width:0}
+.case-page .evidence-grid>article:nth-child(3n+1),.case-page .evidence-item:nth-child(3n+1){background:#eaf1ff;border-color:#c8d8f3}
+.case-page .evidence-grid>article:nth-child(3n+2),.case-page .evidence-item:nth-child(3n+2){background:#e7f3ed;border-color:#bddace}
+.case-page .evidence-grid>article:nth-child(3n+3),.case-page .evidence-item:nth-child(3n+3){background:#f0ebfa;border-color:#d5c9e8}
+.case-page .evidence-grid p,.case-page .evidence-item p{font-size:14px;line-height:1.75}
+.case-page .evidence-grid h3{font-size:19px}
+.case-page .evidence-icon{color:var(--blue)}
+.case-page .sim-section,.case-page .simulation-section,.case-page section#simulation:not(.case-section),.case-page section#try-it{margin:0;border:1px solid var(--case-line);border-radius:26px;background:#f1f6ff;padding:32px;min-width:0}
+.case-page .input-panel,.case-page .trace-panel,.case-page .result-panel,.case-page .inspector,.case-page .result-card{border-radius:16px}
+.case-page .input-panel,.case-page .trace-panel{padding:24px}
+.case-page input:not([type=checkbox]),.case-page select,.case-page textarea{font-family:'Portfolio Inter',sans-serif;border-radius:10px;min-height:44px;color:var(--ink);font-size:14px}
+.case-page label,.case-page .form-grid label,.case-page .field-label{font-size:13px;line-height:1.5}
+.case-page .tabs button,.case-page .inspector-tabs button,.case-page .segmented button{min-height:44px;border-radius:8px;font-size:12px}
+.case-page pre{border-radius:12px}
+.case-page .live-demo-panel{border-radius:22px;background:#dcebe7;border-color:#b8d2ca}
+.case-page .project-brand-logo{display:none}
+.case-page .case-footer{display:block;padding:clamp(24px,4vw,52px);margin:60px 0 24px;border:1px solid #b8d2ca;border-radius:28px;background:#dcebe7;color:var(--ink)}
+.case-page .case-footer-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;padding-bottom:32px;border-bottom:1px solid #b8d2ca}
+.case-page .case-footer h2{font-size:clamp(26px,3vw,40px);max-width:22ch}
+.case-page .case-footer-top p{font-size:14px;color:var(--muted);margin-top:12px}
+.case-page .case-footer-actions,.case-page .case-socials{display:flex;align-items:center;flex-wrap:wrap;gap:12px}
+.case-page .case-footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;padding-top:26px}
+.case-page .case-footer-name{font:600 17px/1.4 'Portfolio Poppins',sans-serif;letter-spacing:-.035em}
+.case-page .case-footer-name+ p{font-size:12px;color:var(--muted);margin-top:6px}
+.case-page .case-icon-link,.case-page .case-github{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:48px;min-height:48px;border:1px solid #b9ccea;border-radius:999px;background:#edf3ff;color:var(--blue);text-decoration:none;font-size:13px;font-weight:600}
+.case-page .case-github{padding:10px 17px;color:var(--ink);background:#f8fafc}
+.case-page .case-download{background:var(--blue);color:white;border-color:var(--blue)}
+.case-page .case-icon-link:hover,.case-page .case-github:hover{background:#dce8ff;color:var(--blue)}
+.case-page .case-about{display:inline-flex;align-items:center;gap:8px;font-size:12px;min-height:44px}
+@media(max-width:1100px){body.case-page #sidebar.case-header,body.case-page #project-sidebar.case-header{flex-wrap:wrap}.case-page .case-header nav{order:3;width:100%;justify-content:flex-start}body.case-page .hero,body.case-page .project-hero{gap:30px;padding:32px}.case-page .hero-diagram,.case-page .hero-visual{padding:20px}.case-page .sim-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:959px){body.case-page main{width:calc(100% - 40px)}.case-page .hero .lead,.case-page .hero .lede,.case-page .hero .hero-description{font-size:15px}.case-page .sim-grid{grid-template-columns:1fr}.case-page .section-nav{gap:4px}.case-page .section-nav a{padding:9px 12px}.case-page .architecture{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){body.case-page .hero,body.case-page .project-hero{grid-template-columns:1fr;padding:26px 22px;border-radius:24px;gap:30px}.case-page .hero h1,body.case-page .project-hero h1{font-size:clamp(34px,8.5vw,52px);max-width:15ch}.case-page .hero-diagram,.case-page .hero-visual,.case-page .hero-illustration{width:100%;margin:0;max-width:none}.case-page .case-section,.case-page .intro-section,.case-page .problem-section,.case-page .architecture-section,.case-page .evidence-section,.case-page .selfhost,.case-page .self-host{padding-block:40px}.case-page .sim-section,.case-page .simulation-section,.case-page section#simulation:not(.case-section),.case-page section#try-it{padding:24px 14px;border-radius:22px}.case-page .input-panel,.case-page .trace-panel{padding:18px 14px}.case-page input:not([type=checkbox]),.case-page select,.case-page textarea{font-size:16px}.case-page .evidence-grid{grid-template-columns:1fr}.case-page .evidence-grid>article,.case-page .evidence-item{padding:22px}.case-page .live-demo-panel{flex-wrap:wrap}.case-page .case-footer{margin-top:40px;padding:26px 22px}.case-page .case-socials{gap:10px}.case-page .case-about{flex-basis:100%}}
+@media(prefers-reduced-motion:reduce){.case-page *{scroll-behavior:auto;transition:none!important;animation:none!important}}
+@media(max-width:959px){
+ body.case-page.project-layout .case-mobile{display:flex;align-items:center;justify-content:space-between;gap:16px;position:sticky;top:0;z-index:30;padding:12px 20px;background:#f8fafcf2;backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+ .case-page.project-layout .case-mobile .case-brand{font-size:13px}
+ .case-page.project-layout .case-mobile button{width:auto;display:inline-flex;gap:8px;padding:10px 14px;border-radius:999px;font-size:12px}
+ body.case-page #project-sidebar.case-header{position:fixed;inset:0 auto 0 0;display:none;width:min(340px,calc(100% - 36px));height:100dvh;padding:24px;margin:0;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:28px;background:var(--paper);border-right:1px solid var(--line);overflow-y:auto;z-index:50}
+ body.case-page #project-sidebar.case-header.is-open{display:flex}
+ .case-page.project-layout .case-header nav{width:100%;flex-direction:column;align-items:stretch;order:initial;gap:10px}
+ .case-page.project-layout .case-header nav a{justify-content:flex-start;min-height:50px}
+ .case-page.project-layout .case-menu-close{display:inline-flex;border-radius:50%}
+ .case-page.project-layout .drawer-backdrop{z-index:40;background:#172b4860}
+}
+
+/* Retain this app's existing drawer boundary and script hooks. */
+@media(max-width:900px){
+body.case-page .case-mobile{display:flex;align-items:center;justify-content:space-between;gap:16px;position:sticky;top:0;z-index:30;padding:12px 20px;background:#f8fafcf2;backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+body.case-page .case-mobile .case-brand{font:600 13px/1.3 'Portfolio Poppins',sans-serif;letter-spacing:-.025em;margin:0}
+body.case-page .case-mobile .case-brand span{display:block;font:inherit;color:inherit;letter-spacing:inherit;margin:0}
+body.case-page .case-mobile button{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 14px;border:1px solid var(--line);border-radius:999px;background:white;font-size:12px;color:var(--ink)}
+body.case-page #sidebar.case-header{position:fixed;inset:0 auto 0 0;display:none;width:min(340px,calc(100% - 36px));height:100dvh;max-height:100dvh;padding:24px;margin:0;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:28px;background:var(--paper);border-right:1px solid var(--line);overflow-y:auto;z-index:50}
+body.case-page #sidebar.case-header.open{display:flex}
+body.case-page .case-header nav{width:100%;flex-direction:column;align-items:stretch;order:initial;gap:10px}
+body.case-page .case-header nav a{justify-content:flex-start;min-height:50px}
+body.case-page .case-header .case-menu-close{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:10px;border:1px solid var(--line);border-radius:50%;background:white}
+body.case-page #nav-scrim{position:fixed;inset:0;z-index:40;background:#172b4860}
+}
+@media(min-width:901px){body.case-page .case-mobile{display:none}body.case-page .case-menu-close{display:none!important}}
+
+/* Calm motion and touch-friendly native controls. No hidden reveal state. */
+html:has(body.case-page){scroll-behavior:smooth;scroll-padding-top:96px}
+.case-page :is(input,select,textarea,button){-webkit-tap-highlight-color:transparent}
+.case-page :is(input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=hidden]),select,textarea){box-sizing:border-box;width:100%;max-width:100%;min-width:0;min-height:48px;padding:12px 14px;background-color:#fff;border:1px solid #b8c8dc;border-radius:12px;color:var(--ink);font:400 16px/1.45 'Portfolio Inter',sans-serif;box-shadow:0 2px 3px #172b4804;transition:border-color .18s,box-shadow .18s,background-color .18s}
+.case-page select{appearance:none;padding-right:44px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23465b72' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-position:right 14px center;background-repeat:no-repeat;background-size:20px;cursor:pointer}
+.case-page select option{background:#fff;color:#172b48}
+.case-page textarea{resize:vertical;min-height:120px}
+.case-page :is(input,textarea)::placeholder{color:#687b91;opacity:1}
+.case-page :is(input,select,textarea):focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-color:var(--blue);box-shadow:0 0 0 5px #2853b812}
+.case-page :is(input,select,textarea):disabled{background-color:#edf1f6;color:#687b91;cursor:not-allowed;box-shadow:none}
+.case-page :is(input,select,textarea):user-invalid{border-color:#b23b49;outline-color:#b23b49}
+.case-page :is(input[type=checkbox],input[type=radio]){width:20px;height:20px;min-height:20px;flex:0 0 20px;accent-color:var(--blue);cursor:pointer}
+.case-page label:has(>input[type=checkbox]),.case-page label:has(>input[type=radio]){display:flex;align-items:center;gap:10px;min-height:44px;padding-block:7px;cursor:pointer}
+.case-page :is(.input-panel,.preset-row,.preset-bar) label:not(:has(input[type=checkbox])){font-weight:600;color:var(--ink)}
+.case-page :is(.input-panel,.trace-panel,.result-panel,.inspector,.result-card){box-shadow:0 4px 18px #172b4805}
+.case-page :is(.tabs,.inspector-tabs,.segmented,.result-tabs){gap:4px;max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin}
+.case-page :is(.tabs,.inspector-tabs,.segmented,.result-tabs) button{flex-shrink:0;min-height:44px;padding:10px 14px;border-radius:10px;transition:background .18s,color .18s}
+.case-page button[aria-selected=true],.case-page button[aria-pressed=true]{background:#e4edff;color:#244ca9;border-color:#bdceef}
+.case-page :is(.advanced,#advanced)>summary{min-height:48px;display:flex;align-items:center;gap:12px;padding:12px 14px;background:#f0f5fb;border:1px solid var(--line);border-radius:12px;list-style:none;color:var(--ink);cursor:pointer;font-size:13px;font-weight:600}
+.case-page :is(.advanced,#advanced)>summary::-webkit-details-marker{display:none}
+.case-page :is(.advanced,#advanced)>summary:after{content:'';width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);margin-left:auto;margin-right:3px;transition:transform .18s}
+.case-page :is(.advanced,#advanced)[open]>summary:after{transform:rotate(225deg)}
+.case-page button:disabled{cursor:not-allowed;transform:none!important}
+@media(hover:hover){.case-page :is(input,select,textarea):hover:not(:disabled):not(:focus-visible){border-color:#7e9abe}.case-page :is(.advanced,#advanced)>summary:hover{background:#e6eef9}}
+@media(max-width:600px){.case-page :is(.form-grid,.field-grid){grid-template-columns:minmax(0,1fr)}.case-page :is(.tabs,.inspector-tabs,.segmented,.result-tabs) button{padding-inline:12px}.case-page .input-panel{padding:20px 16px}.case-page .case-footer-actions{width:100%}}
+@media(forced-colors:active){.case-page select{appearance:auto;background-image:none}.case-page :is(input,select,textarea){border:1px solid ButtonText}}
+@media(prefers-reduced-motion:reduce){html:has(body.case-page){scroll-behavior:auto}.case-page *,.case-page *:before,.case-page *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}

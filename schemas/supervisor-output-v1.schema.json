@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "plan": {
+      "items": {
+        "enum": [
+          "research",
+          "policy",
+          "operations",
+          "verifier"
+        ],
+        "type": "string"
+      },
+      "maxItems": 4,
+      "minItems": 4,
+      "title": "Plan",
+      "type": "array"
+    },
+    "plan_kind": {
+      "const": "declared_rule_template",
+      "default": "declared_rule_template",
+      "title": "Plan Kind",
+      "type": "string"
+    },
+    "route": {
+      "enum": [
+        "inventory_resolution",
+        "refund_investigation"
+      ],
+      "title": "Route",
+      "type": "string"
+    }
+  },
+  "required": [
+    "plan",
+    "route"
+  ],
+  "title": "SupervisorOutput",
+  "type": "object"
+}

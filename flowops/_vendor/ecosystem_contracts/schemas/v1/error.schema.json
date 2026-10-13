@@ -1,0 +1,279 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.example.invalid/v1/error.schema.json",
+  "title": "Error",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "code": {
+      "enum": [
+        "UNAUTHENTICATED",
+        "FORBIDDEN",
+        "NOT_FOUND",
+        "CONFLICT",
+        "RUN_EXPIRED",
+        "PAYLOAD_TOO_LARGE",
+        "VALIDATION_ERROR",
+        "RATE_LIMITED",
+        "AI_UNAVAILABLE",
+        "POLICY_BLOCKED",
+        "BUDGET_EXCEEDED",
+        "SERVICE_UNAVAILABLE",
+        "INVALID_CURSOR"
+      ]
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "retryable": {
+      "type": "boolean"
+    },
+    "correlation_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "http_status": {
+      "enum": [
+        401,
+        403,
+        404,
+        409,
+        410,
+        413,
+        422,
+        429,
+        503
+      ]
+    },
+    "retry_after_seconds": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 3600
+    }
+  },
+  "required": [
+    "schema_version",
+    "code",
+    "message",
+    "retryable",
+    "correlation_id",
+    "http_status"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "code": {
+            "const": "UNAUTHENTICATED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "http_status": {
+            "const": 401
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "code": {
+            "const": "FORBIDDEN"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "http_status": {
+            "const": 403
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "code": {
+            "const": "NOT_FOUND"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "http_status": {
+            "const": 404
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "code": {
+            "const": "CONFLICT"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "http_status": {
+            "const": 409
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "code": {
+            "const": "RUN_EXPIRED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "http_status": {
+            "const": 410
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "code": {
+            "const": "PAYLOAD_TOO_LARGE"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "http_status": {
+            "const": 413
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "code": {
+            "const": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "http_status": {
+            "const": 422
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "code": {
+            "const": "RATE_LIMITED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "http_status": {
+            "const": 429
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "code": {
+            "const": "AI_UNAVAILABLE"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "http_status": {
+            "const": 503
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "code": {
+            "const": "POLICY_BLOCKED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "http_status": {
+            "const": 403
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "code": {
+            "const": "BUDGET_EXCEEDED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "http_status": {
+            "const": 429
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "code": {
+            "const": "SERVICE_UNAVAILABLE"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "http_status": {
+            "const": 503
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "code": {
+            "const": "INVALID_CURSOR"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "http_status": {
+            "const": 409
+          }
+        }
+      }
+    }
+  ]
+}

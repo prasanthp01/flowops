@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.example.invalid/v1/simulation-start.schema.json",
+  "title": "SimulationStart",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "project_id": {
+      "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/project"
+    },
+    "mode": {
+      "enum": [
+        "SANDBOX_DETERMINISTIC",
+        "REPLAY_RECORDED",
+        "LIVE_MODEL_AUTHENTICATED"
+      ]
+    },
+    "preset_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 96
+    },
+    "input": {
+      "type": "object",
+      "maxProperties": 32,
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9_]{0,47}$"
+      },
+      "additionalProperties": {
+        "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/json-value"
+      }
+    },
+    "seed": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4294967295
+    },
+    "client_correlation_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "extensions": {
+      "type": "object",
+      "maxProperties": 16,
+      "propertyNames": {
+        "pattern": "^x_[a-z][a-z0-9_]{0,47}$"
+      },
+      "additionalProperties": {
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ],
+        "maxLength": 256
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "project_id",
+    "mode",
+    "input",
+    "seed",
+    "client_correlation_id"
+  ],
+  "additionalProperties": false
+}

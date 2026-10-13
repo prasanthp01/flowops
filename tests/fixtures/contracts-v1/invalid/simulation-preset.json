@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "project_id": "resolveai",
+  "preset_id": "normal",
+  "title": "Synthetic normal case",
+  "description": "Contract fixture only.",
+  "mode": "SANDBOX_DETERMINISTIC",
+  "seed": 7,
+  "input": {
+    "scenario_id": "normal",
+    "severity": 2,
+    "item_count": 3
+  },
+  "fixtures_version": "1.0.0",
+  "unexpected_secret_field": "synthetic-sentinel"
+}

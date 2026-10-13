@@ -1,0 +1,229 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.example.invalid/v1/simulation-event.schema.json",
+  "title": "SimulationEvent",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "project_id": {
+      "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/project"
+    },
+    "event_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "sequence": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1024
+    },
+    "occurred_at": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 32,
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$"
+    },
+    "step_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "step_type": {
+      "enum": [
+        "VALIDATION",
+        "POLICY",
+        "RETRIEVAL",
+        "HANDOFF",
+        "EXECUTION",
+        "SUMMARY"
+      ]
+    },
+    "component": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "status": {
+      "enum": [
+        "STARTED",
+        "SUCCEEDED",
+        "FAILED",
+        "SKIPPED",
+        "WAITING",
+        "BLOCKED"
+      ]
+    },
+    "mode": {
+      "enum": [
+        "SANDBOX_DETERMINISTIC",
+        "REPLAY_RECORDED",
+        "LIVE_MODEL_AUTHENTICATED"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "overview": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "technical": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "input_schema_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "output_schema_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "input_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 96,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+        },
+        "output_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 96,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+        },
+        "decisions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/evidence"
+          },
+          "maxItems": 32,
+          "minItems": 0
+        },
+        "adapter_kind": {
+          "enum": [
+            "DETERMINISTIC",
+            "REPLAY",
+            "MODEL"
+          ]
+        },
+        "attempt": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 16
+        },
+        "fallback_reason": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 240
+        }
+      },
+      "required": [
+        "action",
+        "input_schema_version",
+        "output_schema_version",
+        "input_ref",
+        "output_ref",
+        "decisions",
+        "evidence",
+        "adapter_kind",
+        "attempt",
+        "fallback_reason"
+      ],
+      "additionalProperties": false
+    },
+    "duration_ms": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 120000
+    },
+    "trace_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "usage": {
+      "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/usage"
+    },
+    "provenance": {
+      "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/provenance"
+    },
+    "error": {
+      "$ref": "https://contracts.example.invalid/v1/error.schema.json"
+    },
+    "extensions": {
+      "type": "object",
+      "maxProperties": 16,
+      "propertyNames": {
+        "pattern": "^x_[a-z][a-z0-9_]{0,47}$"
+      },
+      "additionalProperties": {
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ],
+        "maxLength": 256
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "run_id",
+    "project_id",
+    "event_id",
+    "sequence",
+    "occurred_at",
+    "step_id",
+    "step_type",
+    "component",
+    "status",
+    "mode",
+    "title",
+    "overview",
+    "technical",
+    "duration_ms",
+    "trace_id",
+    "usage",
+    "provenance"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.example.invalid/v1/ai-usage-recorded.schema.json",
+  "title": "AiUsageRecorded",
+  "type": "object",
+  "properties": {
+    "operation_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "provider": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "deployment": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "model_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "region": {
+      "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/region"
+    },
+    "usage": {
+      "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/usage"
+    },
+    "attempt": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 16
+    }
+  },
+  "required": [
+    "operation_id",
+    "provider",
+    "deployment",
+    "model_version",
+    "region",
+    "usage",
+    "attempt"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.example.invalid/v1/agent-handoff.schema.json",
+  "title": "AgentHandoff",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "workflow_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "agent_role": {
+      "enum": [
+        "SUPERVISOR",
+        "TRIAGE",
+        "RETRIEVAL",
+        "EXECUTION",
+        "REVIEW"
+      ]
+    },
+    "authorized_tool_scopes": {
+      "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/scopes"
+    },
+    "output_schema_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "context_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 96,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+      },
+      "maxItems": 16,
+      "minItems": 0
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/evidence"
+      },
+      "maxItems": 32,
+      "minItems": 0
+    },
+    "deadline": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 32,
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$"
+    },
+    "status": {
+      "enum": [
+        "ASSIGNED",
+        "SUCCEEDED",
+        "FAILED",
+        "BLOCKED"
+      ]
+    },
+    "decision": {
+      "enum": [
+        "PENDING",
+        "PROCEED",
+        "ABSTAIN",
+        "REVIEW_REQUIRED"
+      ]
+    },
+    "error": {
+      "anyOf": [
+        {
+          "$ref": "https://contracts.example.invalid/v1/error.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "correlation_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "tenant_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "mode": {
+      "enum": [
+        "SANDBOX_DETERMINISTIC",
+        "REPLAY_RECORDED",
+        "LIVE_MODEL_AUTHENTICATED"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "workflow_id",
+    "task_id",
+    "agent_role",
+    "authorized_tool_scopes",
+    "output_schema_version",
+    "context_refs",
+    "evidence_refs",
+    "deadline",
+    "status",
+    "decision",
+    "error",
+    "correlation_id",
+    "tenant_id",
+    "mode"
+  ],
+  "additionalProperties": false
+}

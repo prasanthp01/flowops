@@ -1,0 +1,4450 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "AI Ecosystem Contracts",
+    "version": "1.0.0",
+    "description": "Public prefix is stripped by the proxy. Service APIs require scoped authentication. Simulation schema and presets may be publicly readable; runs require a sandbox session. Contract mocks are not product implementations."
+  },
+  "servers": [
+    {
+      "url": "https://portfolio.gappazappa.in/api/projects/{project}",
+      "variables": {
+        "project": {
+          "default": "resolveai",
+          "enum": [
+            "resolveai",
+            "flowops",
+            "knowledgeops",
+            "agentops"
+          ]
+        }
+      }
+    }
+  ],
+  "paths": {
+    "/simulation/schema": {
+      "get": {
+        "operationId": "get_simulation_schema",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/simulation-schema"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/simulation/presets": {
+      "get": {
+        "operationId": "get_simulation_presets",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/simulation-presets"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/simulations": {
+      "post": {
+        "operationId": "post_simulations",
+        "security": [
+          {
+            "sandboxSession": []
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/simulation-run"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/simulation-start"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/simulations/{run_id}": {
+      "get": {
+        "operationId": "get_simulations_run_id",
+        "security": [
+          {
+            "sandboxSession": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/simulation-run"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/common/$defs/id"
+            }
+          }
+        ]
+      }
+    },
+    "/simulations/{run_id}/result": {
+      "get": {
+        "operationId": "get_simulations_run_id_result",
+        "security": [
+          {
+            "sandboxSession": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/simulation-result"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/common/$defs/id"
+            }
+          }
+        ]
+      }
+    },
+    "/simulations/{run_id}/cancel": {
+      "post": {
+        "operationId": "post_simulations_run_id_cancel",
+        "security": [
+          {
+            "sandboxSession": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/simulation-run"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/common/$defs/id"
+            }
+          }
+        ],
+        "description": "Optional capability. Return NOT_FOUND when cancellation is not supported; terminal runs return their unchanged status."
+      }
+    },
+    "/events": {
+      "post": {
+        "operationId": "post_events",
+        "security": [
+          {
+            "serviceBearer": []
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/event-receipt"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cross-project-event"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/knowledge/query": {
+      "post": {
+        "operationId": "post_knowledge_query",
+        "security": [
+          {
+            "serviceBearer": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/knowledge-response"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/knowledge-query"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/inference": {
+      "post": {
+        "operationId": "post_inference",
+        "security": [
+          {
+            "serviceBearer": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/route-decision"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/inference-request"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/simulations/{run_id}/events": {
+      "get": {
+        "operationId": "get_events",
+        "description": "Accept text/event-stream for SSE or application/json for polling. Last-Event-ID is the last received integer sequence. See docs/PROTOCOL.md.",
+        "security": [
+          {
+            "sandboxSession": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/common/$defs/id"
+            }
+          },
+          {
+            "name": "Last-Event-ID",
+            "in": "header",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1024
+            }
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1024
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ordered events after cursor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/simulation-events"
+                }
+              },
+              "text/event-stream": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": ": heartbeat\n\nid: 1\nevent: step\ndata: {\"see\":\"simulation-event schema\"}\n\n"
+              }
+            }
+          },
+          "401": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Validated response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "cross-project-event": {
+        "title": "CrossProjectEvent",
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "const": "1.0"
+          },
+          "event_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "source": {
+            "type": "object",
+            "properties": {
+              "application_id": {
+                "$ref": "#/components/schemas/common/$defs/project"
+              },
+              "environment": {
+                "enum": [
+                  "test",
+                  "development",
+                  "staging",
+                  "production"
+                ]
+              },
+              "tenant_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 96,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+              }
+            },
+            "required": [
+              "application_id",
+              "environment",
+              "tenant_id"
+            ],
+            "additionalProperties": false
+          },
+          "audience": {
+            "$ref": "#/components/schemas/common/$defs/project"
+          },
+          "occurred_at": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 32,
+            "format": "date-time",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$"
+          },
+          "correlation_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "trace_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "sensitivity": {
+            "enum": [
+              "PUBLIC",
+              "INTERNAL",
+              "CONFIDENTIAL",
+              "RESTRICTED"
+            ]
+          },
+          "idempotency_key": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "kind": {
+            "enum": [
+              "workflow.execution.failed.v1",
+              "incident.investigation.completed.v1",
+              "ai.usage.recorded.v1"
+            ]
+          },
+          "mode": {
+            "enum": [
+              "SANDBOX_DETERMINISTIC",
+              "REPLAY_RECORDED",
+              "LIVE_MODEL_AUTHENTICATED"
+            ]
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/common/$defs/provenance"
+          },
+          "payload": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/workflow-execution-failed"
+              },
+              {
+                "$ref": "#/components/schemas/incident-investigation-completed"
+              },
+              {
+                "$ref": "#/components/schemas/ai-usage-recorded"
+              }
+            ]
+          },
+          "integrity": {
+            "type": "object",
+            "properties": {
+              "algorithm": {
+                "const": "HMAC-SHA256"
+              },
+              "key_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 96,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+              },
+              "digest": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 64,
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            },
+            "required": [
+              "algorithm",
+              "key_id",
+              "digest"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "schema_version",
+          "event_id",
+          "source",
+          "audience",
+          "occurred_at",
+          "correlation_id",
+          "trace_id",
+          "sensitivity",
+          "idempotency_key",
+          "kind",
+          "mode",
+          "provenance",
+          "payload",
+          "integrity"
+        ],
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "workflow.execution.failed.v1"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "payload": {
+                  "$ref": "#/components/schemas/workflow-execution-failed"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "incident.investigation.completed.v1"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "payload": {
+                  "$ref": "#/components/schemas/incident-investigation-completed"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "ai.usage.recorded.v1"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "payload": {
+                  "$ref": "#/components/schemas/ai-usage-recorded"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "workflow.execution.failed.v1"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "source": {
+                  "properties": {
+                    "application_id": {
+                      "const": "flowops"
+                    }
+                  }
+                },
+                "audience": {
+                  "const": "resolveai"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "incident.investigation.completed.v1"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "source": {
+                  "properties": {
+                    "application_id": {
+                      "const": "resolveai"
+                    }
+                  }
+                },
+                "audience": {
+                  "const": "flowops"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "ai.usage.recorded.v1"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "audience": {
+                  "const": "agentops"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "error": {
+        "title": "Error",
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "const": "1.0"
+          },
+          "code": {
+            "enum": [
+              "UNAUTHENTICATED",
+              "FORBIDDEN",
+              "NOT_FOUND",
+              "CONFLICT",
+              "RUN_EXPIRED",
+              "PAYLOAD_TOO_LARGE",
+              "VALIDATION_ERROR",
+              "RATE_LIMITED",
+              "AI_UNAVAILABLE",
+              "POLICY_BLOCKED",
+              "BUDGET_EXCEEDED",
+              "SERVICE_UNAVAILABLE",
+              "INVALID_CURSOR"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240
+          },
+          "retryable": {
+            "type": "boolean"
+          },
+          "correlation_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "http_status": {
+            "enum": [
+              401,
+              403,
+              404,
+              409,
+              410,
+              413,
+              422,
+              429,
+              503
+            ]
+          },
+          "retry_after_seconds": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3600
+          }
+        },
+        "required": [
+          "schema_version",
+          "code",
+          "message",
+          "retryable",
+          "correlation_id",
+          "http_status"
+        ],
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "code": {
+                  "const": "UNAUTHENTICATED"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "http_status": {
+                  "const": 401
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "code": {
+                  "const": "FORBIDDEN"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "http_status": {
+                  "const": 403
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "code": {
+                  "const": "NOT_FOUND"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "http_status": {
+                  "const": 404
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "code": {
+                  "const": "CONFLICT"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "http_status": {
+                  "const": 409
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "code": {
+                  "const": "RUN_EXPIRED"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "http_status": {
+                  "const": 410
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "code": {
+                  "const": "PAYLOAD_TOO_LARGE"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "http_status": {
+                  "const": 413
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "code": {
+                  "const": "VALIDATION_ERROR"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "http_status": {
+                  "const": 422
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "code": {
+                  "const": "RATE_LIMITED"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "http_status": {
+                  "const": 429
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "code": {
+                  "const": "AI_UNAVAILABLE"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "http_status": {
+                  "const": 503
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "code": {
+                  "const": "POLICY_BLOCKED"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "http_status": {
+                  "const": 403
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "code": {
+                  "const": "BUDGET_EXCEEDED"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "http_status": {
+                  "const": 429
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "code": {
+                  "const": "SERVICE_UNAVAILABLE"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "http_status": {
+                  "const": 503
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "code": {
+                  "const": "INVALID_CURSOR"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "http_status": {
+                  "const": 409
+                }
+              }
+            }
+          }
+        ]
+      },
+      "incident-investigation-completed": {
+        "title": "IncidentInvestigationCompleted",
+        "type": "object",
+        "properties": {
+          "incident_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "investigation_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "outcome": {
+            "enum": [
+              "EXPLAINED",
+              "ABSTAINED",
+              "REVIEW_REQUIRED"
+            ]
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/common/$defs/evidence"
+            },
+            "maxItems": 32,
+            "minItems": 0
+          }
+        },
+        "required": [
+          "incident_id",
+          "investigation_id",
+          "outcome",
+          "evidence"
+        ],
+        "additionalProperties": false
+      },
+      "simulation-result": {
+        "title": "SimulationResult",
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "const": "1.0"
+          },
+          "project_id": {
+            "$ref": "#/components/schemas/common/$defs/project"
+          },
+          "run_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "mode": {
+            "enum": [
+              "SANDBOX_DETERMINISTIC",
+              "REPLAY_RECORDED",
+              "LIVE_MODEL_AUTHENTICATED"
+            ]
+          },
+          "status": {
+            "enum": [
+              "SUCCEEDED",
+              "FAILED",
+              "CANCELLED",
+              "EXPIRED"
+            ]
+          },
+          "app_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          },
+          "fixtures_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/common/$defs/provenance"
+          },
+          "output_schema_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          },
+          "output": {
+            "type": "object",
+            "maxProperties": 32,
+            "propertyNames": {
+              "pattern": "^[a-z][a-z0-9_]{0,47}$"
+            },
+            "additionalProperties": {
+              "$ref": "#/components/schemas/common/$defs/json-value"
+            }
+          },
+          "safety_status": {
+            "enum": [
+              "SAFE",
+              "BLOCKED",
+              "REVIEW_REQUIRED"
+            ]
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/common/$defs/evidence"
+            },
+            "maxItems": 32,
+            "minItems": 0
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/error"
+            },
+            "maxItems": 16,
+            "minItems": 0
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 240
+            },
+            "maxItems": 16,
+            "minItems": 0
+          },
+          "limitations": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 240
+            },
+            "maxItems": 16,
+            "minItems": 1
+          },
+          "duration_ms": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 120000
+          },
+          "usage": {
+            "$ref": "#/components/schemas/common/$defs/usage"
+          },
+          "cost": {
+            "$ref": "#/components/schemas/common/$defs/cost"
+          },
+          "extensions": {
+            "type": "object",
+            "maxProperties": 16,
+            "propertyNames": {
+              "pattern": "^x_[a-z][a-z0-9_]{0,47}$"
+            },
+            "additionalProperties": {
+              "type": [
+                "string",
+                "number",
+                "boolean",
+                "null"
+              ],
+              "maxLength": 256
+            }
+          }
+        },
+        "required": [
+          "schema_version",
+          "project_id",
+          "run_id",
+          "mode",
+          "status",
+          "app_version",
+          "fixtures_version",
+          "provenance",
+          "output_schema_version",
+          "output",
+          "safety_status",
+          "evidence",
+          "errors",
+          "warnings",
+          "limitations",
+          "duration_ms",
+          "usage",
+          "cost"
+        ],
+        "additionalProperties": false
+      },
+      "knowledge-response": {
+        "title": "KnowledgeResponse",
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "const": "1.0"
+          },
+          "status": {
+            "enum": [
+              "OK",
+              "NO_RESULTS",
+              "DENIED"
+            ]
+          },
+          "answer": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 3000
+          },
+          "citations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 96,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+                },
+                "title": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160
+                },
+                "passage": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000
+                },
+                "location": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128
+                },
+                "evidence": {
+                  "$ref": "#/components/schemas/common/$defs/evidence"
+                }
+              },
+              "required": [
+                "source_id",
+                "title",
+                "passage",
+                "location",
+                "evidence"
+              ],
+              "additionalProperties": false
+            },
+            "maxItems": 10,
+            "minItems": 0
+          },
+          "correlation_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "mode": {
+            "enum": [
+              "SANDBOX_DETERMINISTIC",
+              "REPLAY_RECORDED",
+              "LIVE_MODEL_AUTHENTICATED"
+            ]
+          },
+          "limitations": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 240
+            },
+            "maxItems": 16,
+            "minItems": 0
+          }
+        },
+        "required": [
+          "schema_version",
+          "status",
+          "answer",
+          "citations",
+          "correlation_id",
+          "mode",
+          "limitations"
+        ],
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "enum": [
+                    "DENIED",
+                    "NO_RESULTS"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "answer": {
+                  "type": "null"
+                },
+                "citations": {
+                  "maxItems": 0
+                }
+              }
+            }
+          }
+        ]
+      },
+      "ai-usage-recorded": {
+        "title": "AiUsageRecorded",
+        "type": "object",
+        "properties": {
+          "operation_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "provider": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "deployment": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "model_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "region": {
+            "$ref": "#/components/schemas/common/$defs/region"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/common/$defs/usage"
+          },
+          "attempt": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 16
+          }
+        },
+        "required": [
+          "operation_id",
+          "provider",
+          "deployment",
+          "model_version",
+          "region",
+          "usage",
+          "attempt"
+        ],
+        "additionalProperties": false
+      },
+      "portfolio-evidence": {
+        "title": "PortfolioEvidence",
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "const": "1.0"
+          },
+          "slug": {
+            "$ref": "#/components/schemas/common/$defs/project"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "git_revision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40,
+            "pattern": "^[a-f0-9]{40}$"
+          },
+          "status": {
+            "enum": [
+              "PLANNED",
+              "IMPLEMENTED",
+              "TESTED",
+              "DEPLOYED",
+              "BLOCKED"
+            ]
+          },
+          "environment": {
+            "enum": [
+              "test",
+              "development",
+              "staging",
+              "production"
+            ]
+          },
+          "public_route": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96
+          },
+          "deployment_url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 256
+          },
+          "last_verified_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 32,
+                "format": "date-time",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "simulation": {
+            "type": "object",
+            "properties": {
+              "mode": {
+                "enum": [
+                  "SANDBOX_DETERMINISTIC",
+                  "REPLAY_RECORDED",
+                  "LIVE_MODEL_AUTHENTICATED"
+                ]
+              },
+              "provenance": {
+                "$ref": "#/components/schemas/common/$defs/provenance"
+              },
+              "input_schema_sha256": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 64,
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            },
+            "required": [
+              "mode",
+              "provenance",
+              "input_schema_sha256"
+            ],
+            "additionalProperties": false
+          },
+          "tests": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                },
+                "status": {
+                  "enum": [
+                    "PASS",
+                    "FAIL",
+                    "BLOCKED",
+                    "NOT_TESTED",
+                    "N_A"
+                  ]
+                },
+                "command": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500
+                },
+                "evidence": {
+                  "$ref": "#/components/schemas/common/$defs/evidence"
+                },
+                "conditions": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000
+                },
+                "executed_at": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 32,
+                  "format": "date-time",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$"
+                }
+              },
+              "required": [
+                "name",
+                "status",
+                "command",
+                "evidence",
+                "conditions",
+                "executed_at"
+              ],
+              "additionalProperties": false
+            },
+            "maxItems": 128,
+            "minItems": 0
+          },
+          "benchmarks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                },
+                "status": {
+                  "enum": [
+                    "MEASURED",
+                    "NOT_BENCHMARKED"
+                  ]
+                },
+                "method": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000
+                },
+                "environment": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 240
+                },
+                "revision": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 40,
+                  "pattern": "^[a-f0-9]{40}$"
+                },
+                "metrics": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 96,
+                        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+                      },
+                      "value": {
+                        "type": "number",
+                        "minimum": 0
+                      },
+                      "unit": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 32
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "value",
+                      "unit"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "maxItems": 32,
+                  "minItems": 0
+                },
+                "evidence": {
+                  "$ref": "#/components/schemas/common/$defs/evidence"
+                }
+              },
+              "required": [
+                "name",
+                "status",
+                "method",
+                "environment",
+                "revision",
+                "metrics",
+                "evidence"
+              ],
+              "additionalProperties": false
+            },
+            "maxItems": 32,
+            "minItems": 0
+          },
+          "costs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "category": {
+                  "enum": [
+                    "PROVIDER",
+                    "HOSTING",
+                    "DEVELOPMENT"
+                  ]
+                },
+                "cost": {
+                  "$ref": "#/components/schemas/common/$defs/cost"
+                },
+                "method": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000
+                },
+                "evidence": {
+                  "$ref": "#/components/schemas/common/$defs/evidence"
+                }
+              },
+              "required": [
+                "category",
+                "cost",
+                "method",
+                "evidence"
+              ],
+              "additionalProperties": false
+            },
+            "maxItems": 32,
+            "minItems": 0
+          },
+          "skills": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                },
+                "evidence": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/common/$defs/evidence"
+                  },
+                  "maxItems": 16,
+                  "minItems": 1
+                }
+              },
+              "required": [
+                "name",
+                "evidence"
+              ],
+              "additionalProperties": false
+            },
+            "maxItems": 64,
+            "minItems": 0
+          },
+          "limits": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "maxItems": 32,
+            "minItems": 1
+          }
+        },
+        "required": [
+          "schema_version",
+          "slug",
+          "title",
+          "git_revision",
+          "status",
+          "environment",
+          "public_route",
+          "deployment_url",
+          "last_verified_at",
+          "simulation",
+          "tests",
+          "benchmarks",
+          "costs",
+          "skills",
+          "limits"
+        ],
+        "additionalProperties": false
+      },
+      "simulation-run": {
+        "title": "SimulationRun",
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "const": "1.0"
+          },
+          "project_id": {
+            "$ref": "#/components/schemas/common/$defs/project"
+          },
+          "run_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "mode": {
+            "enum": [
+              "SANDBOX_DETERMINISTIC",
+              "REPLAY_RECORDED",
+              "LIVE_MODEL_AUTHENTICATED"
+            ]
+          },
+          "status": {
+            "enum": [
+              "ACCEPTED",
+              "RUNNING",
+              "SUCCEEDED",
+              "FAILED",
+              "CANCELLED",
+              "EXPIRED"
+            ]
+          },
+          "created_at": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 32,
+            "format": "date-time",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$"
+          },
+          "completed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 32,
+                "format": "date-time",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "expires_at": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 32,
+            "format": "date-time",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$"
+          },
+          "event_count": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1024
+          },
+          "last_sequence": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1024
+          },
+          "result_ref": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 256
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/common/$defs/provenance"
+          },
+          "extensions": {
+            "type": "object",
+            "maxProperties": 16,
+            "propertyNames": {
+              "pattern": "^x_[a-z][a-z0-9_]{0,47}$"
+            },
+            "additionalProperties": {
+              "type": [
+                "string",
+                "number",
+                "boolean",
+                "null"
+              ],
+              "maxLength": 256
+            }
+          }
+        },
+        "required": [
+          "schema_version",
+          "project_id",
+          "run_id",
+          "mode",
+          "status",
+          "created_at",
+          "completed_at",
+          "expires_at",
+          "event_count",
+          "last_sequence",
+          "result_ref",
+          "provenance"
+        ],
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "enum": [
+                    "ACCEPTED",
+                    "RUNNING"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "completed_at": {
+                  "type": "null"
+                },
+                "result_ref": {
+                  "type": "null"
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "completed_at": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 32,
+                  "format": "date-time",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "project-identity": {
+        "title": "ProjectIdentity",
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "const": "1.0"
+          },
+          "project_id": {
+            "$ref": "#/components/schemas/common/$defs/project"
+          },
+          "origin": {
+            "const": "https://portfolio.gappazappa.in"
+          },
+          "case_study_route": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          },
+          "api_prefix": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          },
+          "app_route": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 96
+          }
+        },
+        "required": [
+          "schema_version",
+          "project_id",
+          "origin",
+          "case_study_route",
+          "api_prefix",
+          "app_route"
+        ],
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "project_id": {
+                  "const": "resolveai"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "case_study_route": {
+                  "const": "/projects/resolveai"
+                },
+                "api_prefix": {
+                  "const": "/api/projects/resolveai"
+                },
+                "app_route": {
+                  "enum": [
+                    null,
+                    "/projects/resolveai/app/"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "project_id": {
+                  "const": "flowops"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "case_study_route": {
+                  "const": "/projects/flowops"
+                },
+                "api_prefix": {
+                  "const": "/api/projects/flowops"
+                },
+                "app_route": {
+                  "enum": [
+                    null,
+                    "/projects/flowops/app/"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "project_id": {
+                  "const": "knowledgeops"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "case_study_route": {
+                  "const": "/projects/knowledgeops"
+                },
+                "api_prefix": {
+                  "const": "/api/projects/knowledgeops"
+                },
+                "app_route": {
+                  "enum": [
+                    null,
+                    "/projects/knowledgeops/app/"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "project_id": {
+                  "const": "agentops"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "case_study_route": {
+                  "const": "/projects/agentops"
+                },
+                "api_prefix": {
+                  "const": "/api/projects/agentops"
+                },
+                "app_route": {
+                  "enum": [
+                    null,
+                    "/projects/agentops/app/"
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      },
+      "simulation-schema": {
+        "title": "SimulationSchema",
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "const": "1.0"
+          },
+          "project_id": {
+            "$ref": "#/components/schemas/common/$defs/project"
+          },
+          "input_schema_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "input_schema_sha256": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "input_schema": {
+            "type": "object",
+            "maxProperties": 16
+          },
+          "supported_modes": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "SANDBOX_DETERMINISTIC",
+                "REPLAY_RECORDED",
+                "LIVE_MODEL_AUTHENTICATED"
+              ]
+            },
+            "maxItems": 3,
+            "minItems": 1
+          },
+          "limits": {
+            "type": "object",
+            "properties": {
+              "max_body_bytes": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 65536
+              },
+              "max_steps": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 1024
+              },
+              "max_run_seconds": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 120
+              },
+              "retention_seconds": {
+                "type": "integer",
+                "minimum": 60,
+                "maximum": 3600
+              },
+              "max_concurrent_per_session": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 4
+              },
+              "max_concurrent_global": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 16
+              }
+            },
+            "required": [
+              "max_body_bytes",
+              "max_steps",
+              "max_run_seconds",
+              "retention_seconds",
+              "max_concurrent_per_session",
+              "max_concurrent_global"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "schema_version",
+          "project_id",
+          "input_schema_id",
+          "input_schema_sha256",
+          "input_schema",
+          "supported_modes",
+          "limits"
+        ],
+        "additionalProperties": false
+      },
+      "simulation-presets": {
+        "title": "SimulationPresets",
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "const": "1.0"
+          },
+          "project_id": {
+            "$ref": "#/components/schemas/common/$defs/project"
+          },
+          "presets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/simulation-preset"
+            },
+            "maxItems": 32,
+            "minItems": 1
+          }
+        },
+        "required": [
+          "schema_version",
+          "project_id",
+          "presets"
+        ],
+        "additionalProperties": false
+      },
+      "common": {
+        "title": "Common",
+        "$defs": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "utc": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 32,
+            "format": "date-time",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$"
+          },
+          "project": {
+            "enum": [
+              "resolveai",
+              "flowops",
+              "knowledgeops",
+              "agentops"
+            ]
+          },
+          "mode": {
+            "enum": [
+              "SANDBOX_DETERMINISTIC",
+              "REPLAY_RECORDED",
+              "LIVE_MODEL_AUTHENTICATED"
+            ]
+          },
+          "revision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40,
+            "pattern": "^[a-f0-9]{40}$"
+          },
+          "sha256": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "extensions": {
+            "type": "object",
+            "maxProperties": 16,
+            "propertyNames": {
+              "pattern": "^x_[a-z][a-z0-9_]{0,47}$"
+            },
+            "additionalProperties": {
+              "type": [
+                "string",
+                "number",
+                "boolean",
+                "null"
+              ],
+              "maxLength": 256
+            }
+          },
+          "evidence": {
+            "type": "object",
+            "properties": {
+              "evidence_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 96,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+              },
+              "origin": {
+                "enum": [
+                  "FIXTURE",
+                  "TEST",
+                  "BENCHMARK",
+                  "SOURCE",
+                  "ADR"
+                ]
+              },
+              "reference": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_./:#-]*$"
+              },
+              "sha256": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 64,
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            },
+            "required": [
+              "evidence_id",
+              "origin",
+              "reference",
+              "sha256"
+            ],
+            "additionalProperties": false
+          },
+          "provenance": {
+            "type": "object",
+            "properties": {
+              "data_origin": {
+                "enum": [
+                  "SYNTHETIC",
+                  "RECORDED_SYNTHETIC",
+                  "AUTHORIZED_PRIVATE"
+                ]
+              },
+              "connector_kind": {
+                "enum": [
+                  "MOCK",
+                  "REPLAY",
+                  "LIVE_READ_ONLY"
+                ]
+              },
+              "app_version": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 64
+              },
+              "fixtures_version": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 64
+              },
+              "rules_version": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 64
+              },
+              "workflow_version": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 64
+              },
+              "model_version": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "prompt_version": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 64
+              },
+              "source_revision": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40,
+                "pattern": "^[a-f0-9]{40}$"
+              }
+            },
+            "required": [
+              "data_origin",
+              "connector_kind",
+              "app_version",
+              "fixtures_version",
+              "rules_version",
+              "workflow_version",
+              "model_version",
+              "prompt_version",
+              "source_revision"
+            ],
+            "additionalProperties": false
+          },
+          "cost": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "enum": [
+                  "ACTUAL",
+                  "ESTIMATED",
+                  "SIMULATED",
+                  "NONE"
+                ]
+              },
+              "value": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1000000
+              },
+              "currency": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 3,
+                "pattern": "^[A-Z]{3}$"
+              },
+              "pricing_version": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              }
+            },
+            "required": [
+              "kind",
+              "value",
+              "currency",
+              "pricing_version"
+            ],
+            "additionalProperties": false,
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "kind": {
+                      "const": "NONE"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "value": {
+                      "const": 0
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "usage": {
+            "type": "object",
+            "properties": {
+              "usage_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 96,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+              },
+              "kind": {
+                "enum": [
+                  "ACTUAL",
+                  "ESTIMATED",
+                  "SIMULATED",
+                  "NONE"
+                ]
+              },
+              "input_tokens": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 10000000
+              },
+              "output_tokens": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 10000000
+              },
+              "cache_tokens": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 10000000
+              },
+              "provider_calls": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 16
+              },
+              "cost": {
+                "$ref": "#/components/schemas/common/$defs/cost"
+              }
+            },
+            "required": [
+              "usage_id",
+              "kind",
+              "input_tokens",
+              "output_tokens",
+              "cache_tokens",
+              "provider_calls",
+              "cost"
+            ],
+            "additionalProperties": false,
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "kind": {
+                      "const": "ACTUAL"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "cost": {
+                      "properties": {
+                        "kind": {
+                          "const": "ACTUAL"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "kind": {
+                      "const": "ESTIMATED"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "cost": {
+                      "properties": {
+                        "kind": {
+                          "const": "ESTIMATED"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "kind": {
+                      "const": "SIMULATED"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "cost": {
+                      "properties": {
+                        "kind": {
+                          "const": "SIMULATED"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "kind": {
+                      "const": "NONE"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "cost": {
+                      "properties": {
+                        "kind": {
+                          "const": "NONE"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "simulation:read",
+                "simulation:write",
+                "incident:ingest",
+                "knowledge:read",
+                "inference:request",
+                "usage:write",
+                "workflow:read",
+                "workflow:propose"
+              ]
+            },
+            "maxItems": 8,
+            "minItems": 0
+          },
+          "region": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 32,
+            "pattern": "^[a-z][a-z0-9-]{1,31}$"
+          },
+          "json-value": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "number",
+                "minimum": -1000000000000,
+                "maximum": 1000000000000
+              },
+              {
+                "type": "string",
+                "maxLength": 4096
+              },
+              {
+                "type": "array",
+                "maxItems": 64,
+                "items": {
+                  "$ref": "#/components/schemas/common/$defs/json-value"
+                }
+              },
+              {
+                "type": "object",
+                "maxProperties": 32,
+                "propertyNames": {
+                  "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,63}$"
+                },
+                "additionalProperties": {
+                  "$ref": "#/components/schemas/common/$defs/json-value"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "agent-handoff": {
+        "title": "AgentHandoff",
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "const": "1.0"
+          },
+          "workflow_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "task_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "agent_role": {
+            "enum": [
+              "SUPERVISOR",
+              "TRIAGE",
+              "RETRIEVAL",
+              "EXECUTION",
+              "REVIEW"
+            ]
+          },
+          "authorized_tool_scopes": {
+            "$ref": "#/components/schemas/common/$defs/scopes"
+          },
+          "output_schema_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          },
+          "context_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 96,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+            },
+            "maxItems": 16,
+            "minItems": 0
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/common/$defs/evidence"
+            },
+            "maxItems": 32,
+            "minItems": 0
+          },
+          "deadline": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 32,
+            "format": "date-time",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$"
+          },
+          "status": {
+            "enum": [
+              "ASSIGNED",
+              "SUCCEEDED",
+              "FAILED",
+              "BLOCKED"
+            ]
+          },
+          "decision": {
+            "enum": [
+              "PENDING",
+              "PROCEED",
+              "ABSTAIN",
+              "REVIEW_REQUIRED"
+            ]
+          },
+          "error": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/error"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "correlation_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "tenant_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "mode": {
+            "enum": [
+              "SANDBOX_DETERMINISTIC",
+              "REPLAY_RECORDED",
+              "LIVE_MODEL_AUTHENTICATED"
+            ]
+          }
+        },
+        "required": [
+          "schema_version",
+          "workflow_id",
+          "task_id",
+          "agent_role",
+          "authorized_tool_scopes",
+          "output_schema_version",
+          "context_refs",
+          "evidence_refs",
+          "deadline",
+          "status",
+          "decision",
+          "error",
+          "correlation_id",
+          "tenant_id",
+          "mode"
+        ],
+        "additionalProperties": false
+      },
+      "route-decision": {
+        "title": "RouteDecision",
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "const": "1.0"
+          },
+          "operation_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "routing_policy_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          },
+          "outcome": {
+            "enum": [
+              "SUCCEEDED",
+              "AI_UNAVAILABLE",
+              "POLICY_BLOCKED",
+              "BUDGET_EXCEEDED"
+            ]
+          },
+          "selected_deployment": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "deployment_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 96,
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+                  },
+                  "model_version": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128
+                  },
+                  "provider": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 96,
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+                  },
+                  "region": {
+                    "$ref": "#/components/schemas/common/$defs/region"
+                  },
+                  "capabilities": {
+                    "type": "array",
+                    "items": {
+                      "enum": [
+                        "TEXT",
+                        "TOOLS",
+                        "STRUCTURED_OUTPUT",
+                        "VISION",
+                        "AUDIO",
+                        "LONG_CONTEXT",
+                        "MULTILINGUAL"
+                      ]
+                    },
+                    "maxItems": 7,
+                    "minItems": 1
+                  }
+                },
+                "required": [
+                  "deployment_id",
+                  "model_version",
+                  "provider",
+                  "region",
+                  "capabilities"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "rejected_candidates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "deployment_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 96,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+                },
+                "reason": {
+                  "enum": [
+                    "CAPABILITY",
+                    "REGION",
+                    "DATA_POLICY",
+                    "BUDGET",
+                    "HEALTH",
+                    "POLICY_EXPIRED"
+                  ]
+                }
+              },
+              "required": [
+                "deployment_id",
+                "reason"
+              ],
+              "additionalProperties": false
+            },
+            "maxItems": 32,
+            "minItems": 0
+          },
+          "attempts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "deployment_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 96,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+                },
+                "attempt": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 16
+                },
+                "outcome": {
+                  "enum": [
+                    "SUCCEEDED",
+                    "TIMEOUT",
+                    "RATE_LIMITED",
+                    "PROVIDER_ERROR",
+                    "SCHEMA_INVALID"
+                  ]
+                },
+                "duration_ms": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 120000
+                },
+                "fallback_reason": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "maxLength": 240
+                },
+                "usage": {
+                  "$ref": "#/components/schemas/common/$defs/usage"
+                }
+              },
+              "required": [
+                "deployment_id",
+                "attempt",
+                "outcome",
+                "duration_ms",
+                "fallback_reason",
+                "usage"
+              ],
+              "additionalProperties": false
+            },
+            "maxItems": 16,
+            "minItems": 0
+          },
+          "fallback_kind": {
+            "enum": [
+              "NONE",
+              "MODEL",
+              "DETERMINISTIC",
+              "HUMAN_REVIEW"
+            ]
+          },
+          "mode": {
+            "enum": [
+              "SANDBOX_DETERMINISTIC",
+              "REPLAY_RECORDED",
+              "LIVE_MODEL_AUTHENTICATED"
+            ]
+          },
+          "correlation_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "trace_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/common/$defs/usage"
+          }
+        },
+        "required": [
+          "schema_version",
+          "operation_id",
+          "routing_policy_version",
+          "outcome",
+          "selected_deployment",
+          "rejected_candidates",
+          "attempts",
+          "fallback_kind",
+          "mode",
+          "correlation_id",
+          "trace_id",
+          "usage"
+        ],
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "outcome": {
+                  "const": "SUCCEEDED"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "selected_deployment": {
+                  "type": "object",
+                  "properties": {
+                    "deployment_id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 96,
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+                    },
+                    "model_version": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "provider": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 96,
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+                    },
+                    "region": {
+                      "$ref": "#/components/schemas/common/$defs/region"
+                    },
+                    "capabilities": {
+                      "type": "array",
+                      "items": {
+                        "enum": [
+                          "TEXT",
+                          "TOOLS",
+                          "STRUCTURED_OUTPUT",
+                          "VISION",
+                          "AUDIO",
+                          "LONG_CONTEXT",
+                          "MULTILINGUAL"
+                        ]
+                      },
+                      "maxItems": 7,
+                      "minItems": 1
+                    }
+                  },
+                  "required": [
+                    "deployment_id",
+                    "model_version",
+                    "provider",
+                    "region",
+                    "capabilities"
+                  ],
+                  "additionalProperties": false
+                },
+                "attempts": {
+                  "minItems": 1
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "selected_deployment": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "simulation-preset": {
+        "title": "SimulationPreset",
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "const": "1.0"
+          },
+          "project_id": {
+            "$ref": "#/components/schemas/common/$defs/project"
+          },
+          "preset_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "mode": {
+            "const": "SANDBOX_DETERMINISTIC"
+          },
+          "seed": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 4294967295
+          },
+          "input": {
+            "type": "object",
+            "maxProperties": 32,
+            "propertyNames": {
+              "pattern": "^[a-z][a-z0-9_]{0,47}$"
+            },
+            "additionalProperties": {
+              "$ref": "#/components/schemas/common/$defs/json-value"
+            }
+          },
+          "fixtures_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          }
+        },
+        "required": [
+          "schema_version",
+          "project_id",
+          "preset_id",
+          "title",
+          "description",
+          "mode",
+          "seed",
+          "input",
+          "fixtures_version"
+        ],
+        "additionalProperties": false
+      },
+      "workflow-execution-failed": {
+        "title": "WorkflowExecutionFailed",
+        "type": "object",
+        "properties": {
+          "workflow_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "execution_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "failure_code": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "severity": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/common/$defs/evidence"
+            },
+            "maxItems": 32,
+            "minItems": 0
+          }
+        },
+        "required": [
+          "workflow_id",
+          "execution_id",
+          "failure_code",
+          "severity",
+          "evidence"
+        ],
+        "additionalProperties": false
+      },
+      "simulation-events": {
+        "title": "SimulationEvents",
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "const": "1.0"
+          },
+          "run_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/simulation-event"
+            },
+            "maxItems": 128,
+            "minItems": 0
+          },
+          "next_sequence": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1024
+          },
+          "terminal": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "schema_version",
+          "run_id",
+          "events",
+          "next_sequence",
+          "terminal"
+        ],
+        "additionalProperties": false
+      },
+      "knowledge-query": {
+        "title": "KnowledgeQuery",
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "const": "1.0"
+          },
+          "application_id": {
+            "$ref": "#/components/schemas/common/$defs/project"
+          },
+          "tenant_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "query": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "collection_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 96,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+            },
+            "maxItems": 8,
+            "minItems": 1
+          },
+          "max_results": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10
+          },
+          "max_excerpt_chars": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000
+          },
+          "correlation_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "mode": {
+            "enum": [
+              "SANDBOX_DETERMINISTIC",
+              "REPLAY_RECORDED",
+              "LIVE_MODEL_AUTHENTICATED"
+            ]
+          }
+        },
+        "required": [
+          "schema_version",
+          "application_id",
+          "tenant_id",
+          "query",
+          "collection_ids",
+          "max_results",
+          "max_excerpt_chars",
+          "correlation_id",
+          "mode"
+        ],
+        "additionalProperties": false
+      },
+      "event-receipt": {
+        "title": "EventReceipt",
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "const": "1.0"
+          },
+          "event_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "status": {
+            "enum": [
+              "ACCEPTED",
+              "DUPLICATE"
+            ]
+          },
+          "correlation_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          }
+        },
+        "required": [
+          "schema_version",
+          "event_id",
+          "status",
+          "correlation_id"
+        ],
+        "additionalProperties": false
+      },
+      "inference-request": {
+        "title": "InferenceRequest",
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "const": "1.0"
+          },
+          "application_id": {
+            "$ref": "#/components/schemas/common/$defs/project"
+          },
+          "environment": {
+            "enum": [
+              "test",
+              "development",
+              "staging",
+              "production"
+            ]
+          },
+          "tenant_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "task_type": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "risk_class": {
+            "enum": [
+              "LOW",
+              "MEDIUM",
+              "HIGH"
+            ]
+          },
+          "required_capabilities": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "TEXT",
+                "TOOLS",
+                "STRUCTURED_OUTPUT",
+                "VISION",
+                "AUDIO",
+                "LONG_CONTEXT",
+                "MULTILINGUAL"
+              ]
+            },
+            "maxItems": 7,
+            "minItems": 1
+          },
+          "data_classification": {
+            "enum": [
+              "PUBLIC",
+              "INTERNAL",
+              "CONFIDENTIAL",
+              "RESTRICTED"
+            ]
+          },
+          "allowed_regions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/common/$defs/region"
+            },
+            "maxItems": 8,
+            "minItems": 1
+          },
+          "latency_deadline_ms": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 120000
+          },
+          "max_input_tokens": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 131072
+          },
+          "max_output_tokens": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 32768
+          },
+          "max_cost": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1000000
+          },
+          "currency": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 3,
+            "pattern": "^[A-Z]{3}$"
+          },
+          "routing_policy_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          },
+          "correlation_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "trace_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "operation_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "mode": {
+            "enum": [
+              "SANDBOX_DETERMINISTIC",
+              "REPLAY_RECORDED",
+              "LIVE_MODEL_AUTHENTICATED"
+            ]
+          },
+          "context_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 96,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+            },
+            "maxItems": 16,
+            "minItems": 0
+          },
+          "extensions": {
+            "type": "object",
+            "maxProperties": 16,
+            "propertyNames": {
+              "pattern": "^x_[a-z][a-z0-9_]{0,47}$"
+            },
+            "additionalProperties": {
+              "type": [
+                "string",
+                "number",
+                "boolean",
+                "null"
+              ],
+              "maxLength": 256
+            }
+          }
+        },
+        "required": [
+          "schema_version",
+          "application_id",
+          "environment",
+          "tenant_id",
+          "task_type",
+          "risk_class",
+          "required_capabilities",
+          "data_classification",
+          "allowed_regions",
+          "latency_deadline_ms",
+          "max_input_tokens",
+          "max_output_tokens",
+          "max_cost",
+          "currency",
+          "routing_policy_version",
+          "correlation_id",
+          "trace_id",
+          "operation_id",
+          "mode",
+          "context_refs",
+          "extensions"
+        ],
+        "additionalProperties": false
+      },
+      "simulation-start": {
+        "title": "SimulationStart",
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "const": "1.0"
+          },
+          "project_id": {
+            "$ref": "#/components/schemas/common/$defs/project"
+          },
+          "mode": {
+            "enum": [
+              "SANDBOX_DETERMINISTIC",
+              "REPLAY_RECORDED",
+              "LIVE_MODEL_AUTHENTICATED"
+            ]
+          },
+          "preset_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 96
+          },
+          "input": {
+            "type": "object",
+            "maxProperties": 32,
+            "propertyNames": {
+              "pattern": "^[a-z][a-z0-9_]{0,47}$"
+            },
+            "additionalProperties": {
+              "$ref": "#/components/schemas/common/$defs/json-value"
+            }
+          },
+          "seed": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 4294967295
+          },
+          "client_correlation_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "extensions": {
+            "type": "object",
+            "maxProperties": 16,
+            "propertyNames": {
+              "pattern": "^x_[a-z][a-z0-9_]{0,47}$"
+            },
+            "additionalProperties": {
+              "type": [
+                "string",
+                "number",
+                "boolean",
+                "null"
+              ],
+              "maxLength": 256
+            }
+          }
+        },
+        "required": [
+          "schema_version",
+          "project_id",
+          "mode",
+          "input",
+          "seed",
+          "client_correlation_id"
+        ],
+        "additionalProperties": false
+      },
+      "simulation-event": {
+        "title": "SimulationEvent",
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "const": "1.0"
+          },
+          "run_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "project_id": {
+            "$ref": "#/components/schemas/common/$defs/project"
+          },
+          "event_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "sequence": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1024
+          },
+          "occurred_at": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 32,
+            "format": "date-time",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$"
+          },
+          "step_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "step_type": {
+            "enum": [
+              "VALIDATION",
+              "POLICY",
+              "RETRIEVAL",
+              "HANDOFF",
+              "EXECUTION",
+              "SUMMARY"
+            ]
+          },
+          "component": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "status": {
+            "enum": [
+              "STARTED",
+              "SUCCEEDED",
+              "FAILED",
+              "SKIPPED",
+              "WAITING",
+              "BLOCKED"
+            ]
+          },
+          "mode": {
+            "enum": [
+              "SANDBOX_DETERMINISTIC",
+              "REPLAY_RECORDED",
+              "LIVE_MODEL_AUTHENTICATED"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "overview": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "technical": {
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "input_schema_version": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 64
+              },
+              "output_schema_version": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 64
+              },
+              "input_ref": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 96,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+              },
+              "output_ref": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 96,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+              },
+              "decisions": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 240
+                },
+                "maxItems": 16,
+                "minItems": 0
+              },
+              "evidence": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/common/$defs/evidence"
+                },
+                "maxItems": 32,
+                "minItems": 0
+              },
+              "adapter_kind": {
+                "enum": [
+                  "DETERMINISTIC",
+                  "REPLAY",
+                  "MODEL"
+                ]
+              },
+              "attempt": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 16
+              },
+              "fallback_reason": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "maxLength": 240
+              }
+            },
+            "required": [
+              "action",
+              "input_schema_version",
+              "output_schema_version",
+              "input_ref",
+              "output_ref",
+              "decisions",
+              "evidence",
+              "adapter_kind",
+              "attempt",
+              "fallback_reason"
+            ],
+            "additionalProperties": false
+          },
+          "duration_ms": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 120000
+          },
+          "trace_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/common/$defs/usage"
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/common/$defs/provenance"
+          },
+          "error": {
+            "$ref": "#/components/schemas/error"
+          },
+          "extensions": {
+            "type": "object",
+            "maxProperties": 16,
+            "propertyNames": {
+              "pattern": "^x_[a-z][a-z0-9_]{0,47}$"
+            },
+            "additionalProperties": {
+              "type": [
+                "string",
+                "number",
+                "boolean",
+                "null"
+              ],
+              "maxLength": 256
+            }
+          }
+        },
+        "required": [
+          "schema_version",
+          "run_id",
+          "project_id",
+          "event_id",
+          "sequence",
+          "occurred_at",
+          "step_id",
+          "step_type",
+          "component",
+          "status",
+          "mode",
+          "title",
+          "overview",
+          "technical",
+          "duration_ms",
+          "trace_id",
+          "usage",
+          "provenance"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "sandboxSession": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "Short-lived sandbox session. Obtain from the project-specific same-origin session bootstrap; never a provider key."
+      },
+      "serviceBearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "Audience, tenant, environment and scope-bound service credential."
+      }
+    }
+  }
+}

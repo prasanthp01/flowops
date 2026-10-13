@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.example.invalid/v1/simulation-result.schema.json",
+  "title": "SimulationResult",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "project_id": {
+      "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/project"
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "mode": {
+      "enum": [
+        "SANDBOX_DETERMINISTIC",
+        "REPLAY_RECORDED",
+        "LIVE_MODEL_AUTHENTICATED"
+      ]
+    },
+    "status": {
+      "enum": [
+        "SUCCEEDED",
+        "FAILED",
+        "CANCELLED",
+        "EXPIRED"
+      ]
+    },
+    "app_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "fixtures_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "provenance": {
+      "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/provenance"
+    },
+    "output_schema_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "output": {
+      "type": "object",
+      "maxProperties": 32,
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9_]{0,47}$"
+      },
+      "additionalProperties": {
+        "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/json-value"
+      }
+    },
+    "safety_status": {
+      "enum": [
+        "SAFE",
+        "BLOCKED",
+        "REVIEW_REQUIRED"
+      ]
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/evidence"
+      },
+      "maxItems": 32,
+      "minItems": 0
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "$ref": "https://contracts.example.invalid/v1/error.schema.json"
+      },
+      "maxItems": 16,
+      "minItems": 0
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 240
+      },
+      "maxItems": 16,
+      "minItems": 0
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 240
+      },
+      "maxItems": 16,
+      "minItems": 1
+    },
+    "duration_ms": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 120000
+    },
+    "usage": {
+      "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/usage"
+    },
+    "cost": {
+      "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/cost"
+    },
+    "extensions": {
+      "type": "object",
+      "maxProperties": 16,
+      "propertyNames": {
+        "pattern": "^x_[a-z][a-z0-9_]{0,47}$"
+      },
+      "additionalProperties": {
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ],
+        "maxLength": 256
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "project_id",
+    "run_id",
+    "mode",
+    "status",
+    "app_version",
+    "fixtures_version",
+    "provenance",
+    "output_schema_version",
+    "output",
+    "safety_status",
+    "evidence",
+    "errors",
+    "warnings",
+    "limitations",
+    "duration_ms",
+    "usage",
+    "cost"
+  ],
+  "additionalProperties": false
+}

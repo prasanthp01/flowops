@@ -1,0 +1,1593 @@
+{
+  "checked_at": "2026-10-13T16:50:33.980664Z",
+  "source_revisions": {
+    "flowops": "3b816fecad7910f1c123bc648b73542986b9a76b",
+    "knowledgeops": "172a6c9e47de361a6d484f98b52c0cc5752727ff",
+    "agentops": "50bb507dafdd2c98d8d008c7307a9235439690dd"
+  },
+  "scope": "REAL_PRIVATE_HTTP_FROM_PERSISTED_OPT_IN_WORKFLOW",
+  "production_modified": false,
+  "paid_calls_enabled": false,
+  "checks": [
+    "public_opt_in_denied",
+    "operator_opt_in_persisted",
+    "real_worker_to_knowledgeops_positive_fixture",
+    "knowledge_citation_hashes",
+    "real_worker_to_agentops_policy_blocked",
+    "original_constraints_preserved",
+    "typed_deterministic_fallback",
+    "mandatory_operator_review",
+    "worker_restart_checkpoint_preserved",
+    "completed_synthetic_workflow",
+    "zero_provider_usage",
+    "bounded_readable_peer_error"
+  ],
+  "retained_volume": "flowops-peer-20261013t165033z-db",
+  "input": {
+    "schema_version": "1.0",
+    "project_id": "flowops",
+    "mode": "SANDBOX_DETERMINISTIC",
+    "seed": 7,
+    "client_correlation_id": "real-peer-profile-1",
+    "input": {
+      "order_amount_minor": 12000,
+      "refund_requested_minor": 8000,
+      "currency": "EUR",
+      "delivery_status": "delivered",
+      "order_age_days": 10,
+      "inventory_available": 5,
+      "policy_revision": "2026-01",
+      "customer_type": "standard",
+      "return_conditions_met": true,
+      "evidence_complete": true,
+      "permission_granted": true,
+      "order_id": "SYN-ORDER-001",
+      "refund_order_id": "SYN-ORDER-001",
+      "api_response_mode": "healthy",
+      "risk_flags": [],
+      "existing_approvals": "none",
+      "model_response_mode": "deterministic"
+    },
+    "extensions": {
+      "x_peer_profile": "peer-rehearsal"
+    }
+  },
+  "run_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+  "peer_results": {
+    "authorization": {
+      "tenant_id": "demo",
+      "profile_id": "peer-rehearsal",
+      "environment": "development",
+      "fingerprint": "3f043b67069919bb7b85f34313f6fe31d319d0b1f6d464c4a85710ad46956d3a",
+      "authorized_by": "local-operator"
+    },
+    "inference": {
+      "error": {
+        "code": "POLICY_BLOCKED",
+        "message": "Policy blocked",
+        "retryable": false,
+        "http_status": 403,
+        "correlation_id": "agentops-error",
+        "schema_version": "1.0"
+      },
+      "route": {
+        "mode": "SANDBOX_DETERMINISTIC",
+        "usage": {
+          "cost": {
+            "kind": "NONE",
+            "value": 0,
+            "currency": "EUR",
+            "pricing_version": "no-provider-usage"
+          },
+          "kind": "NONE",
+          "usage_id": "17850497-65b2-47d0-88e2-fe27793cafec:inference",
+          "cache_tokens": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "provider_calls": 0
+        },
+        "outcome": "POLICY_BLOCKED",
+        "attempts": [],
+        "trace_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "operation_id": "inference:17850497-65b2-47d0-88e2-fe27793cafec",
+        "fallback_kind": "DETERMINISTIC",
+        "correlation_id": "real-peer-profile-1",
+        "schema_version": "1.0",
+        "rejected_candidates": [],
+        "selected_deployment": null,
+        "routing_policy_version": "flowops-sandbox-no-spend-1"
+      },
+      "business_authority": "NONE",
+      "usage_confirmation": "REFUSED"
+    },
+    "knowledge": {
+      "error": null,
+      "response": {
+        "mode": "SANDBOX_DETERMINISTIC",
+        "answer": "Open each answer citation to inspect the original source passage, document version and section. If evidence is missing or conflicting, ask a narrower question or request a policy review.",
+        "status": "OK",
+        "citations": [
+          {
+            "title": "Knowledge search guide",
+            "passage": "Open each answer citation to inspect the original source passage, document version and section. If evidence is missing or conflicting, ask a narrower question or request a policy review.",
+            "evidence": {
+              "origin": "FIXTURE",
+              "sha256": "d5cfbc05751202f4e4810e02acb71479f5885574cbebc0fd343ab2ec29251550",
+              "reference": "synthetic/search-guide.md#v1:s1-p1:chars0-186",
+              "evidence_id": "passage-8ff06fa49dbc67ab1c2cf9f33cb7f509292a25e50f5d49fe012b499cf379706d"
+            },
+            "location": "version 1; chunk s1-p1; page 1",
+            "source_id": "search-guide"
+          }
+        ],
+        "limitations": [
+          "Extractive synthetic passages; no generative model or external provider.",
+          "Excerpt hashes cover exactly the returned text; hosting cost is unallocated."
+        ],
+        "correlation_id": "real-peer-profile-1",
+        "schema_version": "1.0"
+      },
+      "business_authority": "NONE"
+    },
+    "business_authority": "NONE"
+  },
+  "result": {
+    "schema_version": "1.0",
+    "project_id": "flowops",
+    "run_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+    "mode": "SANDBOX_DETERMINISTIC",
+    "status": "SUCCEEDED",
+    "app_version": "0.2.0",
+    "fixtures_version": "synthetic-1.0",
+    "provenance": {
+      "app_version": "0.2.0",
+      "data_origin": "SYNTHETIC",
+      "model_version": "none",
+      "rules_version": "2026-01",
+      "connector_kind": "MOCK",
+      "prompt_version": "none",
+      "source_revision": "3b816fecad7910f1c123bc648b73542986b9a76b",
+      "fixtures_version": "synthetic-1.0",
+      "workflow_version": "flowops-1.0"
+    },
+    "output_schema_version": "flowops-result-1.0",
+    "output": {
+      "seed": 7,
+      "outcome": "SIMULATED_APPLIED",
+      "receipt": {
+        "kind": "SIMULATED_APPLIED",
+        "action": "refund_request",
+        "currency": "EUR",
+        "order_id": "SYN-ORDER-001",
+        "amount_minor": 8000,
+        "operation_id": "30ec32abe707d0562918fe453652e73259fa5c3eb22c77920f4c2d3ed051baf6",
+        "real_transaction": false,
+        "notification_sent": false
+      },
+      "approval": {
+        "proposal": {
+          "action": "refund_request",
+          "currency": "EUR",
+          "order_id": "SYN-ORDER-001",
+          "amount_minor": 8000,
+          "notification": "draft_only"
+        },
+        "expires_at": "2026-10-13T16:52:07.253322+00:00",
+        "request_id": "d5fddcc1-28f7-4a8c-8821-eb94b34af8e2",
+        "environment": "local",
+        "action_digest": "30ec32abe707d0562918fe453652e73259fa5c3eb22c77920f4c2d3ed051baf6",
+        "workflow_version": "flowops-1.0"
+      },
+      "decision": {
+        "code": "POLICY_ELIGIBLE",
+        "status": "ALLOW",
+        "rationale": "The synthetic proposal satisfies the versioned policy.",
+        "policy_version": "2026-01"
+      },
+      "fallback": {
+        "calls": 0,
+        "origin": "deterministic_role_adapter",
+        "reason": "Peer inference refused or unavailable; deterministic proposal requires operator review.",
+        "status": "AI_UNAVAILABLE",
+        "actual_external_cost": 0.0
+      },
+      "proposal": {
+        "action": "refund_request",
+        "currency": "EUR",
+        "order_id": "SYN-ORDER-001",
+        "amount_minor": 8000,
+        "notification": "draft_only"
+      },
+      "limitations": [
+        "No real money movement or customer messages.",
+        "No live LLM inference.",
+        "Hosting resources still have a cost."
+      ],
+      "retry_count": 0,
+      "connector_kind": "in_process_mock_http",
+      "policy_version": "2026-01",
+      "data_provenance": "versioned_synthetic_fixtures",
+      "workflow_version": "flowops-1.0"
+    },
+    "safety_status": "SAFE",
+    "evidence": [
+      {
+        "evidence_id": "CRM-001",
+        "origin": "FIXTURE",
+        "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/CRM-001",
+        "sha256": "b39579fcaa2aba60658c72406cd3bb8f8b6c1eeb8c8a3a7b8bcd427491d6ed96"
+      },
+      {
+        "evidence_id": "ERP-001",
+        "origin": "FIXTURE",
+        "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/ERP-001",
+        "sha256": "ed7bc1ef7f4fcae30ac7f82d06734b35cf0154fc13d7d29c03d1284229db9534"
+      },
+      {
+        "evidence_id": "POLICY-2026-01",
+        "origin": "FIXTURE",
+        "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/POLICY-2026-01",
+        "sha256": "06d7b1c3f506ed8971c96869f3241e04ed81b4799ee2c4ad3975a2709ea451db"
+      },
+      {
+        "evidence_id": "STOCK-001",
+        "origin": "FIXTURE",
+        "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/STOCK-001",
+        "sha256": "18428c55625bda11318b748f49956f6d4a397243027ec6251b00b317812dde8c"
+      }
+    ],
+    "errors": [],
+    "warnings": [],
+    "limitations": [
+      "No real money movement or customer messages.",
+      "No live LLM inference.",
+      "Hosting resources still have a cost."
+    ],
+    "duration_ms": 1302.969,
+    "usage": {
+      "usage_id": "17850497-65b2-47d0-88e2-fe27793cafec:result",
+      "kind": "NONE",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_tokens": 0,
+      "provider_calls": 0,
+      "cost": {
+        "kind": "NONE",
+        "value": 0,
+        "currency": "EUR",
+        "pricing_version": "no-provider-usage"
+      }
+    },
+    "cost": {
+      "kind": "NONE",
+      "value": 0,
+      "currency": "EUR",
+      "pricing_version": "no-provider-usage"
+    },
+    "extensions": {
+      "x_client_correlation_id": "real-peer-profile-1",
+      "x_peer_inference_outcome": "POLICY_BLOCKED",
+      "x_peer_knowledge_status": "OK"
+    }
+  },
+  "events": {
+    "schema_version": "1.0",
+    "run_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+    "events": [
+      {
+        "mode": "SANDBOX_DETERMINISTIC",
+        "title": "Validation",
+        "usage": {
+          "cost": {
+            "kind": "NONE",
+            "value": 0,
+            "currency": "EUR",
+            "pricing_version": "no-provider-usage"
+          },
+          "kind": "NONE",
+          "usage_id": "17850497-65b2-47d0-88e2-fe27793cafec:step-1",
+          "cache_tokens": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "provider_calls": 0
+        },
+        "run_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "status": "STARTED",
+        "step_id": "validation",
+        "event_id": "6f0e5685-76b7-469d-ab84-2cdecde6d532",
+        "overview": "A persisted workflow step has started.",
+        "sequence": 1,
+        "trace_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "component": "workflow",
+        "step_type": "VALIDATION",
+        "technical": {
+          "action": "validation",
+          "attempt": 1,
+          "evidence": [],
+          "decisions": [],
+          "input_ref": "17850497-65b2-47d0-88e2-fe27793cafec",
+          "output_ref": "6f0e5685-76b7-469d-ab84-2cdecde6d532",
+          "adapter_kind": "DETERMINISTIC",
+          "fallback_reason": null,
+          "input_schema_version": "flowops-input-1.0",
+          "output_schema_version": "flowops-step-1.0"
+        },
+        "project_id": "flowops",
+        "provenance": {
+          "app_version": "0.2.0",
+          "data_origin": "SYNTHETIC",
+          "model_version": "none",
+          "rules_version": "2026-01",
+          "connector_kind": "MOCK",
+          "prompt_version": "none",
+          "source_revision": "3b816fecad7910f1c123bc648b73542986b9a76b",
+          "fixtures_version": "synthetic-1.0",
+          "workflow_version": "flowops-1.0"
+        },
+        "duration_ms": null,
+        "occurred_at": "2026-10-13T16:50:37.645633Z",
+        "schema_version": "1.0"
+      },
+      {
+        "mode": "SANDBOX_DETERMINISTIC",
+        "title": "Validation",
+        "usage": {
+          "cost": {
+            "kind": "NONE",
+            "value": 0,
+            "currency": "EUR",
+            "pricing_version": "no-provider-usage"
+          },
+          "kind": "NONE",
+          "usage_id": "17850497-65b2-47d0-88e2-fe27793cafec:step-2",
+          "cache_tokens": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "provider_calls": 0
+        },
+        "run_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "status": "SUCCEEDED",
+        "step_id": "validation",
+        "event_id": "a42411dd-c1cf-4d5c-9e5a-f541bc0a5e72",
+        "overview": "Bounded synthetic input passed server validation.",
+        "sequence": 2,
+        "trace_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "component": "workflow",
+        "step_type": "VALIDATION",
+        "technical": {
+          "action": "validation",
+          "attempt": 1,
+          "evidence": [],
+          "decisions": [],
+          "input_ref": "17850497-65b2-47d0-88e2-fe27793cafec",
+          "output_ref": "a42411dd-c1cf-4d5c-9e5a-f541bc0a5e72",
+          "adapter_kind": "DETERMINISTIC",
+          "fallback_reason": null,
+          "input_schema_version": "flowops-input-1.0",
+          "output_schema_version": "flowops-step-1.0"
+        },
+        "project_id": "flowops",
+        "provenance": {
+          "app_version": "0.2.0",
+          "data_origin": "SYNTHETIC",
+          "model_version": "none",
+          "rules_version": "2026-01",
+          "connector_kind": "MOCK",
+          "prompt_version": "none",
+          "source_revision": "3b816fecad7910f1c123bc648b73542986b9a76b",
+          "fixtures_version": "synthetic-1.0",
+          "workflow_version": "flowops-1.0"
+        },
+        "duration_ms": 0.05,
+        "occurred_at": "2026-10-13T16:50:37.651801Z",
+        "schema_version": "1.0"
+      },
+      {
+        "mode": "SANDBOX_DETERMINISTIC",
+        "title": "Plan",
+        "usage": {
+          "cost": {
+            "kind": "NONE",
+            "value": 0,
+            "currency": "EUR",
+            "pricing_version": "no-provider-usage"
+          },
+          "kind": "NONE",
+          "usage_id": "17850497-65b2-47d0-88e2-fe27793cafec:step-3",
+          "cache_tokens": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "provider_calls": 0
+        },
+        "run_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "status": "STARTED",
+        "step_id": "plan",
+        "event_id": "c4cb940c-cfa1-44f7-8a13-5d85aa87e6b7",
+        "overview": "A persisted workflow step has started.",
+        "sequence": 3,
+        "trace_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "component": "workflow",
+        "step_type": "HANDOFF",
+        "technical": {
+          "action": "plan",
+          "attempt": 1,
+          "evidence": [],
+          "decisions": [],
+          "input_ref": "17850497-65b2-47d0-88e2-fe27793cafec",
+          "output_ref": "c4cb940c-cfa1-44f7-8a13-5d85aa87e6b7",
+          "adapter_kind": "DETERMINISTIC",
+          "fallback_reason": null,
+          "input_schema_version": "flowops-input-1.0",
+          "output_schema_version": "flowops-step-1.0"
+        },
+        "project_id": "flowops",
+        "provenance": {
+          "app_version": "0.2.0",
+          "data_origin": "SYNTHETIC",
+          "model_version": "none",
+          "rules_version": "2026-01",
+          "connector_kind": "MOCK",
+          "prompt_version": "none",
+          "source_revision": "3b816fecad7910f1c123bc648b73542986b9a76b",
+          "fixtures_version": "synthetic-1.0",
+          "workflow_version": "flowops-1.0"
+        },
+        "duration_ms": null,
+        "occurred_at": "2026-10-13T16:50:37.655413Z",
+        "schema_version": "1.0"
+      },
+      {
+        "mode": "SANDBOX_DETERMINISTIC",
+        "title": "Plan",
+        "usage": {
+          "cost": {
+            "kind": "NONE",
+            "value": 0,
+            "currency": "EUR",
+            "pricing_version": "no-provider-usage"
+          },
+          "kind": "NONE",
+          "usage_id": "17850497-65b2-47d0-88e2-fe27793cafec:step-4",
+          "cache_tokens": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "provider_calls": 0
+        },
+        "run_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "status": "SUCCEEDED",
+        "step_id": "plan",
+        "event_id": "e79b70e3-7a5e-4d37-a544-b42dcbaf1d2e",
+        "overview": "The supervisor selected a declared workflow template.",
+        "sequence": 4,
+        "trace_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "component": "supervisor",
+        "step_type": "HANDOFF",
+        "technical": {
+          "action": "plan",
+          "attempt": 1,
+          "evidence": [],
+          "decisions": [],
+          "input_ref": "17850497-65b2-47d0-88e2-fe27793cafec",
+          "output_ref": "e79b70e3-7a5e-4d37-a544-b42dcbaf1d2e",
+          "adapter_kind": "DETERMINISTIC",
+          "fallback_reason": "Peer inference refused or unavailable; deterministic proposal requires operator review.",
+          "input_schema_version": "flowops-input-1.0",
+          "output_schema_version": "flowops-step-1.0"
+        },
+        "project_id": "flowops",
+        "provenance": {
+          "app_version": "0.2.0",
+          "data_origin": "SYNTHETIC",
+          "model_version": "none",
+          "rules_version": "2026-01",
+          "connector_kind": "MOCK",
+          "prompt_version": "none",
+          "source_revision": "3b816fecad7910f1c123bc648b73542986b9a76b",
+          "fixtures_version": "synthetic-1.0",
+          "workflow_version": "flowops-1.0"
+        },
+        "duration_ms": 17.362,
+        "occurred_at": "2026-10-13T16:50:37.678542Z",
+        "schema_version": "1.0"
+      },
+      {
+        "mode": "SANDBOX_DETERMINISTIC",
+        "title": "Parallel Research",
+        "usage": {
+          "cost": {
+            "kind": "NONE",
+            "value": 0,
+            "currency": "EUR",
+            "pricing_version": "no-provider-usage"
+          },
+          "kind": "NONE",
+          "usage_id": "17850497-65b2-47d0-88e2-fe27793cafec:step-5",
+          "cache_tokens": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "provider_calls": 0
+        },
+        "run_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "status": "STARTED",
+        "step_id": "parallel_research",
+        "event_id": "b14c8724-d6ac-4f3b-ba5e-519f47a701cd",
+        "overview": "A persisted workflow step has started.",
+        "sequence": 5,
+        "trace_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "component": "workflow",
+        "step_type": "RETRIEVAL",
+        "technical": {
+          "action": "parallel_research",
+          "attempt": 1,
+          "evidence": [],
+          "decisions": [],
+          "input_ref": "17850497-65b2-47d0-88e2-fe27793cafec",
+          "output_ref": "b14c8724-d6ac-4f3b-ba5e-519f47a701cd",
+          "adapter_kind": "DETERMINISTIC",
+          "fallback_reason": null,
+          "input_schema_version": "flowops-input-1.0",
+          "output_schema_version": "flowops-step-1.0"
+        },
+        "project_id": "flowops",
+        "provenance": {
+          "app_version": "0.2.0",
+          "data_origin": "SYNTHETIC",
+          "model_version": "none",
+          "rules_version": "2026-01",
+          "connector_kind": "MOCK",
+          "prompt_version": "none",
+          "source_revision": "3b816fecad7910f1c123bc648b73542986b9a76b",
+          "fixtures_version": "synthetic-1.0",
+          "workflow_version": "flowops-1.0"
+        },
+        "duration_ms": null,
+        "occurred_at": "2026-10-13T16:50:37.746228Z",
+        "schema_version": "1.0"
+      },
+      {
+        "mode": "SANDBOX_DETERMINISTIC",
+        "title": "Parallel Research",
+        "usage": {
+          "cost": {
+            "kind": "NONE",
+            "value": 0,
+            "currency": "EUR",
+            "pricing_version": "no-provider-usage"
+          },
+          "kind": "NONE",
+          "usage_id": "17850497-65b2-47d0-88e2-fe27793cafec:step-6",
+          "cache_tokens": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "provider_calls": 0
+        },
+        "run_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "status": "SUCCEEDED",
+        "step_id": "parallel_research",
+        "event_id": "18114df3-b29a-4407-b2cd-de24d5cbd8fe",
+        "overview": "Independent CRM, ERP, inventory and policy reads completed.",
+        "sequence": 6,
+        "trace_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "component": "workflow",
+        "step_type": "RETRIEVAL",
+        "technical": {
+          "action": "parallel_research",
+          "attempt": 1,
+          "evidence": [
+            {
+              "origin": "FIXTURE",
+              "sha256": "b39579fcaa2aba60658c72406cd3bb8f8b6c1eeb8c8a3a7b8bcd427491d6ed96",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/CRM-001",
+              "evidence_id": "CRM-001"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "ed7bc1ef7f4fcae30ac7f82d06734b35cf0154fc13d7d29c03d1284229db9534",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/ERP-001",
+              "evidence_id": "ERP-001"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "06d7b1c3f506ed8971c96869f3241e04ed81b4799ee2c4ad3975a2709ea451db",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/POLICY-2026-01",
+              "evidence_id": "POLICY-2026-01"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "18428c55625bda11318b748f49956f6d4a397243027ec6251b00b317812dde8c",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/STOCK-001",
+              "evidence_id": "STOCK-001"
+            }
+          ],
+          "decisions": [],
+          "input_ref": "17850497-65b2-47d0-88e2-fe27793cafec",
+          "output_ref": "18114df3-b29a-4407-b2cd-de24d5cbd8fe",
+          "adapter_kind": "DETERMINISTIC",
+          "fallback_reason": null,
+          "input_schema_version": "flowops-input-1.0",
+          "output_schema_version": "flowops-step-1.0"
+        },
+        "project_id": "flowops",
+        "provenance": {
+          "app_version": "0.2.0",
+          "data_origin": "SYNTHETIC",
+          "model_version": "none",
+          "rules_version": "2026-01",
+          "connector_kind": "MOCK",
+          "prompt_version": "none",
+          "source_revision": "3b816fecad7910f1c123bc648b73542986b9a76b",
+          "fixtures_version": "synthetic-1.0",
+          "workflow_version": "flowops-1.0"
+        },
+        "duration_ms": 17.454,
+        "occurred_at": "2026-10-13T16:50:37.771709Z",
+        "schema_version": "1.0"
+      },
+      {
+        "mode": "SANDBOX_DETERMINISTIC",
+        "title": "Policy evidence retrieved",
+        "usage": {
+          "cost": {
+            "kind": "NONE",
+            "value": 0,
+            "currency": "EUR",
+            "pricing_version": "no-provider-usage"
+          },
+          "kind": "NONE",
+          "usage_id": "17850497-65b2-47d0-88e2-fe27793cafec:step-7",
+          "cache_tokens": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "provider_calls": 0
+        },
+        "run_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "status": "SUCCEEDED",
+        "step_id": "policy_retrieval",
+        "event_id": "405855b3-aa93-4eb6-9ac2-dc31b9ae2a5f",
+        "overview": "The approved synthetic policy revision was inspected.",
+        "sequence": 7,
+        "trace_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "component": "workflow",
+        "step_type": "RETRIEVAL",
+        "technical": {
+          "action": "policy_retrieval",
+          "attempt": 1,
+          "evidence": [
+            {
+              "origin": "FIXTURE",
+              "sha256": "b39579fcaa2aba60658c72406cd3bb8f8b6c1eeb8c8a3a7b8bcd427491d6ed96",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/CRM-001",
+              "evidence_id": "CRM-001"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "ed7bc1ef7f4fcae30ac7f82d06734b35cf0154fc13d7d29c03d1284229db9534",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/ERP-001",
+              "evidence_id": "ERP-001"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "06d7b1c3f506ed8971c96869f3241e04ed81b4799ee2c4ad3975a2709ea451db",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/POLICY-2026-01",
+              "evidence_id": "POLICY-2026-01"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "18428c55625bda11318b748f49956f6d4a397243027ec6251b00b317812dde8c",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/STOCK-001",
+              "evidence_id": "STOCK-001"
+            }
+          ],
+          "decisions": [],
+          "input_ref": "17850497-65b2-47d0-88e2-fe27793cafec",
+          "output_ref": "405855b3-aa93-4eb6-9ac2-dc31b9ae2a5f",
+          "adapter_kind": "DETERMINISTIC",
+          "fallback_reason": null,
+          "input_schema_version": "flowops-input-1.0",
+          "output_schema_version": "flowops-step-1.0"
+        },
+        "project_id": "flowops",
+        "provenance": {
+          "app_version": "0.2.0",
+          "data_origin": "SYNTHETIC",
+          "model_version": "none",
+          "rules_version": "2026-01",
+          "connector_kind": "MOCK",
+          "prompt_version": "none",
+          "source_revision": "3b816fecad7910f1c123bc648b73542986b9a76b",
+          "fixtures_version": "synthetic-1.0",
+          "workflow_version": "flowops-1.0"
+        },
+        "duration_ms": 17.454,
+        "occurred_at": "2026-10-13T16:50:37.890776Z",
+        "schema_version": "1.0"
+      },
+      {
+        "mode": "SANDBOX_DETERMINISTIC",
+        "title": "Operations Proposal",
+        "usage": {
+          "cost": {
+            "kind": "NONE",
+            "value": 0,
+            "currency": "EUR",
+            "pricing_version": "no-provider-usage"
+          },
+          "kind": "NONE",
+          "usage_id": "17850497-65b2-47d0-88e2-fe27793cafec:step-8",
+          "cache_tokens": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "provider_calls": 0
+        },
+        "run_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "status": "STARTED",
+        "step_id": "operations_proposal",
+        "event_id": "f0e464e6-41f5-4e50-931f-f7e806b20a59",
+        "overview": "A persisted workflow step has started.",
+        "sequence": 8,
+        "trace_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "component": "workflow",
+        "step_type": "EXECUTION",
+        "technical": {
+          "action": "operations_proposal",
+          "attempt": 1,
+          "evidence": [
+            {
+              "origin": "FIXTURE",
+              "sha256": "b39579fcaa2aba60658c72406cd3bb8f8b6c1eeb8c8a3a7b8bcd427491d6ed96",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/CRM-001",
+              "evidence_id": "CRM-001"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "ed7bc1ef7f4fcae30ac7f82d06734b35cf0154fc13d7d29c03d1284229db9534",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/ERP-001",
+              "evidence_id": "ERP-001"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "06d7b1c3f506ed8971c96869f3241e04ed81b4799ee2c4ad3975a2709ea451db",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/POLICY-2026-01",
+              "evidence_id": "POLICY-2026-01"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "18428c55625bda11318b748f49956f6d4a397243027ec6251b00b317812dde8c",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/STOCK-001",
+              "evidence_id": "STOCK-001"
+            }
+          ],
+          "decisions": [],
+          "input_ref": "17850497-65b2-47d0-88e2-fe27793cafec",
+          "output_ref": "f0e464e6-41f5-4e50-931f-f7e806b20a59",
+          "adapter_kind": "DETERMINISTIC",
+          "fallback_reason": null,
+          "input_schema_version": "flowops-input-1.0",
+          "output_schema_version": "flowops-step-1.0"
+        },
+        "project_id": "flowops",
+        "provenance": {
+          "app_version": "0.2.0",
+          "data_origin": "SYNTHETIC",
+          "model_version": "none",
+          "rules_version": "2026-01",
+          "connector_kind": "MOCK",
+          "prompt_version": "none",
+          "source_revision": "3b816fecad7910f1c123bc648b73542986b9a76b",
+          "fixtures_version": "synthetic-1.0",
+          "workflow_version": "flowops-1.0"
+        },
+        "duration_ms": null,
+        "occurred_at": "2026-10-13T16:50:37.898932Z",
+        "schema_version": "1.0"
+      },
+      {
+        "mode": "SANDBOX_DETERMINISTIC",
+        "title": "Operations Proposal",
+        "usage": {
+          "cost": {
+            "kind": "NONE",
+            "value": 0,
+            "currency": "EUR",
+            "pricing_version": "no-provider-usage"
+          },
+          "kind": "NONE",
+          "usage_id": "17850497-65b2-47d0-88e2-fe27793cafec:step-9",
+          "cache_tokens": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "provider_calls": 0
+        },
+        "run_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "status": "SUCCEEDED",
+        "step_id": "operations_proposal",
+        "event_id": "7f06c114-3fb3-4b62-8d71-1ea125d98a32",
+        "overview": "Operations prepared a proposal; no real business action occurred.",
+        "sequence": 9,
+        "trace_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "component": "operations",
+        "step_type": "EXECUTION",
+        "technical": {
+          "action": "operations_proposal",
+          "attempt": 1,
+          "evidence": [
+            {
+              "origin": "FIXTURE",
+              "sha256": "b39579fcaa2aba60658c72406cd3bb8f8b6c1eeb8c8a3a7b8bcd427491d6ed96",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/CRM-001",
+              "evidence_id": "CRM-001"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "ed7bc1ef7f4fcae30ac7f82d06734b35cf0154fc13d7d29c03d1284229db9534",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/ERP-001",
+              "evidence_id": "ERP-001"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "06d7b1c3f506ed8971c96869f3241e04ed81b4799ee2c4ad3975a2709ea451db",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/POLICY-2026-01",
+              "evidence_id": "POLICY-2026-01"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "18428c55625bda11318b748f49956f6d4a397243027ec6251b00b317812dde8c",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/STOCK-001",
+              "evidence_id": "STOCK-001"
+            }
+          ],
+          "decisions": [],
+          "input_ref": "17850497-65b2-47d0-88e2-fe27793cafec",
+          "output_ref": "7f06c114-3fb3-4b62-8d71-1ea125d98a32",
+          "adapter_kind": "DETERMINISTIC",
+          "fallback_reason": null,
+          "input_schema_version": "flowops-input-1.0",
+          "output_schema_version": "flowops-step-1.0"
+        },
+        "project_id": "flowops",
+        "provenance": {
+          "app_version": "0.2.0",
+          "data_origin": "SYNTHETIC",
+          "model_version": "none",
+          "rules_version": "2026-01",
+          "connector_kind": "MOCK",
+          "prompt_version": "none",
+          "source_revision": "3b816fecad7910f1c123bc648b73542986b9a76b",
+          "fixtures_version": "synthetic-1.0",
+          "workflow_version": "flowops-1.0"
+        },
+        "duration_ms": 0.092,
+        "occurred_at": "2026-10-13T16:50:37.907279Z",
+        "schema_version": "1.0"
+      },
+      {
+        "mode": "SANDBOX_DETERMINISTIC",
+        "title": "Risk Review",
+        "usage": {
+          "cost": {
+            "kind": "NONE",
+            "value": 0,
+            "currency": "EUR",
+            "pricing_version": "no-provider-usage"
+          },
+          "kind": "NONE",
+          "usage_id": "17850497-65b2-47d0-88e2-fe27793cafec:step-10",
+          "cache_tokens": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "provider_calls": 0
+        },
+        "run_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "status": "STARTED",
+        "step_id": "risk_review",
+        "event_id": "7f47a556-7e30-4822-90a2-6ac1a76041cc",
+        "overview": "A persisted workflow step has started.",
+        "sequence": 10,
+        "trace_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "component": "workflow",
+        "step_type": "POLICY",
+        "technical": {
+          "action": "risk_review",
+          "attempt": 1,
+          "evidence": [
+            {
+              "origin": "FIXTURE",
+              "sha256": "b39579fcaa2aba60658c72406cd3bb8f8b6c1eeb8c8a3a7b8bcd427491d6ed96",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/CRM-001",
+              "evidence_id": "CRM-001"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "ed7bc1ef7f4fcae30ac7f82d06734b35cf0154fc13d7d29c03d1284229db9534",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/ERP-001",
+              "evidence_id": "ERP-001"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "06d7b1c3f506ed8971c96869f3241e04ed81b4799ee2c4ad3975a2709ea451db",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/POLICY-2026-01",
+              "evidence_id": "POLICY-2026-01"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "18428c55625bda11318b748f49956f6d4a397243027ec6251b00b317812dde8c",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/STOCK-001",
+              "evidence_id": "STOCK-001"
+            }
+          ],
+          "decisions": [],
+          "input_ref": "17850497-65b2-47d0-88e2-fe27793cafec",
+          "output_ref": "7f47a556-7e30-4822-90a2-6ac1a76041cc",
+          "adapter_kind": "DETERMINISTIC",
+          "fallback_reason": null,
+          "input_schema_version": "flowops-input-1.0",
+          "output_schema_version": "flowops-step-1.0"
+        },
+        "project_id": "flowops",
+        "provenance": {
+          "app_version": "0.2.0",
+          "data_origin": "SYNTHETIC",
+          "model_version": "none",
+          "rules_version": "2026-01",
+          "connector_kind": "MOCK",
+          "prompt_version": "none",
+          "source_revision": "3b816fecad7910f1c123bc648b73542986b9a76b",
+          "fixtures_version": "synthetic-1.0",
+          "workflow_version": "flowops-1.0"
+        },
+        "duration_ms": null,
+        "occurred_at": "2026-10-13T16:50:37.976322Z",
+        "schema_version": "1.0"
+      },
+      {
+        "mode": "SANDBOX_DETERMINISTIC",
+        "title": "Risk Review",
+        "usage": {
+          "cost": {
+            "kind": "NONE",
+            "value": 0,
+            "currency": "EUR",
+            "pricing_version": "no-provider-usage"
+          },
+          "kind": "NONE",
+          "usage_id": "17850497-65b2-47d0-88e2-fe27793cafec:step-11",
+          "cache_tokens": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "provider_calls": 0
+        },
+        "run_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "status": "SUCCEEDED",
+        "step_id": "risk_review",
+        "event_id": "b2845a66-df7c-4e7b-a01c-2b35334b308a",
+        "overview": "The verifier reviewed evidence; deterministic policy made the authorization decision.",
+        "sequence": 11,
+        "trace_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "component": "verifier",
+        "step_type": "POLICY",
+        "technical": {
+          "action": "risk_review",
+          "attempt": 1,
+          "evidence": [
+            {
+              "origin": "FIXTURE",
+              "sha256": "b39579fcaa2aba60658c72406cd3bb8f8b6c1eeb8c8a3a7b8bcd427491d6ed96",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/CRM-001",
+              "evidence_id": "CRM-001"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "ed7bc1ef7f4fcae30ac7f82d06734b35cf0154fc13d7d29c03d1284229db9534",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/ERP-001",
+              "evidence_id": "ERP-001"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "06d7b1c3f506ed8971c96869f3241e04ed81b4799ee2c4ad3975a2709ea451db",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/POLICY-2026-01",
+              "evidence_id": "POLICY-2026-01"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "18428c55625bda11318b748f49956f6d4a397243027ec6251b00b317812dde8c",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/STOCK-001",
+              "evidence_id": "STOCK-001"
+            }
+          ],
+          "decisions": [
+            "POLICY_ELIGIBLE"
+          ],
+          "input_ref": "17850497-65b2-47d0-88e2-fe27793cafec",
+          "output_ref": "b2845a66-df7c-4e7b-a01c-2b35334b308a",
+          "adapter_kind": "DETERMINISTIC",
+          "fallback_reason": null,
+          "input_schema_version": "flowops-input-1.0",
+          "output_schema_version": "flowops-step-1.0"
+        },
+        "project_id": "flowops",
+        "provenance": {
+          "app_version": "0.2.0",
+          "data_origin": "SYNTHETIC",
+          "model_version": "none",
+          "rules_version": "2026-01",
+          "connector_kind": "MOCK",
+          "prompt_version": "none",
+          "source_revision": "3b816fecad7910f1c123bc648b73542986b9a76b",
+          "fixtures_version": "synthetic-1.0",
+          "workflow_version": "flowops-1.0"
+        },
+        "duration_ms": 0.105,
+        "occurred_at": "2026-10-13T16:50:37.986207Z",
+        "schema_version": "1.0"
+      },
+      {
+        "mode": "SANDBOX_DETERMINISTIC",
+        "title": "Approval Pause",
+        "usage": {
+          "cost": {
+            "kind": "NONE",
+            "value": 0,
+            "currency": "EUR",
+            "pricing_version": "no-provider-usage"
+          },
+          "kind": "NONE",
+          "usage_id": "17850497-65b2-47d0-88e2-fe27793cafec:step-12",
+          "cache_tokens": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "provider_calls": 0
+        },
+        "run_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "status": "STARTED",
+        "step_id": "approval_pause",
+        "event_id": "65420d1b-efe0-4507-b55e-0ddde9013e5a",
+        "overview": "A persisted workflow step has started.",
+        "sequence": 12,
+        "trace_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "component": "workflow",
+        "step_type": "POLICY",
+        "technical": {
+          "action": "approval_pause",
+          "attempt": 1,
+          "evidence": [
+            {
+              "origin": "FIXTURE",
+              "sha256": "b39579fcaa2aba60658c72406cd3bb8f8b6c1eeb8c8a3a7b8bcd427491d6ed96",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/CRM-001",
+              "evidence_id": "CRM-001"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "ed7bc1ef7f4fcae30ac7f82d06734b35cf0154fc13d7d29c03d1284229db9534",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/ERP-001",
+              "evidence_id": "ERP-001"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "06d7b1c3f506ed8971c96869f3241e04ed81b4799ee2c4ad3975a2709ea451db",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/POLICY-2026-01",
+              "evidence_id": "POLICY-2026-01"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "18428c55625bda11318b748f49956f6d4a397243027ec6251b00b317812dde8c",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/STOCK-001",
+              "evidence_id": "STOCK-001"
+            }
+          ],
+          "decisions": [],
+          "input_ref": "17850497-65b2-47d0-88e2-fe27793cafec",
+          "output_ref": "65420d1b-efe0-4507-b55e-0ddde9013e5a",
+          "adapter_kind": "DETERMINISTIC",
+          "fallback_reason": null,
+          "input_schema_version": "flowops-input-1.0",
+          "output_schema_version": "flowops-step-1.0"
+        },
+        "project_id": "flowops",
+        "provenance": {
+          "app_version": "0.2.0",
+          "data_origin": "SYNTHETIC",
+          "model_version": "none",
+          "rules_version": "2026-01",
+          "connector_kind": "MOCK",
+          "prompt_version": "none",
+          "source_revision": "3b816fecad7910f1c123bc648b73542986b9a76b",
+          "fixtures_version": "synthetic-1.0",
+          "workflow_version": "flowops-1.0"
+        },
+        "duration_ms": null,
+        "occurred_at": "2026-10-13T16:50:38.055129Z",
+        "schema_version": "1.0"
+      },
+      {
+        "mode": "SANDBOX_DETERMINISTIC",
+        "title": "Operator approval required",
+        "usage": {
+          "cost": {
+            "kind": "NONE",
+            "value": 0,
+            "currency": "EUR",
+            "pricing_version": "no-provider-usage"
+          },
+          "kind": "NONE",
+          "usage_id": "17850497-65b2-47d0-88e2-fe27793cafec:step-13",
+          "cache_tokens": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "provider_calls": 0
+        },
+        "run_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "status": "WAITING",
+        "step_id": "approval_pause",
+        "event_id": "da0c0095-dae7-4192-9372-0cc6f624e1fd",
+        "overview": "The exact proposal is paused. Public input cannot grant approval.",
+        "sequence": 13,
+        "trace_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "component": "workflow",
+        "step_type": "POLICY",
+        "technical": {
+          "action": "approval_pause",
+          "attempt": 1,
+          "evidence": [
+            {
+              "origin": "FIXTURE",
+              "sha256": "b39579fcaa2aba60658c72406cd3bb8f8b6c1eeb8c8a3a7b8bcd427491d6ed96",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/CRM-001",
+              "evidence_id": "CRM-001"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "ed7bc1ef7f4fcae30ac7f82d06734b35cf0154fc13d7d29c03d1284229db9534",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/ERP-001",
+              "evidence_id": "ERP-001"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "06d7b1c3f506ed8971c96869f3241e04ed81b4799ee2c4ad3975a2709ea451db",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/POLICY-2026-01",
+              "evidence_id": "POLICY-2026-01"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "18428c55625bda11318b748f49956f6d4a397243027ec6251b00b317812dde8c",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/STOCK-001",
+              "evidence_id": "STOCK-001"
+            }
+          ],
+          "decisions": [
+            "POLICY_ELIGIBLE"
+          ],
+          "input_ref": "17850497-65b2-47d0-88e2-fe27793cafec",
+          "output_ref": "da0c0095-dae7-4192-9372-0cc6f624e1fd",
+          "adapter_kind": "DETERMINISTIC",
+          "fallback_reason": null,
+          "input_schema_version": "flowops-input-1.0",
+          "output_schema_version": "flowops-step-1.0"
+        },
+        "project_id": "flowops",
+        "provenance": {
+          "app_version": "0.2.0",
+          "data_origin": "SYNTHETIC",
+          "model_version": "none",
+          "rules_version": "2026-01",
+          "connector_kind": "MOCK",
+          "prompt_version": "none",
+          "source_revision": "3b816fecad7910f1c123bc648b73542986b9a76b",
+          "fixtures_version": "synthetic-1.0",
+          "workflow_version": "flowops-1.0"
+        },
+        "duration_ms": 0.044,
+        "occurred_at": "2026-10-13T16:50:38.064977Z",
+        "schema_version": "1.0"
+      },
+      {
+        "mode": "SANDBOX_DETERMINISTIC",
+        "title": "Operator decision recorded",
+        "usage": {
+          "cost": {
+            "kind": "NONE",
+            "value": 0,
+            "currency": "EUR",
+            "pricing_version": "no-provider-usage"
+          },
+          "kind": "NONE",
+          "usage_id": "17850497-65b2-47d0-88e2-fe27793cafec:step-14",
+          "cache_tokens": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "provider_calls": 0
+        },
+        "run_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "status": "SUCCEEDED",
+        "step_id": "approval_pause",
+        "event_id": "7a1e8601-674a-4862-ab8e-56219ca3e7a3",
+        "overview": "The authenticated operator decision is bound to this exact synthetic proposal.",
+        "sequence": 14,
+        "trace_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "component": "workflow",
+        "step_type": "POLICY",
+        "technical": {
+          "action": "approval_pause",
+          "attempt": 1,
+          "evidence": [
+            {
+              "origin": "FIXTURE",
+              "sha256": "b39579fcaa2aba60658c72406cd3bb8f8b6c1eeb8c8a3a7b8bcd427491d6ed96",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/CRM-001",
+              "evidence_id": "CRM-001"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "ed7bc1ef7f4fcae30ac7f82d06734b35cf0154fc13d7d29c03d1284229db9534",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/ERP-001",
+              "evidence_id": "ERP-001"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "06d7b1c3f506ed8971c96869f3241e04ed81b4799ee2c4ad3975a2709ea451db",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/POLICY-2026-01",
+              "evidence_id": "POLICY-2026-01"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "18428c55625bda11318b748f49956f6d4a397243027ec6251b00b317812dde8c",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/STOCK-001",
+              "evidence_id": "STOCK-001"
+            }
+          ],
+          "decisions": [],
+          "input_ref": "17850497-65b2-47d0-88e2-fe27793cafec",
+          "output_ref": "7a1e8601-674a-4862-ab8e-56219ca3e7a3",
+          "adapter_kind": "DETERMINISTIC",
+          "fallback_reason": null,
+          "input_schema_version": "flowops-input-1.0",
+          "output_schema_version": "flowops-step-1.0"
+        },
+        "project_id": "flowops",
+        "provenance": {
+          "app_version": "0.2.0",
+          "data_origin": "SYNTHETIC",
+          "model_version": "none",
+          "rules_version": "2026-01",
+          "connector_kind": "MOCK",
+          "prompt_version": "none",
+          "source_revision": "3b816fecad7910f1c123bc648b73542986b9a76b",
+          "fixtures_version": "synthetic-1.0",
+          "workflow_version": "flowops-1.0"
+        },
+        "duration_ms": null,
+        "occurred_at": "2026-10-13T16:50:38.150875Z",
+        "schema_version": "1.0"
+      },
+      {
+        "mode": "SANDBOX_DETERMINISTIC",
+        "title": "Action Simulation",
+        "usage": {
+          "cost": {
+            "kind": "NONE",
+            "value": 0,
+            "currency": "EUR",
+            "pricing_version": "no-provider-usage"
+          },
+          "kind": "NONE",
+          "usage_id": "17850497-65b2-47d0-88e2-fe27793cafec:step-15",
+          "cache_tokens": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "provider_calls": 0
+        },
+        "run_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "status": "STARTED",
+        "step_id": "action_simulation",
+        "event_id": "0bce0ec0-ca2e-4b61-801d-f396a70fab35",
+        "overview": "A persisted workflow step has started.",
+        "sequence": 15,
+        "trace_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "component": "workflow",
+        "step_type": "EXECUTION",
+        "technical": {
+          "action": "action_simulation",
+          "attempt": 1,
+          "evidence": [
+            {
+              "origin": "FIXTURE",
+              "sha256": "b39579fcaa2aba60658c72406cd3bb8f8b6c1eeb8c8a3a7b8bcd427491d6ed96",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/CRM-001",
+              "evidence_id": "CRM-001"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "ed7bc1ef7f4fcae30ac7f82d06734b35cf0154fc13d7d29c03d1284229db9534",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/ERP-001",
+              "evidence_id": "ERP-001"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "06d7b1c3f506ed8971c96869f3241e04ed81b4799ee2c4ad3975a2709ea451db",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/POLICY-2026-01",
+              "evidence_id": "POLICY-2026-01"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "18428c55625bda11318b748f49956f6d4a397243027ec6251b00b317812dde8c",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/STOCK-001",
+              "evidence_id": "STOCK-001"
+            }
+          ],
+          "decisions": [],
+          "input_ref": "17850497-65b2-47d0-88e2-fe27793cafec",
+          "output_ref": "0bce0ec0-ca2e-4b61-801d-f396a70fab35",
+          "adapter_kind": "DETERMINISTIC",
+          "fallback_reason": null,
+          "input_schema_version": "flowops-input-1.0",
+          "output_schema_version": "flowops-step-1.0"
+        },
+        "project_id": "flowops",
+        "provenance": {
+          "app_version": "0.2.0",
+          "data_origin": "SYNTHETIC",
+          "model_version": "none",
+          "rules_version": "2026-01",
+          "connector_kind": "MOCK",
+          "prompt_version": "none",
+          "source_revision": "3b816fecad7910f1c123bc648b73542986b9a76b",
+          "fixtures_version": "synthetic-1.0",
+          "workflow_version": "flowops-1.0"
+        },
+        "duration_ms": null,
+        "occurred_at": "2026-10-13T16:50:38.522110Z",
+        "schema_version": "1.0"
+      },
+      {
+        "mode": "SANDBOX_DETERMINISTIC",
+        "title": "Action Simulation",
+        "usage": {
+          "cost": {
+            "kind": "NONE",
+            "value": 0,
+            "currency": "EUR",
+            "pricing_version": "no-provider-usage"
+          },
+          "kind": "NONE",
+          "usage_id": "17850497-65b2-47d0-88e2-fe27793cafec:step-16",
+          "cache_tokens": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "provider_calls": 0
+        },
+        "run_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "status": "SUCCEEDED",
+        "step_id": "action_simulation",
+        "event_id": "209c5186-da54-4c72-9eb0-bec4e578931f",
+        "overview": "The fake action gateway recorded one idempotent synthetic receipt.",
+        "sequence": 16,
+        "trace_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "component": "workflow",
+        "step_type": "EXECUTION",
+        "technical": {
+          "action": "action_simulation",
+          "attempt": 1,
+          "evidence": [
+            {
+              "origin": "FIXTURE",
+              "sha256": "b39579fcaa2aba60658c72406cd3bb8f8b6c1eeb8c8a3a7b8bcd427491d6ed96",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/CRM-001",
+              "evidence_id": "CRM-001"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "ed7bc1ef7f4fcae30ac7f82d06734b35cf0154fc13d7d29c03d1284229db9534",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/ERP-001",
+              "evidence_id": "ERP-001"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "06d7b1c3f506ed8971c96869f3241e04ed81b4799ee2c4ad3975a2709ea451db",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/POLICY-2026-01",
+              "evidence_id": "POLICY-2026-01"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "18428c55625bda11318b748f49956f6d4a397243027ec6251b00b317812dde8c",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/STOCK-001",
+              "evidence_id": "STOCK-001"
+            }
+          ],
+          "decisions": [],
+          "input_ref": "17850497-65b2-47d0-88e2-fe27793cafec",
+          "output_ref": "209c5186-da54-4c72-9eb0-bec4e578931f",
+          "adapter_kind": "DETERMINISTIC",
+          "fallback_reason": null,
+          "input_schema_version": "flowops-input-1.0",
+          "output_schema_version": "flowops-step-1.0"
+        },
+        "project_id": "flowops",
+        "provenance": {
+          "app_version": "0.2.0",
+          "data_origin": "SYNTHETIC",
+          "model_version": "none",
+          "rules_version": "2026-01",
+          "connector_kind": "MOCK",
+          "prompt_version": "none",
+          "source_revision": "3b816fecad7910f1c123bc648b73542986b9a76b",
+          "fixtures_version": "synthetic-1.0",
+          "workflow_version": "flowops-1.0"
+        },
+        "duration_ms": 9.758,
+        "occurred_at": "2026-10-13T16:50:38.540715Z",
+        "schema_version": "1.0"
+      },
+      {
+        "mode": "SANDBOX_DETERMINISTIC",
+        "title": "Audit Report",
+        "usage": {
+          "cost": {
+            "kind": "NONE",
+            "value": 0,
+            "currency": "EUR",
+            "pricing_version": "no-provider-usage"
+          },
+          "kind": "NONE",
+          "usage_id": "17850497-65b2-47d0-88e2-fe27793cafec:step-17",
+          "cache_tokens": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "provider_calls": 0
+        },
+        "run_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "status": "STARTED",
+        "step_id": "audit_report",
+        "event_id": "a2ad1980-6587-46ff-b0e6-5fb609d6898a",
+        "overview": "A persisted workflow step has started.",
+        "sequence": 17,
+        "trace_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "component": "workflow",
+        "step_type": "SUMMARY",
+        "technical": {
+          "action": "audit_report",
+          "attempt": 1,
+          "evidence": [
+            {
+              "origin": "FIXTURE",
+              "sha256": "b39579fcaa2aba60658c72406cd3bb8f8b6c1eeb8c8a3a7b8bcd427491d6ed96",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/CRM-001",
+              "evidence_id": "CRM-001"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "ed7bc1ef7f4fcae30ac7f82d06734b35cf0154fc13d7d29c03d1284229db9534",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/ERP-001",
+              "evidence_id": "ERP-001"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "06d7b1c3f506ed8971c96869f3241e04ed81b4799ee2c4ad3975a2709ea451db",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/POLICY-2026-01",
+              "evidence_id": "POLICY-2026-01"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "18428c55625bda11318b748f49956f6d4a397243027ec6251b00b317812dde8c",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/STOCK-001",
+              "evidence_id": "STOCK-001"
+            }
+          ],
+          "decisions": [],
+          "input_ref": "17850497-65b2-47d0-88e2-fe27793cafec",
+          "output_ref": "a2ad1980-6587-46ff-b0e6-5fb609d6898a",
+          "adapter_kind": "DETERMINISTIC",
+          "fallback_reason": null,
+          "input_schema_version": "flowops-input-1.0",
+          "output_schema_version": "flowops-step-1.0"
+        },
+        "project_id": "flowops",
+        "provenance": {
+          "app_version": "0.2.0",
+          "data_origin": "SYNTHETIC",
+          "model_version": "none",
+          "rules_version": "2026-01",
+          "connector_kind": "MOCK",
+          "prompt_version": "none",
+          "source_revision": "3b816fecad7910f1c123bc648b73542986b9a76b",
+          "fixtures_version": "synthetic-1.0",
+          "workflow_version": "flowops-1.0"
+        },
+        "duration_ms": null,
+        "occurred_at": "2026-10-13T16:50:38.546797Z",
+        "schema_version": "1.0"
+      },
+      {
+        "mode": "SANDBOX_DETERMINISTIC",
+        "title": "Audit Report",
+        "usage": {
+          "cost": {
+            "kind": "NONE",
+            "value": 0,
+            "currency": "EUR",
+            "pricing_version": "no-provider-usage"
+          },
+          "kind": "NONE",
+          "usage_id": "17850497-65b2-47d0-88e2-fe27793cafec:step-18",
+          "cache_tokens": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "provider_calls": 0
+        },
+        "run_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "status": "SUCCEEDED",
+        "step_id": "audit_report",
+        "event_id": "648c6492-4665-4005-be84-ca646ca51520",
+        "overview": "The run is complete with its evidence and audit trail.",
+        "sequence": 18,
+        "trace_id": "17850497-65b2-47d0-88e2-fe27793cafec",
+        "component": "workflow",
+        "step_type": "SUMMARY",
+        "technical": {
+          "action": "audit_report",
+          "attempt": 1,
+          "evidence": [
+            {
+              "origin": "FIXTURE",
+              "sha256": "b39579fcaa2aba60658c72406cd3bb8f8b6c1eeb8c8a3a7b8bcd427491d6ed96",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/CRM-001",
+              "evidence_id": "CRM-001"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "ed7bc1ef7f4fcae30ac7f82d06734b35cf0154fc13d7d29c03d1284229db9534",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/ERP-001",
+              "evidence_id": "ERP-001"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "06d7b1c3f506ed8971c96869f3241e04ed81b4799ee2c4ad3975a2709ea451db",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/POLICY-2026-01",
+              "evidence_id": "POLICY-2026-01"
+            },
+            {
+              "origin": "FIXTURE",
+              "sha256": "18428c55625bda11318b748f49956f6d4a397243027ec6251b00b317812dde8c",
+              "reference": "simulations/17850497-65b2-47d0-88e2-fe27793cafec/evidence/STOCK-001",
+              "evidence_id": "STOCK-001"
+            }
+          ],
+          "decisions": [],
+          "input_ref": "17850497-65b2-47d0-88e2-fe27793cafec",
+          "output_ref": "648c6492-4665-4005-be84-ca646ca51520",
+          "adapter_kind": "DETERMINISTIC",
+          "fallback_reason": null,
+          "input_schema_version": "flowops-input-1.0",
+          "output_schema_version": "flowops-step-1.0"
+        },
+        "project_id": "flowops",
+        "provenance": {
+          "app_version": "0.2.0",
+          "data_origin": "SYNTHETIC",
+          "model_version": "none",
+          "rules_version": "2026-01",
+          "connector_kind": "MOCK",
+          "prompt_version": "none",
+          "source_revision": "3b816fecad7910f1c123bc648b73542986b9a76b",
+          "fixtures_version": "synthetic-1.0",
+          "workflow_version": "flowops-1.0"
+        },
+        "duration_ms": 0.043,
+        "occurred_at": "2026-10-13T16:50:38.555781Z",
+        "schema_version": "1.0"
+      }
+    ],
+    "next_sequence": 18,
+    "terminal": true
+  },
+  "agentops_tables": {
+    "metadata": 1,
+    "sessions": 0,
+    "limits": 0,
+    "runs": 0,
+    "events": 0,
+    "budgets": 2,
+    "attempts": 0
+  },
+  "status": "PASS",
+  "cleanup": "Owned service processes and database container stopped; private logs and owned database volume retained. Existing port 8766 and peer-owner resources untouched."
+}

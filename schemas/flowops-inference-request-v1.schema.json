@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "application_id": {
+      "const": "flowops",
+      "default": "flowops",
+      "title": "Application Id",
+      "type": "string"
+    },
+    "environment": {
+      "title": "Environment",
+      "type": "string"
+    },
+    "task_type": {
+      "title": "Task Type",
+      "type": "string"
+    },
+    "required_capabilities": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Required Capabilities",
+      "type": "array"
+    },
+    "data_classification": {
+      "const": "PUBLIC",
+      "default": "PUBLIC",
+      "title": "Data Classification",
+      "type": "string"
+    },
+    "allowed_regions": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Allowed Regions",
+      "type": "array"
+    },
+    "latency_deadline_ms": {
+      "maximum": 5000,
+      "minimum": 1,
+      "title": "Latency Deadline Ms",
+      "type": "integer"
+    },
+    "max_cost": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Max Cost",
+      "type": "number"
+    },
+    "currency": {
+      "default": "EUR",
+      "enum": [
+        "EUR",
+        "USD"
+      ],
+      "title": "Currency",
+      "type": "string"
+    },
+    "routing_policy_version": {
+      "title": "Routing Policy Version",
+      "type": "string"
+    },
+    "correlation_id": {
+      "title": "Correlation Id",
+      "type": "string"
+    },
+    "operation_id": {
+      "title": "Operation Id",
+      "type": "string"
+    },
+    "mode": {
+      "const": "LIVE_MODEL_AUTHENTICATED",
+      "default": "LIVE_MODEL_AUTHENTICATED",
+      "title": "Mode",
+      "type": "string"
+    }
+  },
+  "required": [
+    "environment",
+    "task_type",
+    "required_capabilities",
+    "allowed_regions",
+    "latency_deadline_ms",
+    "max_cost",
+    "routing_policy_version",
+    "correlation_id",
+    "operation_id"
+  ],
+  "title": "InferenceRequest",
+  "type": "object"
+}

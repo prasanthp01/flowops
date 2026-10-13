@@ -1,0 +1,94 @@
+name: flowops-local
+x-app: &app
+  image: flowops:0.2.0-local
+  read_only: true
+  tmpfs: ["/tmp:size=32m,noexec,nosuid"]
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  mem_limit: 256m
+  cpus: 0.75
+  pids_limit: 100
+  logging: &logging
+    driver: json-file
+    options: {max-size: "10m", max-file: "3"}
+  networks: [flowops]
+  environment: &env
+    FLOWOPS_DATABASE_URL_FILE: /run/secrets/runtime_url
+    FLOWOPS_SIGNING_KEY_FILE: /run/secrets/signing_key
+    FLOWOPS_OPERATOR_TOKEN_FILE: /run/secrets/operator_token
+    FLOWOPS_ORIGIN: ${FLOWOPS_ORIGIN:-http://127.0.0.1:${FLOWOPS_HOST_PORT:-8765}}
+    FLOWOPS_ENVIRONMENT: ${FLOWOPS_ENVIRONMENT:-local}
+  secrets: [runtime_url, signing_key, operator_token]
+services:
+  db:
+    image: postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/admin_password
+    secrets: [admin_password, owner_password, runtime_password]
+    volumes:
+      - flowops-db:/var/lib/postgresql
+      - ./operations/init-db.sh:/docker-entrypoint-initdb.d/01-init.sh:ro
+    networks: [flowops]
+    mem_limit: 384m
+    cpus: 0.75
+    pids_limit: 100
+    logging: *logging
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U postgres]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+    restart: unless-stopped
+  migrate:
+    <<: *app
+    environment:
+      <<: *env
+      FLOWOPS_DATABASE_URL_FILE: /run/secrets/owner_url
+      FLOWOPS_OPERATOR_TOKEN_FILE: ""
+    secrets: [owner_url, signing_key]
+    command: [sh, -c, "alembic upgrade head && python -m scripts.grants"]
+    depends_on:
+      db: {condition: service_healthy}
+  api:
+    <<: *app
+    build: .
+    networks: [flowops, ingress]
+    ports: ["127.0.0.1:${FLOWOPS_HOST_PORT:-8765}:8000"]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/projects/flowops/health', timeout=2)"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    restart: unless-stopped
+  worker:
+    <<: *app
+    healthcheck:
+      test: [CMD, python, -m, flowops.worker_health]
+      interval: 15s
+      timeout: 3s
+      start_period: 20s
+      retries: 3
+    environment:
+      <<: *env
+      FLOWOPS_OPERATOR_TOKEN_FILE: ""
+    secrets: [runtime_url, signing_key]
+    command: [python, -m, flowops.workflow]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+    restart: unless-stopped
+networks:
+  flowops:
+    internal: true
+  ingress: {}
+volumes:
+  flowops-db:
+secrets:
+  admin_password: {file: .local/secrets/admin_password}
+  owner_password: {file: .local/secrets/owner_password}
+  runtime_password: {file: .local/secrets/runtime_password}
+  owner_url: {file: .local/secrets/owner_url}
+  runtime_url: {file: .local/secrets/runtime_url}
+  signing_key: {file: .local/secrets/signing_key}
+  operator_token: {file: .local/secrets/operator_token}

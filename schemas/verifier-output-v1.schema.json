@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "consistent": {
+      "title": "Consistent",
+      "type": "boolean"
+    },
+    "evidence_complete": {
+      "title": "Evidence Complete",
+      "type": "boolean"
+    },
+    "advisory_only": {
+      "const": true,
+      "default": true,
+      "title": "Advisory Only",
+      "type": "boolean"
+    },
+    "cannot_grant_approval": {
+      "const": true,
+      "default": true,
+      "title": "Cannot Grant Approval",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "consistent",
+    "evidence_complete"
+  ],
+  "title": "VerifierOutput",
+  "type": "object"
+}

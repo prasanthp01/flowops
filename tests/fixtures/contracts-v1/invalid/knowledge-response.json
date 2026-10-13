@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "status": "OK",
+  "answer": "Retry bounded synthetic operations.",
+  "citations": [
+    {
+      "source_id": "fixture-doc-1",
+      "title": "Synthetic retry policy",
+      "passage": "Retry bounded synthetic operations.",
+      "location": "section-1",
+      "evidence": {
+        "evidence_id": "fixture-1",
+        "origin": "FIXTURE",
+        "reference": "fixtures/scenario.json",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      }
+    }
+  ],
+  "correlation_id": "correlation-1",
+  "mode": "SANDBOX_DETERMINISTIC",
+  "limitations": [
+    "Synthetic corpus only."
+  ],
+  "unexpected_secret_field": "synthetic-sentinel"
+}

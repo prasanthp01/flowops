@@ -1,0 +1,266 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.example.invalid/v1/cross-project-event.schema.json",
+  "title": "CrossProjectEvent",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "event_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "application_id": {
+          "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/project"
+        },
+        "environment": {
+          "enum": [
+            "test",
+            "development",
+            "staging",
+            "production"
+          ]
+        },
+        "tenant_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 96,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+        }
+      },
+      "required": [
+        "application_id",
+        "environment",
+        "tenant_id"
+      ],
+      "additionalProperties": false
+    },
+    "audience": {
+      "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/project"
+    },
+    "occurred_at": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 32,
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$"
+    },
+    "correlation_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "trace_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "sensitivity": {
+      "enum": [
+        "PUBLIC",
+        "INTERNAL",
+        "CONFIDENTIAL",
+        "RESTRICTED"
+      ]
+    },
+    "idempotency_key": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "kind": {
+      "enum": [
+        "workflow.execution.failed.v1",
+        "incident.investigation.completed.v1",
+        "ai.usage.recorded.v1"
+      ]
+    },
+    "mode": {
+      "enum": [
+        "SANDBOX_DETERMINISTIC",
+        "REPLAY_RECORDED",
+        "LIVE_MODEL_AUTHENTICATED"
+      ]
+    },
+    "provenance": {
+      "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/provenance"
+    },
+    "payload": {
+      "oneOf": [
+        {
+          "$ref": "https://contracts.example.invalid/v1/workflow-execution-failed.schema.json"
+        },
+        {
+          "$ref": "https://contracts.example.invalid/v1/incident-investigation-completed.schema.json"
+        },
+        {
+          "$ref": "https://contracts.example.invalid/v1/ai-usage-recorded.schema.json"
+        }
+      ]
+    },
+    "integrity": {
+      "type": "object",
+      "properties": {
+        "algorithm": {
+          "const": "HMAC-SHA256"
+        },
+        "key_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 96,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+        },
+        "digest": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "algorithm",
+        "key_id",
+        "digest"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema_version",
+    "event_id",
+    "source",
+    "audience",
+    "occurred_at",
+    "correlation_id",
+    "trace_id",
+    "sensitivity",
+    "idempotency_key",
+    "kind",
+    "mode",
+    "provenance",
+    "payload",
+    "integrity"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "workflow.execution.failed.v1"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "https://contracts.example.invalid/v1/workflow-execution-failed.schema.json"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "incident.investigation.completed.v1"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "https://contracts.example.invalid/v1/incident-investigation-completed.schema.json"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "ai.usage.recorded.v1"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "https://contracts.example.invalid/v1/ai-usage-recorded.schema.json"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "workflow.execution.failed.v1"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "source": {
+            "properties": {
+              "application_id": {
+                "const": "flowops"
+              }
+            }
+          },
+          "audience": {
+            "const": "resolveai"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "incident.investigation.completed.v1"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "source": {
+            "properties": {
+              "application_id": {
+                "const": "resolveai"
+              }
+            }
+          },
+          "audience": {
+            "const": "flowops"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "ai.usage.recorded.v1"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "audience": {
+            "const": "agentops"
+          }
+        }
+      }
+    }
+  ]
+}

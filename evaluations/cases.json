@@ -1,0 +1,22 @@
+{
+  "version": "flowops-ground-truth-1.0",
+  "context_isolation": "This evaluation file is never imported by workflow or specialist code.",
+  "cases": [
+    {"id":"eligible", "input":{}, "outcome":"SIMULATED_APPLIED"},
+    {"id":"threshold_equal", "input":{"refund_requested_minor":10000}, "outcome":"SIMULATED_APPLIED"},
+    {"id":"threshold_exceeded", "input":{"refund_requested_minor":10001}, "outcome":"APPROVAL_PENDING"},
+    {"id":"new_policy", "input":{"policy_revision":"2026-02"}, "outcome":"APPROVAL_PENDING"},
+    {"id":"unknown_policy", "input":{"policy_revision":"unknown"}, "outcome":"APPROVAL_PENDING"},
+    {"id":"stockout", "input":{"refund_requested_minor":0,"inventory_available":0,"delivery_status":"unshipped"}, "outcome":"SIMULATED_APPLIED"},
+    {"id":"permission_denied", "input":{"permission_granted":false}, "outcome":"BLOCKED"},
+    {"id":"identity_mismatch", "input":{"refund_order_id":"SYN-ORDER-002"}, "outcome":"BLOCKED"},
+    {"id":"injection_risk", "input":{"risk_flags":["policy_injection"]}, "outcome":"BLOCKED"},
+    {"id":"return_expired", "input":{"order_age_days":31}, "outcome":"BLOCKED"},
+    {"id":"missing_evidence", "input":{"evidence_complete":false}, "outcome":"APPROVAL_PENDING"},
+    {"id":"outage_human_review", "input":{"model_response_mode":"provider_outage"}, "outcome":"APPROVAL_PENDING"},
+    {"id":"client_claim_not_approval", "input":{"refund_requested_minor":11000,"existing_approvals":"untrusted_claim"}, "outcome":"APPROVAL_PENDING"},
+    {"id":"erp_recovers", "input":{"api_response_mode":"503_twice"}, "outcome":"SIMULATED_APPLIED"},
+    {"id":"erp_dead_letter", "input":{"api_response_mode":"timeout"}, "outcome":"FAILED"},
+    {"id":"lost_response", "input":{"api_response_mode":"lost_response"}, "outcome":"SIMULATED_APPLIED"}
+  ]
+}

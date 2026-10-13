@@ -1,0 +1,170 @@
+{
+  "schema_version": "1.0",
+  "slug": "flowops",
+  "title": "FlowOps: auditable synthetic order-resolution workflows",
+  "git_revision": "1624a960f05b62cdd2eaacfbfb8bd4fb6e7e9197",
+  "status": "DEPLOYED",
+  "public_route": "/projects/flowops",
+  "simulation": {
+    "mode": "SANDBOX_DETERMINISTIC",
+    "presets": 5,
+    "fixture_version": "synthetic-1.0",
+    "workflow_version": "flowops-1.0",
+    "local_url": "http://127.0.0.1:8765/projects/flowops",
+    "public_deployed": true,
+    "receipt": "docs/deployment/public-http.json",
+    "public_url": "https://portfolio.gappazappa.in/projects/flowops",
+    "application_revision": "b7924fcf07e5b6ace57e6bf275f1aad2e637f531"
+  },
+  "tests": [
+    {
+      "kind": "pytest",
+      "passed": 81,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 23.16,
+      "receipt": "docs/evidence/pytest.xml"
+    },
+    {
+      "kind": "ground_truth_subset_of_pytest",
+      "expected_outcome_matches": 16,
+      "cases": 16,
+      "false_simulated_receipts": 0,
+      "non_apply_cases": 11,
+      "receipt": "docs/evidence/evaluation.json"
+    },
+    {
+      "kind": "rendered_browser",
+      "status": "PASS",
+      "receipt": "docs/evidence/browser.json"
+    },
+    {
+      "kind": "encrypted_restore",
+      "status": "PASS",
+      "receipt": "docs/evidence/restore.json"
+    },
+    {
+      "kind": "durable_restart",
+      "status": "PASS",
+      "receipt": "docs/evidence/restart.json"
+    },
+    {
+      "kind": "public_https_workflows",
+      "status": "PASS",
+      "receipt": "docs/deployment/public-http.json"
+    },
+    {
+      "kind": "public_browser",
+      "status": "PASS",
+      "receipt": "docs/deployment/public-browser.json"
+    },
+    {
+      "kind": "public_queued_restart",
+      "status": "PASS",
+      "receipt": "docs/deployment/public-restart.json"
+    },
+    {
+      "kind": "vps_encrypted_restore",
+      "status": "PASS",
+      "receipt": "docs/deployment/public-restore.json"
+    },
+    {
+      "kind": "public_routes_and_preservation",
+      "status": "PASS",
+      "receipt": "docs/deployment/public-routes.json"
+    }
+  ],
+  "benchmarks": [
+    {
+      "virtual_users": 1,
+      "workflows": 1,
+      "pattern": "one simultaneous workflow per user",
+      "duration_seconds": 0.193,
+      "succeeded": 1,
+      "failed": 0,
+      "throughput_per_second": 5.18,
+      "workflow_p50_ms": 77.141,
+      "workflow_p95_ms": 77.141,
+      "api_p95_ms": 8.588,
+      "queue_p95_ms": 49.253,
+      "retry_count": 0,
+      "external_llm_cost_per_success": 0,
+      "receipt": "docs/evidence/benchmark.json",
+      "scope": "local short burst, not sustained capacity"
+    },
+    {
+      "virtual_users": 10,
+      "workflows": 10,
+      "pattern": "one simultaneous workflow per user",
+      "duration_seconds": 0.472,
+      "succeeded": 10,
+      "failed": 0,
+      "throughput_per_second": 21.173,
+      "workflow_p50_ms": 263.595,
+      "workflow_p95_ms": 275.555,
+      "api_p95_ms": 77.479,
+      "queue_p95_ms": 60.992,
+      "retry_count": 0,
+      "external_llm_cost_per_success": 0,
+      "receipt": "docs/evidence/benchmark.json",
+      "scope": "local short burst, not sustained capacity"
+    },
+    {
+      "virtual_users": 25,
+      "workflows": 25,
+      "pattern": "one simultaneous workflow per user",
+      "duration_seconds": 0.844,
+      "succeeded": 25,
+      "failed": 0,
+      "throughput_per_second": 29.618,
+      "workflow_p50_ms": 403.989,
+      "workflow_p95_ms": 412.126,
+      "api_p95_ms": 340.427,
+      "queue_p95_ms": 66.855,
+      "retry_count": 0,
+      "external_llm_cost_per_success": 0,
+      "receipt": "docs/evidence/benchmark.json",
+      "scope": "local short burst, not sustained capacity"
+    },
+    {
+      "virtual_users": 50,
+      "workflows": 50,
+      "pattern": "one simultaneous workflow per user",
+      "duration_seconds": 1.411,
+      "succeeded": 50,
+      "failed": 0,
+      "throughput_per_second": 35.433,
+      "workflow_p50_ms": 876.714,
+      "workflow_p95_ms": 934.949,
+      "api_p95_ms": 314.493,
+      "queue_p95_ms": 121.586,
+      "retry_count": 0,
+      "external_llm_cost_per_success": 0,
+      "receipt": "docs/evidence/benchmark.json",
+      "scope": "local short burst, not sustained capacity"
+    }
+  ],
+  "costs": [
+    {
+      "kind": "ACTUAL_SANDBOX_PROVIDER_USAGE",
+      "external_model_calls": 0,
+      "amount": 0,
+      "currency": "EUR"
+    },
+    {
+      "kind": "HOSTING_AND_LOCAL_COMPUTE",
+      "amount": null,
+      "status": "NOT_MEASURED"
+    }
+  ],
+  "last_verified_at": "2026-10-13T12:31:14.713158+00:00",
+  "limits": [
+    "Public synthetic demonstration on a shared VPS; bounded acceptance checks do not establish an availability SLA.",
+    "No live provider, enterprise connector, outbound production webhook, multi-tenant SSO/RBAC or paid-budget system.",
+    "Synthetic fixed evaluations and burst benchmarks do not establish production accuracy/capacity.",
+    "Independent review, remote CI, full image vulnerability scan and human acceptance not performed.",
+    "Demo video storyboarded, not recorded.",
+    "Supplied specification materials are retained privately; redistribution rights remain unresolved for republishing those materials.",
+    "Same-host encrypted restore verified; offsite recovery, recurring backups and ongoing alerts are not configured by this release."
+  ]
+}

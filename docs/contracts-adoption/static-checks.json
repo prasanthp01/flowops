@@ -1,0 +1,26 @@
+{
+  "executed_at": "2026-10-13T16:11:51.633486Z",
+  "application_revision": "9e57bd7dfa6dc8eb7f11249b32e77fa70e438945",
+  "checks": [
+    {
+      "command": ".venv/bin/ruff check flowops tests scripts operations migrations",
+      "status": "PASS",
+      "output": "All checks passed!"
+    },
+    {
+      "command": ".venv/bin/mypy flowops",
+      "status": "PASS",
+      "output": "Success: no issues found in 21 source files"
+    },
+    {
+      "command": "node --check flowops/static/app.js",
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": "git diff --check",
+      "status": "PASS",
+      "output": ""
+    }
+  ]
+}

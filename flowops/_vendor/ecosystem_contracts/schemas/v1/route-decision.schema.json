@@ -1,0 +1,290 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.example.invalid/v1/route-decision.schema.json",
+  "title": "RouteDecision",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "operation_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "routing_policy_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "outcome": {
+      "enum": [
+        "SUCCEEDED",
+        "AI_UNAVAILABLE",
+        "POLICY_BLOCKED",
+        "BUDGET_EXCEEDED"
+      ]
+    },
+    "selected_deployment": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "deployment_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 96,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+            },
+            "model_version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "provider": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 96,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+            },
+            "region": {
+              "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/region"
+            },
+            "capabilities": {
+              "type": "array",
+              "items": {
+                "enum": [
+                  "TEXT",
+                  "TOOLS",
+                  "STRUCTURED_OUTPUT",
+                  "VISION",
+                  "AUDIO",
+                  "LONG_CONTEXT",
+                  "MULTILINGUAL"
+                ]
+              },
+              "maxItems": 7,
+              "minItems": 1
+            }
+          },
+          "required": [
+            "deployment_id",
+            "model_version",
+            "provider",
+            "region",
+            "capabilities"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "rejected_candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "deployment_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "reason": {
+            "enum": [
+              "CAPABILITY",
+              "REGION",
+              "DATA_POLICY",
+              "BUDGET",
+              "HEALTH",
+              "POLICY_EXPIRED"
+            ]
+          }
+        },
+        "required": [
+          "deployment_id",
+          "reason"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 32,
+      "minItems": 0
+    },
+    "attempts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "deployment_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+          },
+          "attempt": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 16
+          },
+          "outcome": {
+            "enum": [
+              "SUCCEEDED",
+              "TIMEOUT",
+              "RATE_LIMITED",
+              "PROVIDER_ERROR",
+              "SCHEMA_INVALID"
+            ]
+          },
+          "duration_ms": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 120000
+          },
+          "fallback_reason": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 240
+          },
+          "usage": {
+            "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/usage"
+          }
+        },
+        "required": [
+          "deployment_id",
+          "attempt",
+          "outcome",
+          "duration_ms",
+          "fallback_reason",
+          "usage"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 16,
+      "minItems": 0
+    },
+    "fallback_kind": {
+      "enum": [
+        "NONE",
+        "MODEL",
+        "DETERMINISTIC",
+        "HUMAN_REVIEW"
+      ]
+    },
+    "mode": {
+      "enum": [
+        "SANDBOX_DETERMINISTIC",
+        "REPLAY_RECORDED",
+        "LIVE_MODEL_AUTHENTICATED"
+      ]
+    },
+    "correlation_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "trace_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "usage": {
+      "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/usage"
+    }
+  },
+  "required": [
+    "schema_version",
+    "operation_id",
+    "routing_policy_version",
+    "outcome",
+    "selected_deployment",
+    "rejected_candidates",
+    "attempts",
+    "fallback_kind",
+    "mode",
+    "correlation_id",
+    "trace_id",
+    "usage"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "outcome": {
+            "const": "SUCCEEDED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "selected_deployment": {
+            "type": "object",
+            "properties": {
+              "deployment_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 96,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+              },
+              "model_version": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "provider": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 96,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+              },
+              "region": {
+                "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/region"
+              },
+              "capabilities": {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "TEXT",
+                    "TOOLS",
+                    "STRUCTURED_OUTPUT",
+                    "VISION",
+                    "AUDIO",
+                    "LONG_CONTEXT",
+                    "MULTILINGUAL"
+                  ]
+                },
+                "maxItems": 7,
+                "minItems": 1
+              }
+            },
+            "required": [
+              "deployment_id",
+              "model_version",
+              "provider",
+              "region",
+              "capabilities"
+            ],
+            "additionalProperties": false
+          },
+          "attempts": {
+            "minItems": 1
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "selected_deployment": {
+            "type": "null"
+          }
+        }
+      }
+    }
+  ]
+}

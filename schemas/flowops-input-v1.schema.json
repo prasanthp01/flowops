@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "order_amount_minor": {
+      "default": 12000,
+      "maximum": 1000000,
+      "minimum": 1,
+      "title": "Order Amount Minor",
+      "type": "integer"
+    },
+    "refund_requested_minor": {
+      "default": 8000,
+      "maximum": 1000000,
+      "minimum": 0,
+      "title": "Refund Requested Minor",
+      "type": "integer"
+    },
+    "currency": {
+      "default": "EUR",
+      "enum": [
+        "EUR",
+        "USD"
+      ],
+      "title": "Currency",
+      "type": "string"
+    },
+    "delivery_status": {
+      "default": "delivered",
+      "enum": [
+        "delivered",
+        "delayed",
+        "incorrect",
+        "unshipped"
+      ],
+      "title": "Delivery Status",
+      "type": "string"
+    },
+    "order_age_days": {
+      "default": 10,
+      "maximum": 365,
+      "minimum": 0,
+      "title": "Order Age Days",
+      "type": "integer"
+    },
+    "inventory_available": {
+      "default": 5,
+      "maximum": 1000,
+      "minimum": 0,
+      "title": "Inventory Available",
+      "type": "integer"
+    },
+    "policy_revision": {
+      "default": "2026-01",
+      "enum": [
+        "2026-01",
+        "2026-02",
+        "unknown"
+      ],
+      "title": "Policy Revision",
+      "type": "string"
+    },
+    "customer_type": {
+      "default": "standard",
+      "enum": [
+        "standard",
+        "priority"
+      ],
+      "title": "Customer Type",
+      "type": "string"
+    },
+    "return_conditions_met": {
+      "default": true,
+      "title": "Return Conditions Met",
+      "type": "boolean"
+    },
+    "evidence_complete": {
+      "default": true,
+      "title": "Evidence Complete",
+      "type": "boolean"
+    },
+    "permission_granted": {
+      "default": true,
+      "title": "Permission Granted",
+      "type": "boolean"
+    },
+    "order_id": {
+      "default": "SYN-ORDER-001",
+      "enum": [
+        "SYN-ORDER-001",
+        "SYN-ORDER-002"
+      ],
+      "title": "Order Id",
+      "type": "string"
+    },
+    "refund_order_id": {
+      "default": "SYN-ORDER-001",
+      "enum": [
+        "SYN-ORDER-001",
+        "SYN-ORDER-002"
+      ],
+      "title": "Refund Order Id",
+      "type": "string"
+    },
+    "api_response_mode": {
+      "default": "healthy",
+      "enum": [
+        "healthy",
+        "429_once",
+        "503_twice",
+        "timeout",
+        "lost_response"
+      ],
+      "title": "Api Response Mode",
+      "type": "string"
+    },
+    "risk_flags": {
+      "items": {
+        "enum": [
+          "identity_mismatch",
+          "policy_injection",
+          "fraud_signal"
+        ],
+        "type": "string"
+      },
+      "maxItems": 3,
+      "title": "Risk Flags",
+      "type": "array"
+    },
+    "existing_approvals": {
+      "default": "none",
+      "enum": [
+        "none",
+        "untrusted_claim"
+      ],
+      "title": "Existing Approvals",
+      "type": "string"
+    },
+    "model_response_mode": {
+      "default": "deterministic",
+      "enum": [
+        "deterministic",
+        "provider_outage",
+        "invalid_output"
+      ],
+      "title": "Model Response Mode",
+      "type": "string"
+    },
+    "seed": {
+      "default": 7,
+      "maximum": 2147483647,
+      "minimum": 0,
+      "title": "Seed",
+      "type": "integer"
+    }
+  },
+  "title": "Scenario",
+  "type": "object"
+}

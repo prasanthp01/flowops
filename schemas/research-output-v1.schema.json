@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "CustomerFact": {
+      "additionalProperties": false,
+      "properties": {
+        "customer_id": {
+          "const": "SYN-CUSTOMER-001",
+          "title": "Customer Id",
+          "type": "string"
+        },
+        "customer_type": {
+          "enum": [
+            "standard",
+            "priority"
+          ],
+          "title": "Customer Type",
+          "type": "string"
+        },
+        "evidence_id": {
+          "const": "CRM-001",
+          "title": "Evidence Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "customer_id",
+        "customer_type",
+        "evidence_id"
+      ],
+      "title": "CustomerFact",
+      "type": "object"
+    },
+    "InventoryFact": {
+      "additionalProperties": false,
+      "properties": {
+        "available": {
+          "maximum": 1000,
+          "minimum": 0,
+          "title": "Available",
+          "type": "integer"
+        },
+        "alternative": {
+          "const": "SYN-ITEM-ALT",
+          "title": "Alternative",
+          "type": "string"
+        },
+        "evidence_id": {
+          "const": "STOCK-001",
+          "title": "Evidence Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "available",
+        "alternative",
+        "evidence_id"
+      ],
+      "title": "InventoryFact",
+      "type": "object"
+    },
+    "OrderFact": {
+      "additionalProperties": false,
+      "properties": {
+        "order_id": {
+          "enum": [
+            "SYN-ORDER-001",
+            "SYN-ORDER-002"
+          ],
+          "title": "Order Id",
+          "type": "string"
+        },
+        "amount_minor": {
+          "maximum": 1000000,
+          "minimum": 1,
+          "title": "Amount Minor",
+          "type": "integer"
+        },
+        "delivery_status": {
+          "enum": [
+            "delivered",
+            "delayed",
+            "incorrect",
+            "unshipped"
+          ],
+          "title": "Delivery Status",
+          "type": "string"
+        },
+        "evidence_id": {
+          "const": "ERP-001",
+          "title": "Evidence Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "order_id",
+        "amount_minor",
+        "delivery_status",
+        "evidence_id"
+      ],
+      "title": "OrderFact",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "customer": {
+      "$ref": "#/$defs/CustomerFact"
+    },
+    "order": {
+      "$ref": "#/$defs/OrderFact"
+    },
+    "inventory": {
+      "$ref": "#/$defs/InventoryFact"
+    },
+    "requests": {
+      "const": 3,
+      "default": 3,
+      "title": "Requests",
+      "type": "integer"
+    },
+    "parallel": {
+      "const": true,
+      "default": true,
+      "title": "Parallel",
+      "type": "boolean"
+    },
+    "transport": {
+      "const": "in_process_mock_http",
+      "default": "in_process_mock_http",
+      "title": "Transport",
+      "type": "string"
+    },
+    "evidence_ids": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 3,
+      "minItems": 3,
+      "title": "Evidence Ids",
+      "type": "array"
+    }
+  },
+  "required": [
+    "customer",
+    "order",
+    "inventory",
+    "evidence_ids"
+  ],
+  "title": "ResearchOutput",
+  "type": "object"
+}

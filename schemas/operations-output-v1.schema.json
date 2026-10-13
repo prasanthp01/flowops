@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "Proposal": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "enum": [
+            "refund_request",
+            "inventory_hold",
+            "investigation_ticket"
+          ],
+          "title": "Action",
+          "type": "string"
+        },
+        "amount_minor": {
+          "maximum": 1000000,
+          "minimum": 0,
+          "title": "Amount Minor",
+          "type": "integer"
+        },
+        "currency": {
+          "enum": [
+            "EUR",
+            "USD"
+          ],
+          "title": "Currency",
+          "type": "string"
+        },
+        "order_id": {
+          "enum": [
+            "SYN-ORDER-001",
+            "SYN-ORDER-002"
+          ],
+          "title": "Order Id",
+          "type": "string"
+        },
+        "notification": {
+          "const": "draft_only",
+          "default": "draft_only",
+          "title": "Notification",
+          "type": "string"
+        }
+      },
+      "required": [
+        "action",
+        "amount_minor",
+        "currency",
+        "order_id"
+      ],
+      "title": "Proposal",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "proposal": {
+      "$ref": "#/$defs/Proposal"
+    },
+    "priority": {
+      "enum": [
+        "expedited",
+        "normal"
+      ],
+      "title": "Priority",
+      "type": "string"
+    },
+    "notification": {
+      "const": "Draft only; no message is sent.",
+      "default": "Draft only; no message is sent.",
+      "title": "Notification",
+      "type": "string"
+    },
+    "alternative": {
+      "anyOf": [
+        {
+          "const": "SYN-ITEM-ALT",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Alternative"
+    }
+  },
+  "required": [
+    "proposal",
+    "priority",
+    "alternative"
+  ],
+  "title": "OperationsOutput",
+  "type": "object"
+}

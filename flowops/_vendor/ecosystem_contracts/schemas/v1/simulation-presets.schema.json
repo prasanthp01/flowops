@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.example.invalid/v1/simulation-presets.schema.json",
+  "title": "SimulationPresets",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "project_id": {
+      "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/project"
+    },
+    "presets": {
+      "type": "array",
+      "items": {
+        "$ref": "https://contracts.example.invalid/v1/simulation-preset.schema.json"
+      },
+      "maxItems": 32,
+      "minItems": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "project_id",
+    "presets"
+  ],
+  "additionalProperties": false
+}

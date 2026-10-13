@@ -1,0 +1,80 @@
+{
+  "checked_at": "2026-10-13T16:10:50.633748Z",
+  "application_revision": "9e57bd7dfa6dc8eb7f11249b32e77fa70e438945",
+  "image_id": "sha256:d321243746a54729d2dfbbee4150e7e9de18d4742e67118066fdfe86abeb3b82",
+  "architecture": "arm64",
+  "os": "linux",
+  "containers": [
+    {
+      "service": "api",
+      "state": "running",
+      "exit_code": 0,
+      "health": "healthy",
+      "restart_count": 0,
+      "user": "10001",
+      "read_only": true,
+      "ports": {
+        "8000/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "8766"
+          }
+        ]
+      },
+      "image": "sha256:d321243746a54729d2dfbbee4150e7e9de18d4742e67118066fdfe86abeb3b82"
+    },
+    {
+      "service": "worker",
+      "state": "running",
+      "exit_code": 0,
+      "health": null,
+      "restart_count": 0,
+      "user": "10001",
+      "read_only": true,
+      "ports": {
+        "8000/tcp": null
+      },
+      "image": "sha256:d321243746a54729d2dfbbee4150e7e9de18d4742e67118066fdfe86abeb3b82"
+    },
+    {
+      "service": "db",
+      "state": "running",
+      "exit_code": 0,
+      "health": "healthy",
+      "restart_count": 0,
+      "user": "",
+      "read_only": false,
+      "ports": {
+        "5432/tcp": null
+      },
+      "image": "sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873"
+    },
+    {
+      "service": "migrate",
+      "state": "exited",
+      "exit_code": 0,
+      "health": null,
+      "restart_count": 0,
+      "user": "10001",
+      "read_only": true,
+      "ports": {},
+      "image": "sha256:d321243746a54729d2dfbbee4150e7e9de18d4742e67118066fdfe86abeb3b82"
+    }
+  ],
+  "database": {
+    "revision": "0002",
+    "runs": 6,
+    "inbox": 1,
+    "outbox": 1,
+    "pending_outbox": 1,
+    "inbox_update": false,
+    "inbox_delete": false,
+    "outbox_delete": false
+  },
+  "public_legacy_health": {
+    "status": "ok",
+    "project": "flowops",
+    "version": "0.1.0"
+  },
+  "public_changed_by_contracts_work": false
+}

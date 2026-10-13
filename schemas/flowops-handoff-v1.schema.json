@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "workflow_id": {
+      "title": "Workflow Id",
+      "type": "string"
+    },
+    "task_id": {
+      "title": "Task Id",
+      "type": "string"
+    },
+    "agent": {
+      "enum": [
+        "supervisor",
+        "research",
+        "policy",
+        "operations",
+        "verifier"
+      ],
+      "title": "Agent",
+      "type": "string"
+    },
+    "delegated_scopes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Delegated Scopes",
+      "type": "array"
+    },
+    "evidence_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Evidence Ids",
+      "type": "array"
+    },
+    "output_schema": {
+      "title": "Output Schema",
+      "type": "string"
+    },
+    "deadline": {
+      "format": "date-time",
+      "title": "Deadline",
+      "type": "string"
+    },
+    "environment": {
+      "title": "Environment",
+      "type": "string"
+    },
+    "workflow_version": {
+      "const": "flowops-1.0",
+      "default": "flowops-1.0",
+      "title": "Workflow Version",
+      "type": "string"
+    },
+    "correlation_id": {
+      "title": "Correlation Id",
+      "type": "string"
+    },
+    "origin": {
+      "const": "deterministic_role_adapter",
+      "default": "deterministic_role_adapter",
+      "title": "Origin",
+      "type": "string"
+    }
+  },
+  "required": [
+    "workflow_id",
+    "task_id",
+    "agent",
+    "delegated_scopes",
+    "evidence_ids",
+    "output_schema",
+    "deadline",
+    "environment",
+    "correlation_id"
+  ],
+  "title": "Handoff",
+  "type": "object"
+}

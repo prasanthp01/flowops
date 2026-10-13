@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "project_id": "resolveai",
+  "input_schema_id": "mock-input-v1",
+  "input_schema_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "scenario_id": {
+        "enum": [
+          "normal",
+          "dependency_failure",
+          "budget_exhausted",
+          "restricted_source"
+        ]
+      },
+      "severity": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 5
+      },
+      "item_count": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 20
+      }
+    },
+    "required": [
+      "scenario_id",
+      "severity",
+      "item_count"
+    ],
+    "additionalProperties": false
+  },
+  "supported_modes": [
+    "SANDBOX_DETERMINISTIC"
+  ],
+  "limits": {
+    "max_body_bytes": 65536,
+    "max_steps": 1024,
+    "max_run_seconds": 120,
+    "retention_seconds": 600,
+    "max_concurrent_per_session": 4,
+    "max_concurrent_global": 16
+  }
+}

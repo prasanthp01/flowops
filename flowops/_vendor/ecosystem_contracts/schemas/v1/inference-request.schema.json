@@ -1,0 +1,180 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.example.invalid/v1/inference-request.schema.json",
+  "title": "InferenceRequest",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "application_id": {
+      "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/project"
+    },
+    "environment": {
+      "enum": [
+        "test",
+        "development",
+        "staging",
+        "production"
+      ]
+    },
+    "tenant_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "task_type": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "risk_class": {
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH"
+      ]
+    },
+    "required_capabilities": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "TEXT",
+          "TOOLS",
+          "STRUCTURED_OUTPUT",
+          "VISION",
+          "AUDIO",
+          "LONG_CONTEXT",
+          "MULTILINGUAL"
+        ]
+      },
+      "maxItems": 7,
+      "minItems": 1
+    },
+    "data_classification": {
+      "enum": [
+        "PUBLIC",
+        "INTERNAL",
+        "CONFIDENTIAL",
+        "RESTRICTED"
+      ]
+    },
+    "allowed_regions": {
+      "type": "array",
+      "items": {
+        "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/region"
+      },
+      "maxItems": 8,
+      "minItems": 1
+    },
+    "latency_deadline_ms": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 120000
+    },
+    "max_input_tokens": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 131072
+    },
+    "max_output_tokens": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 32768
+    },
+    "max_cost": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "currency": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 3,
+      "pattern": "^[A-Z]{3}$"
+    },
+    "routing_policy_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "correlation_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "trace_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "operation_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "mode": {
+      "enum": [
+        "SANDBOX_DETERMINISTIC",
+        "REPLAY_RECORDED",
+        "LIVE_MODEL_AUTHENTICATED"
+      ]
+    },
+    "context_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 96,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+      },
+      "maxItems": 16,
+      "minItems": 0
+    },
+    "extensions": {
+      "type": "object",
+      "maxProperties": 16,
+      "propertyNames": {
+        "pattern": "^x_[a-z][a-z0-9_]{0,47}$"
+      },
+      "additionalProperties": {
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ],
+        "maxLength": 256
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "application_id",
+    "environment",
+    "tenant_id",
+    "task_type",
+    "risk_class",
+    "required_capabilities",
+    "data_classification",
+    "allowed_regions",
+    "latency_deadline_ms",
+    "max_input_tokens",
+    "max_output_tokens",
+    "max_cost",
+    "currency",
+    "routing_policy_version",
+    "correlation_id",
+    "trace_id",
+    "operation_id",
+    "mode",
+    "context_refs",
+    "extensions"
+  ],
+  "additionalProperties": false
+}

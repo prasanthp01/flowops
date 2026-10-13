@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "operation_id": "operation-1",
+  "routing_policy_version": "fixture-1",
+  "outcome": "AI_UNAVAILABLE",
+  "selected_deployment": null,
+  "rejected_candidates": [
+    {
+      "deployment_id": "mock-1",
+      "reason": "HEALTH"
+    }
+  ],
+  "attempts": [],
+  "fallback_kind": "DETERMINISTIC",
+  "mode": "SANDBOX_DETERMINISTIC",
+  "correlation_id": "correlation-1",
+  "trace_id": "trace-1",
+  "usage": {
+    "usage_id": "usage-1",
+    "kind": "SIMULATED",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_tokens": 0,
+    "provider_calls": 0,
+    "cost": {
+      "kind": "SIMULATED",
+      "value": 0,
+      "currency": "USD",
+      "pricing_version": "fixture-1"
+    }
+  },
+  "unexpected_secret_field": "synthetic-sentinel"
+}

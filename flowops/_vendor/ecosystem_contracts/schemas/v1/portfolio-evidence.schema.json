@@ -1,0 +1,320 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.example.invalid/v1/portfolio-evidence.schema.json",
+  "title": "PortfolioEvidence",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "slug": {
+      "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/project"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "git_revision": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40,
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "status": {
+      "enum": [
+        "PLANNED",
+        "IMPLEMENTED",
+        "TESTED",
+        "DEPLOYED",
+        "BLOCKED"
+      ]
+    },
+    "environment": {
+      "enum": [
+        "test",
+        "development",
+        "staging",
+        "production"
+      ]
+    },
+    "public_route": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96
+    },
+    "deployment_url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 256
+    },
+    "last_verified_at": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 32,
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "simulation": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "enum": [
+            "SANDBOX_DETERMINISTIC",
+            "REPLAY_RECORDED",
+            "LIVE_MODEL_AUTHENTICATED"
+          ]
+        },
+        "provenance": {
+          "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/provenance"
+        },
+        "input_schema_sha256": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "mode",
+        "provenance",
+        "input_schema_sha256"
+      ],
+      "additionalProperties": false
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "status": {
+            "enum": [
+              "PASS",
+              "FAIL",
+              "BLOCKED",
+              "NOT_TESTED",
+              "N_A"
+            ]
+          },
+          "command": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "evidence": {
+            "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/evidence"
+          },
+          "conditions": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "executed_at": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 32,
+            "format": "date-time",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$"
+          }
+        },
+        "required": [
+          "name",
+          "status",
+          "command",
+          "evidence",
+          "conditions",
+          "executed_at"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 128,
+      "minItems": 0
+    },
+    "benchmarks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "status": {
+            "enum": [
+              "MEASURED",
+              "NOT_BENCHMARKED"
+            ]
+          },
+          "method": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "environment": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240
+          },
+          "revision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40,
+            "pattern": "^[a-f0-9]{40}$"
+          },
+          "metrics": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 96,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+                },
+                "value": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "unit": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 32
+                }
+              },
+              "required": [
+                "name",
+                "value",
+                "unit"
+              ],
+              "additionalProperties": false
+            },
+            "maxItems": 32,
+            "minItems": 0
+          },
+          "evidence": {
+            "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/evidence"
+          }
+        },
+        "required": [
+          "name",
+          "status",
+          "method",
+          "environment",
+          "revision",
+          "metrics",
+          "evidence"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 32,
+      "minItems": 0
+    },
+    "costs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "enum": [
+              "PROVIDER",
+              "HOSTING",
+              "DEVELOPMENT"
+            ]
+          },
+          "cost": {
+            "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/cost"
+          },
+          "method": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "evidence": {
+            "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/evidence"
+          }
+        },
+        "required": [
+          "category",
+          "cost",
+          "method",
+          "evidence"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 32,
+      "minItems": 0
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/evidence"
+            },
+            "maxItems": 16,
+            "minItems": 1
+          }
+        },
+        "required": [
+          "name",
+          "evidence"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 64,
+      "minItems": 0
+    },
+    "limits": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 500
+      },
+      "maxItems": 32,
+      "minItems": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "slug",
+    "title",
+    "git_revision",
+    "status",
+    "environment",
+    "public_route",
+    "deployment_url",
+    "last_verified_at",
+    "simulation",
+    "tests",
+    "benchmarks",
+    "costs",
+    "skills",
+    "limits"
+  ],
+  "additionalProperties": false
+}

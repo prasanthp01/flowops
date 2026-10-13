@@ -1,0 +1,122 @@
+[
+  {
+    "name": "alembic",
+    "version": "1.20.0",
+    "license_metadata": "MIT"
+  },
+  {
+    "name": "annotated-doc",
+    "version": "0.0.5",
+    "license_metadata": "MIT"
+  },
+  {
+    "name": "annotated-types",
+    "version": "0.8.0",
+    "license_metadata": "MIT"
+  },
+  {
+    "name": "anyio",
+    "version": "4.15.1",
+    "license_metadata": "MIT"
+  },
+  {
+    "name": "certifi",
+    "version": "2026.7.22",
+    "license_metadata": "MPL-2.0"
+  },
+  {
+    "name": "click",
+    "version": "8.5.0",
+    "license_metadata": "BSD-3-Clause"
+  },
+  {
+    "name": "fastapi",
+    "version": "0.143.0",
+    "license_metadata": "MIT"
+  },
+  {
+    "name": "h11",
+    "version": "0.16.0",
+    "license_metadata": "MIT"
+  },
+  {
+    "name": "httpcore",
+    "version": "1.0.9",
+    "license_metadata": "BSD-3-Clause"
+  },
+  {
+    "name": "httpx",
+    "version": "0.28.1",
+    "license_metadata": "BSD-3-Clause"
+  },
+  {
+    "name": "idna",
+    "version": "3.20",
+    "license_metadata": "BSD-3-Clause"
+  },
+  {
+    "name": "Mako",
+    "version": "1.4.3",
+    "license_metadata": "MIT"
+  },
+  {
+    "name": "MarkupSafe",
+    "version": "3.0.4",
+    "license_metadata": "BSD-3-Clause"
+  },
+  {
+    "name": "opentelemetry-api",
+    "version": "1.45.1",
+    "license_metadata": "Apache-2.0"
+  },
+  {
+    "name": "psycopg",
+    "version": "3.3.6",
+    "license_metadata": "LGPL-3.0-only"
+  },
+  {
+    "name": "psycopg-binary",
+    "version": "3.3.6",
+    "license_metadata": "LGPL-3.0-only"
+  },
+  {
+    "name": "pydantic",
+    "version": "2.14.1",
+    "license_metadata": "MIT"
+  },
+  {
+    "name": "pydantic_core",
+    "version": "2.50.1",
+    "license_metadata": "MIT"
+  },
+  {
+    "name": "SQLAlchemy",
+    "version": "2.1.4",
+    "license_metadata": "MIT"
+  },
+  {
+    "name": "starlette",
+    "version": "1.8.0",
+    "license_metadata": "BSD-3-Clause"
+  },
+  {
+    "name": "typing_extensions",
+    "version": "4.16.0",
+    "license_metadata": "PSF-2.0"
+  },
+  {
+    "name": "typing-inspection",
+    "version": "0.4.4",
+    "license_metadata": "MIT"
+  },
+  {
+    "name": "tzdata",
+    "version": "2026.5",
+    "license_metadata": "Platform-conditional package not installed on this host"
+  },
+  {
+    "name": "uvicorn",
+    "version": "0.54.0",
+    "license_metadata": "BSD-3-Clause"
+  }
+]

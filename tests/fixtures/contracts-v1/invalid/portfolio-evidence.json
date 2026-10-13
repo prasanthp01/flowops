@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "slug": "resolveai",
+  "title": "Synthetic evidence example",
+  "git_revision": "0000000000000000000000000000000000000000",
+  "status": "PLANNED",
+  "environment": "test",
+  "public_route": "/projects/resolveai",
+  "deployment_url": null,
+  "last_verified_at": null,
+  "simulation": {
+    "mode": "SANDBOX_DETERMINISTIC",
+    "provenance": {
+      "data_origin": "SYNTHETIC",
+      "connector_kind": "MOCK",
+      "app_version": "0.0.0-mock",
+      "fixtures_version": "1.0.0",
+      "rules_version": "mock-1",
+      "workflow_version": "mock-1",
+      "model_version": "none",
+      "prompt_version": "none",
+      "source_revision": "0000000000000000000000000000000000000000"
+    },
+    "input_schema_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "tests": [],
+  "benchmarks": [],
+  "costs": [],
+  "skills": [],
+  "limits": [
+    "Example only; not evidence that a product was tested."
+  ],
+  "unexpected_secret_field": "synthetic-sentinel"
+}

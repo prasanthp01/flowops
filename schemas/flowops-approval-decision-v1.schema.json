@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "request_id": {
+      "pattern": "^[a-f0-9-]{36}$",
+      "title": "Request Id",
+      "type": "string"
+    },
+    "action_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Action Digest",
+      "type": "string"
+    },
+    "decision": {
+      "enum": [
+        "approve",
+        "reject"
+      ],
+      "title": "Decision",
+      "type": "string"
+    }
+  },
+  "required": [
+    "request_id",
+    "action_digest",
+    "decision"
+  ],
+  "title": "ApprovalDecision",
+  "type": "object"
+}

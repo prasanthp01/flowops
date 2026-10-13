@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "event_id": "cross-event-1",
+  "source": {
+    "application_id": "flowops",
+    "environment": "test",
+    "tenant_id": "tenant-fixture"
+  },
+  "audience": "resolveai",
+  "occurred_at": "2026-10-13T12:00:00Z",
+  "correlation_id": "correlation-1",
+  "trace_id": "trace-1",
+  "sensitivity": "PUBLIC",
+  "idempotency_key": "operation-1",
+  "kind": "workflow.execution.failed.v1",
+  "mode": "SANDBOX_DETERMINISTIC",
+  "provenance": {
+    "data_origin": "SYNTHETIC",
+    "connector_kind": "MOCK",
+    "app_version": "0.0.0-mock",
+    "fixtures_version": "1.0.0",
+    "rules_version": "mock-1",
+    "workflow_version": "mock-1",
+    "model_version": "none",
+    "prompt_version": "none",
+    "source_revision": "0000000000000000000000000000000000000000"
+  },
+  "payload": {
+    "workflow_id": "workflow-1",
+    "execution_id": "execution-1",
+    "failure_code": "DEPENDENCY_UNAVAILABLE",
+    "severity": 3,
+    "evidence": [
+      {
+        "evidence_id": "fixture-1",
+        "origin": "FIXTURE",
+        "reference": "fixtures/scenario.json",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      }
+    ]
+  },
+  "integrity": {
+    "algorithm": "HMAC-SHA256",
+    "key_id": "fixture-key",
+    "digest": "0000000000000000000000000000000000000000000000000000000000000000"
+  }
+}

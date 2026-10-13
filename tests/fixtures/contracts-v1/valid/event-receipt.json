@@ -1,0 +1,6 @@
+{
+  "schema_version": "1.0",
+  "event_id": "cross-event-1",
+  "status": "ACCEPTED",
+  "correlation_id": "correlation-1"
+}

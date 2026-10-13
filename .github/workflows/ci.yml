@@ -1,0 +1,37 @@
+name: FlowOps checks
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+concurrency:
+  group: flowops-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with: {persist-credentials: false}
+      - name: Install locked development environment
+        run: |
+          python3 -m pip install uv==0.12.15
+          uv sync --frozen --python 3.12
+      - name: Static checks
+        run: |
+          uv run ruff check flowops tests scripts operations migrations
+          uv run mypy flowops
+          node --check flowops/static/app.js
+      - name: Start isolated synthetic services
+        run: |
+          python3 scripts/init_local.py
+          docker compose -f compose.yaml -f compose.qa.yaml up --build -d
+      - name: PostgreSQL migration and application tests
+        run: |
+          uv run python scripts/dev.py .venv/bin/alembic upgrade head
+          uv run python scripts/dev.py .venv/bin/pytest -q --junitxml=docs/evidence/pytest.xml
+          uv run python scripts/local_verify.py
+      - name: Dependency advisory audit
+        run: uv run pip-audit -r requirements.txt --disable-pip --no-deps
+      - name: Stop owned containers
+        if: always()
+        run: docker compose -f compose.yaml -f compose.qa.yaml stop

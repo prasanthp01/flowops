@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "application_id": "resolveai",
+  "environment": "test",
+  "tenant_id": "tenant-fixture",
+  "task_type": "triage",
+  "risk_class": "LOW",
+  "required_capabilities": [
+    "TEXT",
+    "STRUCTURED_OUTPUT"
+  ],
+  "data_classification": "PUBLIC",
+  "allowed_regions": [
+    "eu-test"
+  ],
+  "latency_deadline_ms": 1000,
+  "max_input_tokens": 1024,
+  "max_output_tokens": 256,
+  "max_cost": 0,
+  "currency": "USD",
+  "routing_policy_version": "fixture-1",
+  "correlation_id": "correlation-1",
+  "trace_id": "trace-1",
+  "operation_id": "operation-1",
+  "mode": "SANDBOX_DETERMINISTIC",
+  "context_refs": [
+    "fixture-1"
+  ],
+  "extensions": {},
+  "unexpected_secret_field": "synthetic-sentinel"
+}

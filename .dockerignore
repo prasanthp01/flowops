@@ -1,0 +1,22 @@
+.git
+.venv
+.local
+.env
+__pycache__
+.pytest_cache
+.mypy_cache
+.ruff_cache
+output
+
+# Private local runtime and verification artifacts
+.env*
+!.env.example
+.local/
+*.secret
+*.secret.json
+*.db
+*.db-*
+*.sqlite*
+*.dump
+*.log
+.DS_Store

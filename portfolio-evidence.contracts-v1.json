@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0",
+  "slug": "flowops",
+  "title": "FlowOps trusted peer workflow correction",
+  "git_revision": "3b816fecad7910f1c123bc648b73542986b9a76b",
+  "status": "TESTED",
+  "environment": "test",
+  "public_route": "/projects/flowops",
+  "deployment_url": null,
+  "last_verified_at": "2026-10-13T16:53:19.761443Z",
+  "simulation": {
+    "mode": "SANDBOX_DETERMINISTIC",
+    "provenance": {
+      "data_origin": "SYNTHETIC",
+      "connector_kind": "MOCK",
+      "app_version": "0.2.0",
+      "fixtures_version": "synthetic-1.0",
+      "rules_version": "2026-01",
+      "workflow_version": "flowops-1.0",
+      "model_version": "none",
+      "prompt_version": "none",
+      "source_revision": "3b816fecad7910f1c123bc648b73542986b9a76b"
+    },
+    "input_schema_sha256": "ac2b21b95c18c41f48030266975fe047fa78507cd74e98242ee0302b23dbb843"
+  },
+  "tests": [
+    {
+      "name": "Full regression",
+      "status": "PASS",
+      "command": "uv run python scripts/dev.py .venv/bin/pytest -q --junitxml=docs/contracts-adoption/peer-profile-pytest.xml",
+      "evidence": {
+        "evidence_id": "full-regression",
+        "origin": "TEST",
+        "reference": "docs/contracts-adoption/peer-profile-pytest.xml",
+        "sha256": "9916c086d1457ad5ecd93c830972ab9279ace990adba224b23c077317bbca710"
+      },
+      "conditions": "149 passed in 34.01 seconds on isolated flowops_test. Operator opt-in, profile revocation, streaming error bounds, frozen contracts, legacy and canonical workflows. One pre-existing Starlette deprecation warning.",
+      "executed_at": "2026-10-13T16:50:19.092876Z"
+    },
+    {
+      "name": "Real peer workflow",
+      "status": "PASS",
+      "command": "uv run python -m scripts.peer_profile_rehearsal --knowledge-source /path/to/knowledgeops --agent-source /path/to/agentops",
+      "evidence": {
+        "evidence_id": "real-peer-workflow",
+        "origin": "TEST",
+        "reference": "docs/contracts-adoption/peer-profile-runtime.json",
+        "sha256": "6ba8d5d611413f80aa2a34871a38b76d8322173fa262ad838f4bd46b56c286cf"
+      },
+      "conditions": "Persisted native FlowOps API/worker and fresh PostgreSQL, real pinned private KnowledgeOps/AgentOps APIs, fresh synthetic-only credentials. Positive citation lookup, preserved AgentOps POLICY_BLOCKED, restart and operator approval. Owned temporary services stopped; their data retained.",
+      "executed_at": "2026-10-13T16:50:39.348070Z"
+    },
+    {
+      "name": "Static and pin checks",
+      "status": "PASS",
+      "command": "uv run ruff check flowops tests scripts operations migrations && uv run mypy flowops",
+      "evidence": {
+        "evidence_id": "static-and-pin-checks",
+        "origin": "TEST",
+        "reference": "docs/contracts-adoption/peer-profile-static.json",
+        "sha256": "d69a9e5f419a36d21c4f705bc2c2c9afabb70aaf715884adb7aaf776409b0f52"
+      },
+      "conditions": "Ruff/mypy/whitespace passed; all 81 frozen contract hashes match. Dependency lock and export are unchanged from the earlier audited revision.",
+      "executed_at": "2026-10-13T16:53:19.761716Z"
+    }
+  ],
+  "benchmarks": [],
+  "costs": [
+    {
+      "category": "PROVIDER",
+      "cost": {
+        "kind": "NONE",
+        "value": 0,
+        "currency": "EUR",
+        "pricing_version": "no-provider-usage"
+      },
+      "method": "Synthetic run reported zero provider usage. Isolated AgentOps database contained zero admitted runs and attempts; its policy refusal occurred before provider execution. Hosting/development cost is excluded.",
+      "evidence": {
+        "evidence_id": "peer-profile-usage",
+        "origin": "TEST",
+        "reference": "docs/contracts-adoption/peer-profile-runtime.json",
+        "sha256": "6ba8d5d611413f80aa2a34871a38b76d8322173fa262ad838f4bd46b56c286cf"
+      }
+    }
+  ],
+  "skills": [],
+  "limits": [
+    "Local operator-authorized workflow only. Public v0.1.0 and the initial port 8766 adapter were not changed. No production cutover.",
+    "KnowledgeOps positive edge is limited to the authorized synthetic search-guide fixture on pinned 172a6c9; supplemental citations cannot authorize business actions.",
+    "AgentOps 50bb507 still refuses the HIGH-risk EUR eu-test context-bearing order review. Refusal and typed deterministic fallback are verified; successful inference is not.",
+    "Default workflows remain peer-disabled. Per-run private operator header and matching file-based profile are required.",
+    "ResolveAI outbound event delivery, production credentials, frontend/proxy integration, journal archival and sustained capacity tests remain outside this correction.",
+    "No new deployment image, independent security certification or real customer corpus was tested. Rehearsal ran native local Python services and a pinned PostgreSQL container."
+  ]
+}

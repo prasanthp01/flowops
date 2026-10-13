@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.example.invalid/v1/incident-investigation-completed.schema.json",
+  "title": "IncidentInvestigationCompleted",
+  "type": "object",
+  "properties": {
+    "incident_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "investigation_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$"
+    },
+    "outcome": {
+      "enum": [
+        "EXPLAINED",
+        "ABSTAINED",
+        "REVIEW_REQUIRED"
+      ]
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "https://contracts.example.invalid/v1/common.schema.json#/$defs/evidence"
+      },
+      "maxItems": 32,
+      "minItems": 0
+    }
+  },
+  "required": [
+    "incident_id",
+    "investigation_id",
+    "outcome",
+    "evidence"
+  ],
+  "additionalProperties": false
+}

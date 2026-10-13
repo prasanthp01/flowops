@@ -1,0 +1,15 @@
+{
+  "workflow_id": "workflow-1",
+  "execution_id": "execution-1",
+  "failure_code": "DEPENDENCY_UNAVAILABLE",
+  "severity": 3,
+  "evidence": [
+    {
+      "evidence_id": "fixture-1",
+      "origin": "FIXTURE",
+      "reference": "fixtures/scenario.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  ],
+  "unexpected_secret_field": "synthetic-sentinel"
+}
