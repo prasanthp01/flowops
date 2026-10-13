@@ -30,6 +30,8 @@ jobs:
           uv run python scripts/dev.py .venv/bin/alembic upgrade head
           uv run python scripts/dev.py .venv/bin/pytest -q --junitxml=docs/evidence/pytest.xml
           uv run python scripts/local_verify.py
+      - name: Source hygiene
+        run: uv run python scripts/check_source.py
       - name: Dependency advisory audit
         run: uv run pip-audit -r requirements.txt --disable-pip --no-deps
       - name: Stop owned containers

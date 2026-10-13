@@ -1,0 +1,52 @@
+{
+  "verified_at": "2026-10-13T19:28:04.431467+00:00",
+  "implementation_commit": "3b59f7f7f76e459bb6744a4fa42fe6f387b3bd7f",
+  "scope": "single-host synthetic self-hosted release",
+  "tests": {
+    "tests": 150,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "hosted_ci": "https://github.com/prasanthp01/flowops/actions/runs/38454235597",
+  "security": {
+    "high_critical_image_vulnerabilities": 0,
+    "source_secret_findings": 0,
+    "docker_misconfiguration_findings": 0,
+    "private_vulnerability_reporting": true
+  },
+  "runtime": {
+    "image_id": "sha256:b6e760d2a1d343a2dd221d9c5c465d67465a64ede1548fd57a7e3052c8b7cb89",
+    "user": "10001",
+    "read_only": true,
+    "cap_drop": [
+      "ALL"
+    ],
+    "memory_bytes": 268435456,
+    "health": "healthy"
+  },
+  "browser": {
+    "mobile_viewport_width": 390,
+    "mobile_overflow": false,
+    "desktop_review": false,
+    "scope": "keyless scenario smoke; not physical-device or full accessibility certification",
+    "observed_scenarios": [
+      "Eligible refund settled",
+      "ERP recovery settled",
+      "Operator approval and lost-response reconciliation passed via HTTP"
+    ]
+  },
+  "not_validated": [
+    "Live paid-provider execution",
+    "Enterprise identity and tenancy",
+    "Commercial workload or production SLA",
+    "Independent penetration testing"
+  ],
+  "restore": {
+    "restored": true,
+    "tables": 12,
+    "data_sha256": "0ad1b5dbb8bc27a466873fae12ef333322f92ca0249074b4927b746676e79942",
+    "scope": "fresh isolated release database",
+    "existing_data_modified": false
+  }
+}

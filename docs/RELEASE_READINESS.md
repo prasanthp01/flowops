@@ -11,7 +11,7 @@ Verified locally on 13 October 2026. This assessment covers the shipped syntheti
 | Non-root container with resource limits | Built and started successfully |
 | Local data and private material | Excluded from distribution; repository uses public noreply author identity |
 | Documentation and licensing | Setup, architecture, API, security, operations and contribution instructions included |
-| Hosted CI | Check the repository Actions run for the exact commit; local checks do not imply a hosted result |
+| Hosted CI | [Passed for implementation commit `3b59f7f7`](https://github.com/prasanthp01/flowops/actions/runs/38454235597) |
 
 ## What works
 
@@ -26,3 +26,11 @@ Real model quality, external provider latency/billing, enterprise SSO, multi-reg
 ## Reproduce
 
 Follow the README verification commands and CI workflow. Rerun dependency/container scans before deployment; an advisory-free scan describes its date and database, not future immunity. Keep credentials, test databases, raw logs and personal assets out of commits.
+
+## Dependency inventory
+
+[Container SBOM](sbom.cdx.json) lists the packages detected in the locally built runtime image. It records its own image digest and generation time; rebuild and regenerate it when dependencies or the base image change.
+
+[Machine-readable verification](release-verification.json) records the tested implementation commit, image identity, runtime restrictions and current test counts. Subsequent documentation commits have their own CI runs in Actions.
+
+A fresh database restore in the isolated release stack reproduced all 12 tables and an identical data-only dump hash. The drill did not overwrite the source database.
